@@ -10,7 +10,7 @@ import ec.edu.ups.entidad.MovimientoBodega;
 @Stateless
 public class MovimientoBodegaFacade  extends AbstractFacade<MovimientoBodega>{
 
-	 @PersistenceContext(unitName = "Practica_EJB_JSF_JPA")
+	 @PersistenceContext(unitName = "Practica-4")
     private EntityManager em;
 	public MovimientoBodegaFacade() {
 		super(MovimientoBodega.class);

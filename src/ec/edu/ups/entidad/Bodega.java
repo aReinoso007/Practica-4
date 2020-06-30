@@ -15,7 +15,7 @@ public class Bodega implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigoBodega;
 
 	private String nombre;

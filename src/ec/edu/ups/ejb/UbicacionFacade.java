@@ -10,7 +10,7 @@ import ec.edu.ups.entidad.Ubicacion;
 @Stateless
 public class UbicacionFacade  extends AbstractFacade<Ubicacion> {
 
-	 @PersistenceContext(unitName = "Practica_EJB_JSF_JPA")
+	 @PersistenceContext(unitName = "Practica-4")
 	    private EntityManager em;
 	
 	public UbicacionFacade() {

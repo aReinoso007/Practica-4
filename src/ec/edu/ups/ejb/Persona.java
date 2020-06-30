@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class Persona extends AbstractFacade<Persona> {
 
-	@PersistenceContext(unitName = "Practica_EJB_JSF_JPA")
+	@PersistenceContext(unitName = "Practica-4")
     private EntityManager em;
 	public Persona() {
 		super(Persona.class);
