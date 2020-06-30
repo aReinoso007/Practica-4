@@ -16,7 +16,7 @@ public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigoFactura;
 	
 	private Date fecha;
@@ -32,21 +32,22 @@ public class Factura implements Serializable {
 	
 	private Double total;
 	private Double iva;
+	private Double subtotal;
 	private boolean estadoFactura;
 
 	public Factura() {
 		
 	}
 
-	public Factura(int codigoFactura, Date fecha, Persona persona, List<FacturaDetalle> detallesFactura, Double total,
-			Double iva, boolean estadoFactura) {
+	public Factura(Date fecha, Persona persona, List<FacturaDetalle> detallesFactura, Double total, Double iva,
+			Double subtotal, boolean estadoFactura) {
 		super();
-		this.codigoFactura = codigoFactura;
 		this.fecha = fecha;
 		this.persona = persona;
 		this.detallesFactura = detallesFactura;
 		this.total = total;
 		this.iva = iva;
+		this.subtotal = subtotal;
 		this.estadoFactura = estadoFactura;
 	}
 
@@ -98,6 +99,14 @@ public class Factura implements Serializable {
 		this.iva = iva;
 	}
 
+	public Double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(Double subtotal) {
+		this.subtotal = subtotal;
+	}
+
 	public boolean isEstadoFactura() {
 		return estadoFactura;
 	}
@@ -116,6 +125,7 @@ public class Factura implements Serializable {
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((iva == null) ? 0 : iva.hashCode());
 		result = prime * result + ((persona == null) ? 0 : persona.hashCode());
+		result = prime * result + ((subtotal == null) ? 0 : subtotal.hashCode());
 		result = prime * result + ((total == null) ? 0 : total.hashCode());
 		return result;
 	}
@@ -153,6 +163,11 @@ public class Factura implements Serializable {
 				return false;
 		} else if (!persona.equals(other.persona))
 			return false;
+		if (subtotal == null) {
+			if (other.subtotal != null)
+				return false;
+		} else if (!subtotal.equals(other.subtotal))
+			return false;
 		if (total == null) {
 			if (other.total != null)
 				return false;
@@ -160,8 +175,10 @@ public class Factura implements Serializable {
 			return false;
 		return true;
 	}
-
 	
+	
+
+
 	
 	
    

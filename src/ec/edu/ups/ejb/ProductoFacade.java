@@ -9,7 +9,7 @@ import ec.edu.ups.entidad.Producto;
 @Stateless
 public class ProductoFacade extends AbstractFacade<Producto> {
 
-    @PersistenceContext(unitName = "Practica_EJB_JSF_JPA")
+    @PersistenceContext(unitName = "Practica-4")
     private EntityManager em;
     
 	public ProductoFacade() {

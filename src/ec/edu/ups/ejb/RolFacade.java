@@ -10,7 +10,7 @@ import ec.edu.ups.entidad.Rol;
 public class RolFacade extends AbstractFacade<Rol>{
 
 
-	  @PersistenceContext(unitName = "Practica_EJB_JSF_JPA")
+	  @PersistenceContext(unitName = "Practica-4")
 	    private EntityManager em;
 	public RolFacade() {
 		super(Rol.class);
