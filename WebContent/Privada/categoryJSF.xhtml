@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Categorías</title>
+	<script src="/Practica_EJB_JSF_JPA/config/js/jquery-2.1.1.min.js"></script>
+	<script src="/Practica_EJB_JSF_JPA/config/js/bootstrap.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+
+
+</h:head>
+<h:body>
+
+
+	<h3>Ingresar Detalle Factura:</h3>
+	
+	
+	
+	
+	
+	
+
+	<h:panelGrid styleClass="container">
+
+		<h:form styleClass="form-inline">
+			<h:outputLabel styleClass="mb-2 mr-sm-2">Producto</h:outputLabel>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2"  />
+
+			<h:outputLabel styleClass="mb-2 mr-sm-2">Cantidad</h:outputLabel>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2"  />
+
+			<h:outputLabel styleClass="mb-2 mr-sm-2">Precio</h:outputLabel>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2"  />
+
+		</h:form>
+	</h:panelGrid>
+	<h:panelGrid styleClass="container">
+		<h:form>
+
+
+			<br />
+
+			<h:dataTable value="" var="c" styleClass="table table-striped"
+				headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+
+				<!-- inicio columnas -->
+				<h:column>
+					<f:facet name="header">Producto</f:facet>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Cantidad</f:facet>
+					<h:inputText value="" size="10" rendered="" />
+					<h:outputText value="" rendered="" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Precio</f:facet>
+					<h:inputText value="" size="10" rendered="" />
+					<h:outputText value="" rendered="" />
+				</h:column>
+
+				<h:column>
+
+					<h:commandLink value="Delete" rendered="" />
+				</h:column>
+
+				<h:column>
+
+					<h:commandLink value="Edit" rendered="" />
+					<h:commandLink value="Save" rendered="" />
+				</h:column>
+
+			</h:dataTable>
+
+
+			<ul>
+				<li>Descripción:<h:inputText size="10" value="" /></li>
+			</ul>
+			<h:commandButton styleClass="btn btn-danger" value="Add" />
+
+		</h:form>
+	</h:panelGrid>
+</h:body>
+</html>
