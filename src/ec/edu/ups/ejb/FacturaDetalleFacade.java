@@ -1,5 +1,10 @@
 package ec.edu.ups.ejb;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,5 +26,22 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle>{
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+
+	public List<FacturaDetalle> buscarFactura(int codigo){
+    	
+		List<FacturaDetalle> list = new ArrayList<FacturaDetalle>();
+		
+		ResultSet rs = (ResultSet) em.createQuery("SELECT * FROM facturadetalle WHERE facturadetalle.CODIGOFACTDET="+ codigo);
+		try {
+			while (rs.next()) {
+				list.add(new FacturaDetalle(rs.getInt("CODIGOFACTDET"), rs.getInt("cantidad"), rs.getInt("FACTURA_CODIGOFACTURA"),rs.getInt("PRODUCTO_CODIGOPRODUCTO")));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCTelefonoDAO:find): " + e.getMessage());
+		}
+		return list;
+	}
 
 }
