@@ -31,16 +31,9 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle>{
 	public List<FacturaDetalle> buscarFactura(int codigo){
     	
 		List<FacturaDetalle> list = new ArrayList<FacturaDetalle>();
-		
-		ResultSet rs = (ResultSet) em.createQuery("SELECT * FROM facturadetalle WHERE facturadetalle.CODIGOFACTDET="+ codigo);
-		try {
-			while (rs.next()) {
-				list.add(new FacturaDetalle(rs.getInt("CODIGOFACTDET"), rs.getInt("cantidad"), rs.getInt("FACTURA_CODIGOFACTURA"),rs.getInt("PRODUCTO_CODIGOPRODUCTO")));
-			}
+		list = em.createQuery("SELECT * FROM facturadetalle WHERE facturadetalle.CODIGOFACTDET= :codigo", FacturaDetalle.class).setParameter("codigo", codigo).getResultList();
 
-		} catch (SQLException e) {
-			System.out.println(">>>WARNING (JDBCTelefonoDAO:find): " + e.getMessage());
-		}
+
 		return list;
 	}
 
