@@ -11,7 +11,6 @@ import javax.persistence.*;
  *
  */
 @Entity
-
 public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -39,16 +38,11 @@ public class Factura implements Serializable {
 		
 	}
 
-	public Factura(Date fecha, Persona persona, List<FacturaDetalle> detallesFactura, Double total, Double iva,
-			Double subtotal, boolean estadoFactura) {
+	public Factura(Date fecha, Persona persona) {
 		super();
 		this.fecha = fecha;
 		this.persona = persona;
-		this.detallesFactura = detallesFactura;
-		this.total = total;
-		this.iva = iva;
-		this.subtotal = subtotal;
-		this.estadoFactura = estadoFactura;
+
 	}
 
 	public int getCodigoFactura() {

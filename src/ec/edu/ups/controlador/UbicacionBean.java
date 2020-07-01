@@ -18,11 +18,10 @@ import ec.edu.ups.entidad.Ubicacion;
 @SessionScoped
 public class UbicacionBean implements Serializable {
 
-	public UbicacionBean() {
-		// TODO Auto-generated constructor stub
-	}
+
 	
 	private static final long serialVersionUID = 1L;
+	
 
     @EJB
     private UbicacionFacade ejbUbicacionFacade;
@@ -32,15 +31,22 @@ public class UbicacionBean implements Serializable {
 	private String callePrincipal;
 	private String calleSecundaria;
 	private String numero;
+	
+	public UbicacionBean() {
+		// TODO Auto-generated constructor stub
+	}
     
 
   
     
     @PostConstruct
     public void init() {
+    System.out.print("Llamando al constructor.....");
 	ejbUbicacionFacade.create(new Ubicacion( "Azuay", "Cuenca", "Luis Cordero", "Toma de Heres", "4-72"));
 	ejbUbicacionFacade.create(new Ubicacion( "Azuay", "Cuenca", "Luis Cordero", "Toma de Heres", "4-72"));
 	list = ejbUbicacionFacade.findAll();
+	
+	
     }
         
     public Ubicacion[] getList() {
