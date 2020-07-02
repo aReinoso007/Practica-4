@@ -11,7 +11,8 @@ public class RolFacade extends AbstractFacade<Rol>{
 
 
 	  @PersistenceContext(unitName = "Practica-4")
-	    private EntityManager em;
+	  private EntityManager em;
+	  
 	public RolFacade() {
 		super(Rol.class);
 	}

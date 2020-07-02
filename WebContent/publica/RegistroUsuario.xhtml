@@ -33,7 +33,7 @@
 			<label for="contrasena">Contrasena</label><br/>
 			<h:inputSecret id="contrasena" value="#{usuario.contrasena}"/>
 		</h:form>
-		<h:commandButton styleClass="btn btn-success" value="Registrar Usuario" />
+		<h:commandButton styleClass="btn btn-success" value="Registrar Usuario" action="#{usuarioBean.add(usuario)}"/>
 	</div>
 
 	
