@@ -21,5 +21,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    public void crearUsurio(Usuario u) {
+    	
+    }
 
 }
