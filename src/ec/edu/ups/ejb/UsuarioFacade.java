@@ -11,7 +11,7 @@ import ec.edu.ups.entidad.Usuario;
 public class UsuarioFacade extends AbstractFacade<Usuario>{
 	
 	 @PersistenceContext(unitName = "Practica-4")
-	    private EntityManager em;
+	 private EntityManager em;
 
 	public UsuarioFacade() {
 		 super(Usuario.class);
@@ -22,8 +22,6 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
         return em;
     }
     
-    public void crearUsurio(Usuario u) {
-    	
-    }
+
 
 }

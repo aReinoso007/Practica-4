@@ -14,9 +14,13 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="/Practica-4/config/css/styleFormularios.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="/Practica-4/config/css/styleFormularios.css"/> -->
+	<link rel="stylesheet" type="text/css" href="/Practica-4/config/css/bootstrap.css"/>
 </h:head>
 <h:body>
+	<menu>
+		<a class="nav" href="/Practica-4/publica/Index.xhtml">Home</a>
+	</menu>
 
 	<div class="login-form" style="paddin-left: 20px;">
 		<h:form>
@@ -33,7 +37,7 @@
 			<label for="contrasena">Contrasena</label><br/>
 			<h:inputSecret id="contrasena" value="#{usuario.contrasena}"/>
 		</h:form>
-		<h:commandButton styleClass="btn btn-success" value="Registrar Usuario" action="#{usuarioBean.add(usuario)}"/>
+		<h:commandButton styleClass="btn btn-success" value="Registrar Usuario" action="#{usuarioBean.add()}"/>
 	</div>
 
 	
