@@ -18,26 +18,26 @@
 	<link rel="stylesheet" type="text/css" href="/Practica-4/config/css/bootstrap.css"/>
 </h:head>
 <h:body>
-	<menu>
-		<a class="nav" href="/Practica-4/publica/Index.xhtml">Home</a>
-	</menu>
-
+	
+	<a class="nav" href="/Practica-4/publica/Index.xhtml">Home</a>
+	
 	<div class="login-form" style="paddin-left: 20px;">
 		<h:form>
 			<label for="nombre">Nombre</label><br/>
-			<h:inputText id="nombre" value="#{usuario.nombre}"/><br/>
+			<h:inputText id="nombre" value="#{usuarioBean.nombres}"/><br/>
 			<label for="apellido">Apellido</label><br/>
-			<h:inputText id="apellido" value="#{usuario.apellido}"/><br/>
+			<h:inputText id="apellido" value="#{usuarioBean.apellidos}"/><br/>
 			<label for="cedula">cedula</label><br/>
-			<h:inputText id="cedula" value="#{usuario.cedula}"/><br/>
+			<h:inputText id="cedula" value="#{usuarioBean.cedula}"/><br/>
 			<label for="direccion">Direccion</label><br/>
-			<h:inputText id="direccion" value="#{usuario.direccion}"/><br/>
+			<h:inputText id="direccion" value="#{usuarioBean.direccion}"/><br/>
 			<label for="correo">Correo</label><br/>
-			<h:inputText id="correo" value="#{usuario.correo}"/><br/>
+			<h:inputText id="correo" value="#{usuarioBean.correo}"/><br/>
 			<label for="contrasena">Contrasena</label><br/>
-			<h:inputSecret id="contrasena" value="#{usuario.contrasena}"/>
+			<h:inputSecret id="contrasena" value="#{usuarioBean.contrasena}"/>
+			<h:commandButton value="Registrar" action="#{usuarioBean.add}" class="btn btn-danger btn block  text-center form-group"/>
 		</h:form>
-		<h:commandButton styleClass="btn btn-success" value="Registrar Usuario" action="#{usuarioBean.add()}"/>
+		
 	</div>
 
 	
