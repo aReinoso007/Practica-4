@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Registro de Cliente</title>
+<link rel="stylesheet" type="text/css" href="/Practica-4/config/css/styleFormularios.css"/>
+</h:head>
+<h:body>
+	<a class="nav" href="/Practica-4/publica/Index.xhtml">Home</a>
+	<a href="/Practica-4/Privada/RegistroUsuario.xhtml">Registrar Empleado</a>
+	
+	<div class="login-form" style="padding-left:20px">
+		<label for="nombre">Nombre</label><br/>
+			<h:inputText id="nombre" value="#{personaBean.nombre}" placeholder=""/><br/>
+			<label for="apellido">Apellido</label><br/>
+			<h:inputText id="apellido" value="#{personaBean.apellido}" placeholder=""/><br/>
+			<label for="cedula">cedula</label><br/>
+			<h:inputText id="cedula"  placeholder="" value="#{personaBean.cedula}"/><br/>
+			<label for="direccion">Direccion</label><br/>
+			<h:inputText id="direccion" placeholder="" value="#{personaBean.direccion}"/><br/>
+			<label for="correo">Correo</label><br/>
+			<h:inputText id="correo" placeholder="" value="#{personaBean.correo}"/><br/>
+			<br/>
+			<br/>
+			<br/>
+			<h:commandButton value="Registrar" action="#{personaBean.add}" class="btn btn-danger btn block  text-center form-group"/>
+	</div>
+</h:body>
+</html>

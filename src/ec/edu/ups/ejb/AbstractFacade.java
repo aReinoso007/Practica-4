@@ -30,11 +30,13 @@ public abstract class AbstractFacade<T> {
 	return getEntityManager().find(entityClass, id);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+   
 	public List<T> findAll() {
-	javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-	cq.select(cq.from(entityClass));
-	return getEntityManager().createQuery(cq).getResultList();
+		System.out.println("buscando");
+    	javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+    	cq.select(cq.from(entityClass));
+    	System.out.println("resulado : "+getEntityManager().createQuery(cq).getResultList());
+    	return getEntityManager().createQuery(cq).getResultList();
     }
 
     public List<T> findRange(int[] range) {

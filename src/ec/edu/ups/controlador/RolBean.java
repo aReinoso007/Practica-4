@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,9 +12,9 @@ import javax.inject.Named;
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.entidad.Rol;
 
-@SessionScoped
-@Named
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
+@Named
+@SessionScoped
 public class RolBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -22,6 +23,7 @@ public class RolBean implements Serializable{
 	private RolFacade ejbRolFacade;
 	private int codigo;
 	private String descripcion;
+	private List<Rol> lista;
 	
 	public RolBean() {
 		
@@ -29,7 +31,19 @@ public class RolBean implements Serializable{
 	
 	@PostConstruct
 	public void init() {
+		lista = ejbRolFacade.findAll();
+		System.out.println("lista: "+lista);
 		
+	}
+	
+	
+	
+	public List<Rol> getLista() {
+		return lista;
+	}
+
+	public void setLista(List<Rol> lista) {
+		this.lista = lista;
 	}
 
 	public RolFacade getEjbRolFacade() {

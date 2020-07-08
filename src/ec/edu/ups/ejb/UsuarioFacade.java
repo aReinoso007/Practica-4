@@ -26,10 +26,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     
     @SuppressWarnings("unchecked")
 	public List<Usuario> listarClientes(){
-    	String sql = "SELECT u FROM USUARIO u WHERE u.rol_codigo=1";
+    	/*String sql = "SELECT * FROM USUARIO";
     	List<Usuario> list = em.createQuery(sql).getResultList();
-    	System.out.println("Listado de clientes : "+list);
-    	return list;
+    	System.out.println("Listado de clientes : "+list);*/
+    	return null;
     }
 
 

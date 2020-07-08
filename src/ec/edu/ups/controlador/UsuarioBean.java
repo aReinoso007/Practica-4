@@ -3,12 +3,13 @@ package ec.edu.ups.controlador;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
-
+//import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidad.Rol;
 import ec.edu.ups.entidad.Usuario;
@@ -18,11 +19,12 @@ import ec.edu.ups.entidad.Usuario;
 @Named
 @SessionScoped
 public class UsuarioBean implements Serializable{
-	
-	
-	
+
+	private static final long serialVersionUID = 1L;
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
+	//private RolFacade ejbRolFacade;
+	private List<Rol> lista;
 	private List<Usuario> list;
 	private String cedula;
 	private String nombres;
@@ -30,24 +32,31 @@ public class UsuarioBean implements Serializable{
 	private String direccion;
 	private String correo;
 	private String contrasena;
+	private Rol rol;
 	
 	
 	public UsuarioBean() {}
 	
+	@PostConstruct
 	public void init() {
-		list = ejbUsuarioFacade.listarClientes();
+		list = ejbUsuarioFacade.findAll();
+		//lista = ejbRolFacade.findAll();
 	}	
 	//Aqui le agregamos las funcionalidades
-	
+	/*
+	public List<Rol> obtenerRol() {
+		listaRoles = ejbRolFacade.findAll();
+		return listaRoles;
+	}*/
 	public String add() {
 		//Rol r = new Rol();
-		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena));
+		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, this.rol));
 		return null;
 	}
 	
 	public String remove(Usuario u) {
 		ejbUsuarioFacade.remove(u);
-		ejbUsuarioFacade.findAll();
+		//ejbUsuarioFacade.findAll();
 		return null;
 	}
 
@@ -115,8 +124,20 @@ public class UsuarioBean implements Serializable{
 		this.contrasena = contrasena;
 	}
 	
-	
-	
-	
-	
+	public List<Rol> getLista() {
+		return lista;
+	}
+
+	public void setLista(List<Rol> listaRoles) {
+		this.lista = listaRoles;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+		
 }

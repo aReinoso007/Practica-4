@@ -17,14 +17,14 @@ public class TestUsuarioRol {
 		Rol rol;
 		
 		
-		rol = new Rol("empleado");
+		//rol = new Rol("empleado");
 		
 		//usuarioF.create(new Usuario("1400898526", "test", "testAp", "macas", "test@test.com","123", rol));
 		
 		//Usuario usu = new Usuario("1400898526", "test", "testAp", "macas", "test@test.com","123", rol);
 		//usuF.create( new Usuario("1400898526", "test", "testAp", "macas", "test@test.com","123", rol));
-		List<Usuario> usu = usuF.findAll();
-		System.out.println(usu);
+		//List<Usuario> usu = usuF.findAll();
+		System.out.println(usuF.listarClientes());
 	}
 
 }
