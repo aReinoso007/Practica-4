@@ -42,8 +42,8 @@ public class UsuarioBean implements Serializable{
 	@PostConstruct
 	public void init() {
 		System.out.println("Listando todos los usuarios"+ ejbUsuarioFacade.findAll());
-		list = ejbUsuarioFacade.findAll();
-		lista = ejbRolFacade.findAll();
+		//list = ejbUsuarioFacade.findAll();
+		//lista = ejbRolFacade.findAll();
 		
 	}	
 	//Aqui le agregamos las funcionalidades

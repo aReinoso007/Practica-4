@@ -35,13 +35,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 
     
     public Usuario validarIngreso(String correo, String pass) {
+    	System.out.println("Validando ingreso");
     	Query query = em.createNamedQuery("getByCorreo");
     	query.setParameter("correo", correo);
     	query.setParameter("pass", pass);
     	List resultado = query.getResultList();
     	Usuario respuesta = null;
     	if(!resultado.isEmpty()) {
+    		System.out.println("resultado: "+resultado);
     		respuesta = (Usuario) resultado.get(0);
+    		System.out.println("respuesta: "+respuesta);
+    		System.out.println("exito");
     	}
     	return respuesta;
     }
