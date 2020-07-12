@@ -28,7 +28,7 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle>{
     }
     
 
-	public List<FacturaDetalle> buscarFactura(int codigo){
+	public List<FacturaDetalle> buscarFacturaDetalle(int codigo){
     	
 		List<FacturaDetalle> list = new ArrayList<FacturaDetalle>();
 		list = em.createQuery("SELECT * FROM facturadetalle WHERE facturadetalle.CODIGOFACTDET= :codigo", FacturaDetalle.class).setParameter("codigo", codigo).getResultList();

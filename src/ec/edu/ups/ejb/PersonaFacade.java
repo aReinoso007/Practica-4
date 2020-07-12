@@ -4,13 +4,15 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import ec.edu.ups.entidad.Persona;
+
 
 @Stateless
-public class Persona extends AbstractFacade<Persona> {
+public class PersonaFacade extends AbstractFacade<Persona> {
 
 	@PersistenceContext(unitName = "Practica-4")
     private EntityManager em;
-	public Persona() {
+	public PersonaFacade() {
 		super(Persona.class);
 	}
 
