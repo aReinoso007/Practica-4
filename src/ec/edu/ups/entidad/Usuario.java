@@ -7,11 +7,14 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Usuario
  *
  */
+@NamedQuery(name= "getByCorreo", query="SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasena = :pass")
+@NamedQuery(name="listarEmpleados",  query="SELECT u FROM Usuario u WHERE u.rol.codigo = :descripcion")
 @Entity
 public class Usuario  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(unique=true)
 	private String cedula;
 	@Column(nullable = false, length = 250)
 	private String nombre;

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import ec.edu.ups.entidad.Usuario;
 
@@ -32,5 +33,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     	return null;
     }
 
+    
+    public Usuario validarIngreso(String correo, String pass) {
+    	Query query = em.createNamedQuery("getByCorreo");
+    	query.setParameter("correo", correo);
+    	query.setParameter("pass", pass);
+    	List resultado = query.getResultList();
+    	Usuario respuesta = null;
+    	if(!resultado.isEmpty()) {
+    		respuesta = (Usuario) resultado.get(0);
+    	}
+    	return respuesta;
+    }
 
 }

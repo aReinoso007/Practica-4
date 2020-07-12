@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.RolFacade;
 //import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidad.Rol;
@@ -24,7 +25,7 @@ public class UsuarioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
-	//private RolFacade ejbRolFacade;
+	private RolFacade ejbRolFacade;
 	private List<Rol> lista;
 	private List<Usuario> list;
 	private String cedula;
@@ -42,7 +43,8 @@ public class UsuarioBean implements Serializable{
 	public void init() {
 		System.out.println("Listando todos los usuarios"+ ejbUsuarioFacade.findAll());
 		list = ejbUsuarioFacade.findAll();
-		//lista = ejbRolFacade.findAll();
+		lista = ejbRolFacade.findAll();
+		
 	}	
 	//Aqui le agregamos las funcionalidades
 	/*
@@ -51,8 +53,18 @@ public class UsuarioBean implements Serializable{
 		return listaRoles;
 	}*/
 	public String add() {
-		//Rol r = new Rol();
-		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, this.rol));
+		Rol rolEmp = ejbRolFacade.obtenerRol("empleado");
+		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, rolEmp));
+		System.out.println("Listando los empleados");
+		list = ejbUsuarioFacade.findAll();
+		return null;
+	}
+	
+	public String iniciarSesion() {
+		Usuario usuario = ejbUsuarioFacade.validarIngreso(this.correo, this.contrasena);
+		if(usuario != null) {
+			return "Ingreso exitoso";
+		}
 		return null;
 	}
 	
@@ -62,6 +74,12 @@ public class UsuarioBean implements Serializable{
 		return null;
 	}
 
+	
+	
+	
+	
+	
+	
 	public UsuarioFacade getEjbUsuarioFacade() {
 		return ejbUsuarioFacade;
 	}

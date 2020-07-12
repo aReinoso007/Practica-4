@@ -14,6 +14,7 @@ import ec.edu.ups.ejb.FacturaFacade;
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.entidad.Factura;
 import ec.edu.ups.entidad.Persona;
+import ec.edu.ups.entidad.Rol;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -30,20 +31,33 @@ public class PersonaBean implements Serializable{
 	private String correo;
 	private String direccion;
 	private String nombre;
+	private Persona persona;
 	private List<Factura>listaFacturas;
+	private List<Persona> listaPersonas;
+	
 
 	public PersonaBean() {}
 	
 	@PostConstruct
 	public void init() {
+		//persona = new Persona();
 		//listaFacturas = ejbFacturaFacade.findAll();
+		listaPersonas = ejbPersonaFacade.findAll();
 	}
 	
 	public String add() {
-		ejbPersonaFacade.create(new Persona(this.cedula, this.apellido, this.correo, this.direccion, this.nombre));
+		ejbPersonaFacade.create(persona);
 		return null;
 	}
 
+	public List<Persona> listarPersonas() {
+		System.out.println(persona.getCedula());
+		listaPersonas = ejbPersonaFacade.findAll();
+		return listaPersonas;
+	}
+	
+	
+	////////////////////////////////////////////////////
 	public PersonaFacade getEjbPersonaFacade() {
 		return ejbPersonaFacade;
 	}
@@ -107,6 +121,24 @@ public class PersonaBean implements Serializable{
 	public void setListaFacturas(List<Factura> listaFacturas) {
 		this.listaFacturas = listaFacturas;
 	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public List<Persona> getListaPersonas() {
+		return listaPersonas;
+	}
+
+	public void setListaPersonas(List<Persona> listaPersonas) {
+		this.listaPersonas = listaPersonas;
+	}
+	
+	
 	
 	
 }

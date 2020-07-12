@@ -37,7 +37,9 @@ public class RolFacade extends AbstractFacade<Rol>{
 	public List<Rol> listarRoles(){
     	List<Rol> listaRoles = new ArrayList<Rol>();
     	String sql = "SELECT * FROM ROL";
+    	
     	listaRoles = em.createQuery(sql).getResultList();
+    	System.out.println("roles: "+listaRoles);
     	return listaRoles;
     }	
 
