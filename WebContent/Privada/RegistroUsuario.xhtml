@@ -27,13 +27,11 @@
 			<label for="contrasena">Contrasena</label><br/>
 			<h:inputSecret id="contrasena" value="#{usuarioBean.contrasena}"/><br/>
 			<label for="rol">Rol</label><br/>
-			<!-- 
+			<h:form>
 				<h:selectOneMenu value="#{rolBean.lista}" var="u">
 				<f:selectItem value="#{u.codigo}" />
 			</h:selectOneMenu>
-			 -->
-			 
-			 
+			</h:form>
 			<br/>
 			<br/>
 			<h:commandButton value="Registrar" action="#{usuarioBean.add}" class="btn btn-danger btn block  text-center form-group"/>

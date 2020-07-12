@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
@@ -17,7 +18,7 @@ import ec.edu.ups.entidad.Usuario;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@SessionScoped
+@ApplicationScoped
 public class UsuarioBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -39,6 +40,7 @@ public class UsuarioBean implements Serializable{
 	
 	@PostConstruct
 	public void init() {
+		System.out.println("Listando todos los usuarios"+ ejbUsuarioFacade.findAll());
 		list = ejbUsuarioFacade.findAll();
 		//lista = ejbRolFacade.findAll();
 	}	
