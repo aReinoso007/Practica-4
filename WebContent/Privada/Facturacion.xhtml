@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+	>
 <h:head>
 	<title>Categorías</title>
 	<script src="/Practica_EJB_JSF_JPA/config/js/jquery-2.1.1.min.js"></script>
@@ -19,43 +21,60 @@
 
 </h:head>
 <h:body>
-	<h:panelGrid styleClass="container">
-
-
-	</h:panelGrid>
-	<h2>Datos Factura</h2>
-	<h:form>
-		<div class="form-group">
-			<label for="pwd">Cliente:</label>
-			<h:inputText styleClass="form-control" />
-		</div>
-
-		<div class="form-group">
-			<label for="pwd">Estado Fatura:</label>
-			<h:inputText styleClass="form-control" />
-		</div>
-
-
-	</h:form>
-
-
 
 
 	<div class="container">
+		<h2>Datos Factura</h2>
+
+		<h:form>
+			<div class="form-group">
+				<label for="pwd">Cliente:</label>
+				<h:inputText styleClass="form-control"
+					value="#{facturaBean.identificacion}" style="width:200px">
+					<f:ajax event="keyup" render="cliente"
+						listener="#{facturaBean.obtenerCliente}" />
+
+				</h:inputText>
+				<h:outputText id="cliente" class="mensaje-error"
+					value="#{facturaBean.resultado}" />
+				
+
+			</div>
+
+			<div class="form-group">
+				<label for="pwd">Estado Fatura:</label>
+
+				<h:selectOneMenu styleClass="custom-select mt-3"
+					value="#{facturaBean.estadoFactura}">
+					<f:selectItem itemValue="abonada" itemLabel="Abonada" />
+					<f:selectItem itemValue="parcialmente pagada"
+						itemLabel="Parcialmente pagada" />
+					<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
+					<f:selectItem itemValue="todos" itemLabel="Todos" />
+				</h:selectOneMenu>
+
+			</div>
+
+		</h:form>
+
+
 		<h4>Ingresar Detalle Factura:</h4>
 
 		<h:form styleClass="form-inline">
 			<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
 
 			<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
 
 			<label for="pwd" class="mb-2 mr-sm-2">Precio:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" />
+			<h:outputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+
+
 
 			<label for="pwd" class="mb-2 mr-sm-2"></label>
-			<h:commandButton styleClass="btn btn-success" value="Añadir producto" />
+			<h:commandButton action="#{facturaBean.addFactura}"
+				styleClass="btn btn-success" value="Añadir producto" />
 
 		</h:form>
 	</div>
@@ -64,8 +83,9 @@
 		<h:form>
 			<br />
 
-			<h:dataTable value="#{ubicacionBean.list}" var="u" styleClass="table table-striped"
-				headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:dataTable value="#{ubicacionBean.list}" var="u"
+				styleClass="table table-striped" headerClass="cabeceraTabla"
+				rowClasses="filaPar,filaImpar">
 
 				<!-- inicio columnas -->
 				<h:column>
@@ -99,31 +119,28 @@
 
 		</h:form>
 	</h:panelGrid>
-	<div class="container-fluid">
+				<div class="container-fluid">
 		<div class="container-fluid">
 			<!-- Control the column width, and how they should appear on different devices -->
 			<div class="row">
-				<div class="col-sm-6" style="background-color: white;">  </div>
-				<div class="col-sm-6" style="background-color: white;">  </div>
+				<div class="col-sm-6" style="background-color: white;"></div>
+				<div class="col-sm-6" style="background-color: white;"></div>
 			</div>
 			<br />
 
 			<div class="row">
 				<div class="col-sm-4" style="background-color: white;"></div>
 				<div class="col-sm-4" style="background-color: white;"></div>
-				<div class="col-sm-4" style="background-color: yellow;">
-				<label>Subtotal:</label>
-				<h:outputLabel>0.00</h:outputLabel>
-				<br />
-				<label>Total:</label>
-				<h:outputLabel>0.00</h:outputLabel>
+				<div class="col-sm-4" style="background-color: white;">
+					<label>Subtotal:</label>
+					<h:outputLabel>0.00</h:outputLabel>
+					<br /> <label>Total:</label>
+					<h:outputLabel>0.00</h:outputLabel>
 				</div>
 			</div>
-			<br />
-
-
 		</div>
 	</div>
+		
 
 
 
