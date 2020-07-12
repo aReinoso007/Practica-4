@@ -26,8 +26,10 @@ public class UsuarioBean implements Serializable{
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
 	private RolFacade ejbRolFacade;
-	private List<Rol> lista;
-	private List<Usuario> list;
+	
+	
+	private List<Rol> listaRoles;
+	private List<Usuario> listaUsuarios;
 	private String cedula;
 	private String nombres;
 	private String apellidos;
@@ -42,8 +44,8 @@ public class UsuarioBean implements Serializable{
 	@PostConstruct
 	public void init() {
 		System.out.println("Listando todos los usuarios"+ ejbUsuarioFacade.findAll());
-		//list = ejbUsuarioFacade.findAll();
-		//lista = ejbRolFacade.findAll();
+		System.out.println("listando usuarios");
+		listaUsuarios = ejbUsuarioFacade.listarClientes();
 		
 	}	
 	//Aqui le agregamos las funcionalidades
@@ -54,9 +56,10 @@ public class UsuarioBean implements Serializable{
 	}*/
 	public String add() {
 		Rol rolEmp = ejbRolFacade.obtenerRol("empleado");
+		System.out.println("Rol recuperador: "+rolEmp);
 		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, rolEmp));
 		System.out.println("Listando los empleados");
-		list = ejbUsuarioFacade.findAll();
+		listaUsuarios = ejbUsuarioFacade.findAll();
 		return null;
 	}
 	
@@ -74,12 +77,6 @@ public class UsuarioBean implements Serializable{
 		return null;
 	}
 
-	
-	
-	
-	
-	
-	
 	public UsuarioFacade getEjbUsuarioFacade() {
 		return ejbUsuarioFacade;
 	}
@@ -88,12 +85,28 @@ public class UsuarioBean implements Serializable{
 		this.ejbUsuarioFacade = ejbUsuarioFacade;
 	}
 
-	public List<Usuario> getList() {
-		return list;
+	public RolFacade getEjbRolFacade() {
+		return ejbRolFacade;
 	}
 
-	public void setList(List<Usuario> list) {
-		this.list = list;
+	public void setEjbRolFacade(RolFacade ejbRolFacade) {
+		this.ejbRolFacade = ejbRolFacade;
+	}
+
+	public List<Rol> getListaRoles() {
+		return listaRoles;
+	}
+
+	public void setListaRoles(List<Rol> listaRoles) {
+		this.listaRoles = listaRoles;
+	}
+
+	public List<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
 	}
 
 	public String getCedula() {
@@ -143,14 +156,6 @@ public class UsuarioBean implements Serializable{
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	
-	public List<Rol> getLista() {
-		return lista;
-	}
-
-	public void setLista(List<Rol> listaRoles) {
-		this.lista = listaRoles;
-	}
 
 	public Rol getRol() {
 		return rol;
@@ -159,5 +164,5 @@ public class UsuarioBean implements Serializable{
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-		
+
 }

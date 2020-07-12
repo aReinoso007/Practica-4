@@ -27,27 +27,28 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     
     @SuppressWarnings("unchecked")
 	public List<Usuario> listarClientes(){
-    	/*String sql = "SELECT * FROM USUARIO";
-    	List<Usuario> list = em.createQuery(sql).getResultList();
-    	System.out.println("Listado de clientes : "+list);*/
-    	return null;
+    	Query nq = em.createNativeQuery("SELECT * FROM usuario", Usuario.class);
+    	System.out.println("Listando clientesde desde facade usuario");
+    	System.out.println("lista desde usufacade"+nq.getResultList());
+    	return (List<Usuario>) nq.getResultList();
     }
 
     
-    public Usuario validarIngreso(String correo, String pass) {
+    @SuppressWarnings("unchecked")
+	public Usuario validarIngreso(String correo, String pass) {
     	System.out.println("Validando ingreso");
     	Query query = em.createNamedQuery("getByCorreo");
     	query.setParameter("correo", correo);
     	query.setParameter("pass", pass);
-    	List resultado = query.getResultList();
+    	List<Usuario> resultado = query.getResultList();
     	Usuario respuesta = null;
-    	if(!resultado.isEmpty()) {
+    	if(resultado != null) {
     		System.out.println("resultado: "+resultado);
     		respuesta = (Usuario) resultado.get(0);
     		System.out.println("respuesta: "+respuesta);
     		System.out.println("exito");
     	}
-    	return respuesta;
+    	return (Usuario) respuesta;
     }
 
 }
