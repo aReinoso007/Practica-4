@@ -1,6 +1,5 @@
 package ec.edu.ups.ejb;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -27,10 +26,12 @@ public class RolFacade extends AbstractFacade<Rol>{
         return em;
     }
     
-    public Rol obtenerRol(int codigoRol) {
-    	Query nq = em.createNativeQuery("SELECT * FROM rol where codigo=?", Rol.class);
-    	nq.setParameter(1, codigoRol);
+    public Rol obtenerRol(String cargo) {
+    	System.out.println("rol pasado al facade: "+cargo);
+    	Query nq = em.createNativeQuery("SELECT * FROM rol where descipcion= ?", Rol.class);
+    	nq.setParameter(1, cargo);
     	System.out.println("Obteniendo rol desde rolfacade");
+    	System.out.println("rol obtenido: "+nq.getSingleResult());
     	return (Rol) nq.getSingleResult();
     }
     

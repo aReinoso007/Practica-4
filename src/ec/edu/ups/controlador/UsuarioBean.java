@@ -36,8 +36,7 @@ public class UsuarioBean implements Serializable{
 	private String direccion;
 	private String correo;
 	private String contrasena;
-	private Rol rol;
-	private int roll;
+	private String rol;
 	
 	
 	public UsuarioBean() {}
@@ -55,22 +54,30 @@ public class UsuarioBean implements Serializable{
 		listaRoles = ejbRolFacade.findAll();
 		return listaRoles;
 	}*/
+	/*
 	public Rol buscarRols() {
 		Rol r = new Rol();
 		System.out.println("recuperando rol");
-		System.out.println(roll);
-		r = ejbRolFacade.obtenerRol(roll);
+		System.out.println("codigo del roll: "+rol);
+		try {
+			r = ejbRolFacade.obtenerRol(rol);
+		}catch(Exception e) {
+			e.getMessage();
+		}
 		System.out.println("rol recuperado: "+r);
 		return r;
-	}
+	}*/
 	
 	public String add() {
-		System.out.println("Registrando empleados");
-		Rol r1 = new Rol();
-		System.out.println("valor de roll: "+this.roll);
-		r1 = ejbRolFacade.obtenerRol(this.roll);
-		System.out.println("rol recuperador: "+r1);
-		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, r1));
+		Rol rol1 = new Rol();
+		rol1 = ejbRolFacade.obtenerRol(rol);
+		System.out.println("rol recuperador: "+rol1);
+		System.out.println("registrando empleado");
+		try {
+			ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, rol1));
+		}catch(Exception e) {
+			e.getMessage();
+		}
 		System.out.println("Listando los empleados");
 		this.cedula ="";
 		this.nombres ="";
@@ -183,22 +190,11 @@ public class UsuarioBean implements Serializable{
 		this.contrasena = contrasena;
 	}
 
-	public Rol getRol() {
+	public String getRol() {
 		return rol;
 	}
 
-	public void setRol(Rol rol) {
+	public void setRol(String rol) {
 		this.rol = rol;
 	}
-
-	public int getRoll() {
-		return roll;
-	}
-
-	public void setRoll(int roll) {
-		this.roll = roll;
-	}
-
-	
-
 }
