@@ -79,6 +79,12 @@ public class Rol implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Rol [codigo=" + codigo + ", descripcion=" + descripcion + "]";
+	}
+	
 	
 	
    

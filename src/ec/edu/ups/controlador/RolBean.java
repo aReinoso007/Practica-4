@@ -23,7 +23,7 @@ public class RolBean implements Serializable{
 	private RolFacade ejbRolFacade;
 	private int codigo;
 	private String descripcion;
-	private List<Rol> lista;
+	private List<Rol> listaRoles;
 	
 	public RolBean() {
 		
@@ -31,27 +31,9 @@ public class RolBean implements Serializable{
 	
 	@PostConstruct
 	public void init() {
-		lista = ejbRolFacade.findAll();
-		System.out.println("lista: "+lista);
-		
-	}
-	
-	
-	
-	public List<Rol> getLista() {
-		return lista;
-	}
-
-	public void setLista(List<Rol> lista) {
-		this.lista = lista;
-	}
-
-	public RolFacade getEjbRolFacade() {
-		return ejbRolFacade;
-	}
-
-	public void setEjbRolFacade(RolFacade ejbRolFacade) {
-		this.ejbRolFacade = ejbRolFacade;
+		System.out.println("postcontruct");
+		listaRoles = ejbRolFacade.listarRoles();
+		System.out.println("finalizaso postconstruct");
 	}
 
 	public int getCodigo() {
@@ -69,10 +51,15 @@ public class RolBean implements Serializable{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
-	
-	
-	
 
+	public List<Rol> getListaRoles() {
+		return listaRoles;
+	}
+
+	public void setListaRoles(List<Rol> listaRoles) {
+		this.listaRoles = listaRoles;
+	}
+	
+	
+	
 }
