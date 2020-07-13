@@ -12,7 +12,7 @@ public class PersonaFacade extends AbstractFacade<Persona> {
 
 	@PersistenceContext(unitName = "Practica-4")
     private EntityManager em;
-	
+  
 	public PersonaFacade() {
 		super(Persona.class);
 	}

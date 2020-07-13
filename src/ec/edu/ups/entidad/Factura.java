@@ -32,7 +32,7 @@ public class Factura implements Serializable {
 	private Double total;
 	private Double iva;
 	private Double subtotal;
-	private boolean estadoFactura;
+	private String estadoFactura;
 
 	public Factura() {
 		
@@ -101,77 +101,13 @@ public class Factura implements Serializable {
 		this.subtotal = subtotal;
 	}
 
-	public boolean isEstadoFactura() {
+	public String isEstadoFactura() {
 		return estadoFactura;
 	}
 
-	public void setEstadoFactura(boolean estadoFactura) {
+	public void setEstadoFactura(String estadoFactura) {
 		this.estadoFactura = estadoFactura;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + codigoFactura;
-		result = prime * result + ((detallesFactura == null) ? 0 : detallesFactura.hashCode());
-		result = prime * result + (estadoFactura ? 1231 : 1237);
-		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
-		result = prime * result + ((iva == null) ? 0 : iva.hashCode());
-		result = prime * result + ((persona == null) ? 0 : persona.hashCode());
-		result = prime * result + ((subtotal == null) ? 0 : subtotal.hashCode());
-		result = prime * result + ((total == null) ? 0 : total.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Factura other = (Factura) obj;
-		if (codigoFactura != other.codigoFactura)
-			return false;
-		if (detallesFactura == null) {
-			if (other.detallesFactura != null)
-				return false;
-		} else if (!detallesFactura.equals(other.detallesFactura))
-			return false;
-		if (estadoFactura != other.estadoFactura)
-			return false;
-		if (fecha == null) {
-			if (other.fecha != null)
-				return false;
-		} else if (!fecha.equals(other.fecha))
-			return false;
-		if (iva == null) {
-			if (other.iva != null)
-				return false;
-		} else if (!iva.equals(other.iva))
-			return false;
-		if (persona == null) {
-			if (other.persona != null)
-				return false;
-		} else if (!persona.equals(other.persona))
-			return false;
-		if (subtotal == null) {
-			if (other.subtotal != null)
-				return false;
-		} else if (!subtotal.equals(other.subtotal))
-			return false;
-		if (total == null) {
-			if (other.total != null)
-				return false;
-		} else if (!total.equals(other.total))
-			return false;
-		return true;
-	}
-	
-	
-
 
 	
 	

@@ -1,15 +1,18 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.UbicacionFacade;
+import ec.edu.ups.entidad.Persona;
 import ec.edu.ups.entidad.Ubicacion;
 
 
@@ -32,6 +35,9 @@ public class UbicacionBean implements Serializable {
 	private String calleSecundaria;
 	private String numero;
 	
+	
+	private String variable;
+	
 	public UbicacionBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,9 +47,7 @@ public class UbicacionBean implements Serializable {
     
     @PostConstruct
     public void init() {
-    System.out.print("Llamando al constructor.....");
-	ejbUbicacionFacade.create(new Ubicacion( "Azuay", "Cuenca", "Luis Cordero", "Toma de Heres", "4-72"));
-	ejbUbicacionFacade.create(new Ubicacion( "Azuay", "Cuenca", "Luis Cordero", "Toma de Heres", "4-72"));
+	//ejbUbicacionFacade.create(new Ubicacion("Azuay", "Cuenca", "Luis Cordero", "Tomas de Heres", "4-72"));
 	list = ejbUbicacionFacade.findAll();
 	
 	
@@ -119,5 +123,32 @@ public class UbicacionBean implements Serializable {
 	c.setCalleSecundaria("S/C");
 	return null;
     }
+    
+    
+    
+	public String getVariable() {
+		return variable;
+	}
+
+
+
+
+	public void setVariable(String variable) {
+		this.variable = variable;
+	}
+
+
+
+
+	public void imprimirVariable(AjaxBehaviorEvent evento) {
+		//this.persona = new Persona();
+		System.out.print("Variable: "+this.variable);
+		//this.persona = ejbPersonaFacade.find("0151027299");
+		//if (persona != null) {
+		//	this.resultado = persona.getNombre() + " " + persona.getApellido();
+		//} else {
+		//	this.resultado = "El cliente no existe..";
+		//}
+	}
 
 }
