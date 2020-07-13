@@ -30,6 +30,19 @@ public class Persona implements Serializable {
 	public Persona() {
 
 	}
+	
+	
+
+	public Persona(String cedula, String nombre, String apellido, String direccion, String correo) {
+		super();
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.correo = correo;
+	}
+
+
 
 	public Persona(String cedula, String nombre, String apellido, String direccion, String correo,
 			List<Factura> facturas) {
