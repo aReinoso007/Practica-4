@@ -1,6 +1,9 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -17,6 +20,9 @@ public class Rol implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private String descripcion;
+	
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "rol")
+	private List<Usuario> usuario = new ArrayList<Usuario>();
 
 	public Rol() {
 		
@@ -50,6 +56,16 @@ public class Rol implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	
+
+	public List<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

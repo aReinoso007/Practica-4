@@ -28,7 +28,7 @@ public class RolFacade extends AbstractFacade<Rol>{
     
     public Rol obtenerRol(String cargo) {
     	System.out.println("rol pasado al facade: "+cargo);
-    	Query nq = em.createNativeQuery("SELECT * FROM rol where descipcion= ?", Rol.class);
+    	Query nq = em.createNativeQuery("SELECT * FROM rol WHERE descripcion= ?", Rol.class);
     	nq.setParameter(1, cargo);
     	System.out.println("Obteniendo rol desde rolfacade");
     	System.out.println("rol obtenido: "+nq.getSingleResult());
