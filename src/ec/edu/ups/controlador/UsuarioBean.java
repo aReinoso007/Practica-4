@@ -10,7 +10,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
-import org.jboss.weld.context.ejb.Ejb;
 
 import ec.edu.ups.ejb.RolFacade;
 //import ec.edu.ups.ejb.RolFacade;
