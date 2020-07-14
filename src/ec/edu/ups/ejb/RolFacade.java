@@ -1,11 +1,11 @@
 package ec.edu.ups.ejb;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import ec.edu.ups.entidad.Rol;
 
@@ -26,21 +26,21 @@ public class RolFacade extends AbstractFacade<Rol>{
         return em;
     }
     
-    public Rol obtenerRol(String nombreRol) {
-    	Rol rol = new Rol();
-    	String sql = "SELECT r FROM ROL r where r.descripcion='"+nombreRol+"'";
-    	rol = (Rol) em.createQuery(sql).getSingleResult();
-    	return rol;
+    public Rol obtenerRol(String cargo) {
+    	System.out.println("rol pasado al facade: "+cargo);
+    	Query nq = em.createNativeQuery("SELECT * FROM rol WHERE descripcion= ?", Rol.class);
+    	nq.setParameter(1, cargo);
+    	System.out.println("Obteniendo rol desde rolfacade");
+    	System.out.println("rol obtenido: "+nq.getSingleResult());
+    	return (Rol) nq.getSingleResult();
     }
     
     @SuppressWarnings("unchecked")
 	public List<Rol> listarRoles(){
-    	List<Rol> listaRoles = new ArrayList<Rol>();
-    	String sql = "SELECT * FROM ROL";
-    	
-    	listaRoles = em.createQuery(sql).getResultList();
-    	System.out.println("roles: "+listaRoles);
-    	return listaRoles;
+    	Query nq = em.createNativeQuery("SELECT * FROM rol", Rol.class);
+    	System.out.println("obteniendo lista de roles");
+    	System.out.println("lista de roles: "+nq.getResultList());
+    	return (List<Rol>) nq.getResultList();
     }	
 
 }

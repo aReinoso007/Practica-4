@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+
 import ec.edu.ups.ejb.RolFacade;
 //import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
@@ -25,6 +26,7 @@ public class UsuarioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
+	@EJB
 	private RolFacade ejbRolFacade;
 	
 	
@@ -36,7 +38,7 @@ public class UsuarioBean implements Serializable{
 	private String direccion;
 	private String correo;
 	private String contrasena;
-	private Rol rol;
+	private String rol;
 	
 	
 	public UsuarioBean() {}
@@ -46,6 +48,7 @@ public class UsuarioBean implements Serializable{
 		System.out.println("Listando todos los usuarios"+ ejbUsuarioFacade.findAll());
 		System.out.println("listando usuarios");
 		listaUsuarios = ejbUsuarioFacade.listarClientes();
+		System.out.println("rol: "+ejbRolFacade.find(1));
 		
 	}	
 	//Aqui le agregamos las funcionalidades
@@ -54,21 +57,48 @@ public class UsuarioBean implements Serializable{
 		listaRoles = ejbRolFacade.findAll();
 		return listaRoles;
 	}*/
+	
+	public Rol buscarRols() {
+		Rol r = new Rol();
+		System.out.println("recuperando rol");
+		System.out.println("codigo del roll: "+rol);
+		try {
+			r = ejbRolFacade.obtenerRol(this.rol);
+		}catch(Exception e) {
+			e.getMessage();
+		}
+		System.out.println("rol recuperado: "+r);
+		return r;
+	}
+	
 	public String add() {
-		Rol rolEmp = ejbRolFacade.obtenerRol("empleado");
-		System.out.println("Rol recuperador: "+rolEmp);
-		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, rolEmp));
+		
+		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, buscarRols()));
+	
 		System.out.println("Listando los empleados");
+		this.cedula ="";
+		this.nombres ="";
+		this.apellidos="";
+		this.direccion="";
+		this.correo="";
+		this.contrasena="";
 		listaUsuarios = ejbUsuarioFacade.findAll();
 		return null;
 	}
 	
+	
+	
 	public String iniciarSesion() {
+		
 		Usuario usuario = ejbUsuarioFacade.validarIngreso(this.correo, this.contrasena);
+		this.correo = "";
+		this.contrasena ="";
 		if(usuario != null) {
-			return "Ingreso exitoso";
+			return "exito";
+			
+		}else {
+			return "fallo";
 		}
-		return null;
 	}
 	
 	public String remove(Usuario u) {
@@ -157,12 +187,11 @@ public class UsuarioBean implements Serializable{
 		this.contrasena = contrasena;
 	}
 
-	public Rol getRol() {
+	public String getRol() {
 		return rol;
 	}
 
-	public void setRol(Rol rol) {
+	public void setRol(String rol) {
 		this.rol = rol;
 	}
-
 }

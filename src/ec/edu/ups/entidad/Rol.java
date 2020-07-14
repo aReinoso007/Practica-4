@@ -1,6 +1,9 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -17,6 +20,8 @@ public class Rol implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private String descripcion;
+	
+
 
 	public Rol() {
 		
@@ -36,7 +41,6 @@ public class Rol implements Serializable {
 	}
 
 	public Rol(String descripcion) {
-		super();
 		this.descripcion = descripcion;
 	}
 
@@ -51,6 +55,7 @@ public class Rol implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -79,6 +84,12 @@ public class Rol implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Rol [codigo=" + codigo + ", descripcion=" + descripcion + "]";
+	}
+	
 	
 	
    
