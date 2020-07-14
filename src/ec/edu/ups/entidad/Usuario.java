@@ -25,7 +25,7 @@ public class Usuario  implements Serializable {
 	private String correo;
 	private String contrasena;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn
 	private Rol rol;
 

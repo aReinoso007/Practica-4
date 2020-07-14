@@ -21,8 +21,7 @@ public class Rol implements Serializable {
 	private int codigo;
 	private String descripcion;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "rol")
-	private List<Usuario> usuario = new ArrayList<Usuario>();
+
 
 	public Rol() {
 		
@@ -42,7 +41,6 @@ public class Rol implements Serializable {
 	}
 
 	public Rol(String descripcion) {
-		super();
 		this.descripcion = descripcion;
 	}
 
@@ -58,15 +56,6 @@ public class Rol implements Serializable {
 		this.descripcion = descripcion;
 	}
 	
-	
-
-	public List<Usuario> getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
-	}
 
 	@Override
 	public int hashCode() {
