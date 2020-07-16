@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Sistema de gestion</title>
@@ -21,15 +23,15 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="/Practica-4/Privada/RegistroUsuario.xhtml">
+					<a class="nav-link" href="/Practica-4/Privada/Index.xhtml">
 						<i  class="fas fa-fw fa-tachometer-alt"></i>
-						<span>Registrar Empleado</span>
+						<span>Dashboard</span>
 					</a>
 				</li>
 				
 				<hr  class="sidebar-divider">
 					<div  class="sidebar-heading">
-						Acciones
+						Administrar
 					</div>
 					
 					<li  class="nav-item">
@@ -40,6 +42,9 @@
 						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 							<div class="bg-white py-2 collapse-inner rounded">
 								<h6 class="collapse-header">Opciones</h6>
+								<a class="collapse-item" href="/Practica-4/Privada/RegistroUsuario.xhtml">Registrar Empleado</a>
+            					<a class="collapse-item" href="/Practica-4/Privada/ListarEmpleados.xhtml">listado Empleados</a>
+            					
 								<a class="collapse-item"  href="/Practica-4/Privada/RegistroUsuario.xhtml">Registrar Empleado</a>
 								<a class="collapse-item"  href="/Practica-4/Privada/RegistrarCliente.xhtml">Registrar Cliente</a>
 							</div>
