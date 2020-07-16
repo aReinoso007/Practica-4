@@ -12,7 +12,8 @@
   <!-- Custom styles for this page -->
   <link href="/Practica-4/CONFIG2vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </h:head>
-<body id="page-top">
+<body>
+
 
 <!-- Page Wrapper -->
   <div id="wrapper">
@@ -332,25 +333,25 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Listado de clientes</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <h:dataTable value="#{usuarioBean.listaUsuarios}" var="emp" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <h:dataTable value="#{personaBean.listaPersonas}" var="p" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<h:column>
-						<f:facet name="header">Cedula</f:facet>#{emp.cedula}
+						<f:facet name="header">Cedula</f:facet>#{p.cedula}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Nombre</f:facet>#{emp.nombre}
+						<f:facet name="header">Nombre</f:facet>#{p.nombre}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Apellido</f:facet>#{emp.apellido}
+						<f:facet name="header">Apellido</f:facet>#{p.apellido}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Direccion</f:facet>#{emp.direccion}
+						<f:facet name="header">Direccion</f:facet>#{p.direccion}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Correo</f:facet>#{emp.correo}
+						<f:facet name="header">Correo</f:facet>#{p.correo}
 					</h:column>
 				</h:dataTable>
               </div>
