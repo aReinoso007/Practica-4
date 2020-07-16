@@ -30,17 +30,19 @@ public class Producto implements Serializable {
 	private Date fechaCompra;
 	private String marca;
 	
-	 @OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
 	private List<FacturaDetalle> facturasDetalle;
 
+	@Transient
+	private boolean editable;
+	 
 	public Producto() {
 		
 	}
 
 
 
-	public Producto(String nombre, Categoria categoria, double precioCompra, double precioVenta, int stock,
-			Date fechaCompra, String marca) {
+	public Producto(String nombre, Categoria categoria, double precioCompra, double precioVenta, int stock, Date fechaCompra, String marca) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
@@ -139,6 +141,13 @@ public class Producto implements Serializable {
 	}
 
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
 	@Override
 	public int hashCode() {

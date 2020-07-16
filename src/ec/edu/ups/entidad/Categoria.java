@@ -5,12 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Categoria
- *
- */
 @Entity
-
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,15 +18,17 @@ public class Categoria implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="categoria")
 	private List<Producto> productos;
 	
-
+	@Transient
+	private boolean editable;
+	
+	
 	public Categoria() {
 		
 	}
 
 
-	public Categoria(int codigoCategoria, String nombreCategoria) {
+	public Categoria(String nombreCategoria) {
 		super();
-		this.codigoCategoria = codigoCategoria;
 		this.nombreCategoria = nombreCategoria;
 	}
 
@@ -65,6 +62,13 @@ public class Categoria implements Serializable {
 		this.productos = productos;
 	}
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
 	@Override
 	public int hashCode() {
