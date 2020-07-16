@@ -58,21 +58,21 @@
 
 		<h:form styleClass="form-inline">
 			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.nombre}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Categoria:</label>
 			<h:selectOneMenu class="form-control" value="#{productoBean.nombreCate}">
-				<f:selectItems itemValue="#{categoriaBean.listaCategoria}" itemLabel="#{categoriaBean.nombre}"/>
+				<f:selectItems value="#{categoriaBean.listaCategoria}" itemLabel="#{categoriaBean.nombre}"/>
 			</h:selectOneMenu>
 			<label for="pwd" class="mb-2 mr-sm-2">Pre. Compra:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.precioCompra}}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Pre. Venta:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.precioVenta}}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Stock:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.stock}}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Fecha Compra:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.fechaCompra}}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Marca:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.marca}}"/>
 
 			<label for="pwd" class="mb-2 mr-sm-2"></label>
 			<h:commandButton action="#{productoBean.add}" styleClass="btn btn-success" value="Añadir Producto" />
@@ -89,38 +89,38 @@
 				<!-- inicio columnas -->
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					<h:inputText value="#{c.nombre}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.nombre}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.nombre}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.nombre}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Categoria</f:facet>
-					<h:inputText value="#{c.categoria}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.categoria}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.categoria}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.categoria}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Pre. Compra</f:facet>
-					<h:inputText value="#{c.precioCompra}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.precioCompra}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.precioCompra}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.precioCompra}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Pre. Venta</f:facet>
-					<h:inputText value="#{c.precioVenta}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.precioVenta}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.precioVenta}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.precioVenta}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Stock</f:facet>
-					<h:inputText value="#{c.stock}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.stock}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.stock}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.stock}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Fecha Compra</f:facet>
-					<h:inputText value="#{c.fechaCompra}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.fechaCompra}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.fechaCompra}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.fechaCompra}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Marca</f:facet>
-					<h:inputText value="#{c.marca}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.marca}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{productoBean.marca}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{productoBean.marca}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Accion</f:facet>

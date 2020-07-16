@@ -104,7 +104,13 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "Categoria [codigoCategoria=" + codigoCategoria + ", nombreCategoria=" + nombreCategoria + ", productos="
+				+ productos + ", editable=" + editable + "]";
+	}
 	
    
 }

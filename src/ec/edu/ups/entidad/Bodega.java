@@ -140,4 +140,11 @@ public class Bodega implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Bodega [codigoBodega=" + codigoBodega + ", nombre=" + nombre + ", ubicacion=" + ubicacion
+				+ ", administrador=" + administrador + ", inventario=" + inventario + ", editable=" + editable + "]";
+	}
+	
+
 }

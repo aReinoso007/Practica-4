@@ -121,11 +121,10 @@ public class CategoriaBean implements Serializable{
 	}
 
 	public String add() {
-		System.out.println("creando categora");
-		
+		System.out.println("creando categora: "+this.nombre);	
 		ejbCategoria.create(new Categoria(this.nombre));
-		this.nombre ="";
 		listaCategoria = ejbCategoria.findAll();
+		System.out.println("categorias: "+listaCategoria);
 		return null;
 	}
 	

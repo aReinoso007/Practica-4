@@ -58,11 +58,10 @@
 
 		<h:form styleClass="form-inline">
 			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" />
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{categoriaBean.nombre}"/>
 
 			<label for="pwd" class="mb-2 mr-sm-2"></label>
-			<h:commandButton action="#{categoriaBean.add}"
-				styleClass="btn btn-success" value="Añadir Categoria" />
+			<h:commandButton action="#{categoriaBean.add}" styleClass="btn btn-success" value="Añadir Categoria" />
 		</h:form>
 	
 	<h:panelGrid styleClass="container">
@@ -76,8 +75,8 @@
 				<!-- inicio columnas -->
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					<h:inputText value="#{c.nombreCategoria}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.nombreCategoria}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{categoriaBean.nombre}" size="10" rendered="#{c.editable}"/>
+					<h:outputText value="#{categoriaBean.nombre}" rendered="#{not c.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Accion</f:facet>
