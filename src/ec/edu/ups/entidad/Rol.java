@@ -21,6 +21,15 @@ public class Rol implements Serializable {
 	public Rol() {
 		
 	}
+	
+	
+
+	public Rol(String descripcion) {
+		super();
+		this.descripcion = descripcion;
+	}
+
+
 
 	/*
 	 * public Rol( String descripcion) {
