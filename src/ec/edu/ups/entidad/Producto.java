@@ -16,7 +16,7 @@ public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigoProducto;
 	private String nombre;
 	
@@ -30,17 +30,19 @@ public class Producto implements Serializable {
 	private Date fechaCompra;
 	private String marca;
 	
-	 @OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
 	private List<FacturaDetalle> facturasDetalle;
 
+	@Transient
+	private boolean editable;
+	 
 	public Producto() {
 		
 	}
 
 
 
-	public Producto(String nombre, Categoria categoria, double precioCompra, double precioVenta, int stock,
-			Date fechaCompra, String marca) {
+	public Producto(String nombre, Categoria categoria, double precioCompra, double precioVenta, int stock, Date fechaCompra, String marca) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
@@ -139,6 +141,13 @@ public class Producto implements Serializable {
 	}
 
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
 	@Override
 	public int hashCode() {
@@ -200,7 +209,12 @@ public class Producto implements Serializable {
 		return true;
 	}
 
-	
-	
-   
+	@Override
+	public String toString() {
+		return "Producto [codigoProducto=" + codigoProducto + ", nombre=" + nombre + ", categoria=" + categoria
+				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stock=" + stock
+				+ ", fechaCompra=" + fechaCompra + ", marca=" + marca + ", facturasDetalle=" + facturasDetalle
+				+ ", editable=" + editable + "]";
+	}
+
 }

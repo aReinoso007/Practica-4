@@ -7,12 +7,14 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Usuario
  *
  */
+@NamedQuery(name= "getByCorreo", query="SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasena = :pass")
+@NamedQuery(name="listarEmpleados",  query="SELECT u FROM Usuario u WHERE u.rol.codigo = :descripcion")
 @Entity
-
 public class Usuario  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(unique=true)
 	private String cedula;
 	@Column(nullable = false, length = 250)
 	private String nombre;
@@ -20,7 +22,6 @@ public class Usuario  implements Serializable {
 	private String apellido;
 	@Column(nullable = false, length = 50)
 	private String direccion;
-
 	private String correo;
 	private String contrasena;
 	
@@ -33,6 +34,17 @@ public class Usuario  implements Serializable {
 	
 	}
 
+	
+
+	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena) {
+		super();
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.correo = correo;
+		this.contrasena = contrasena;
+	}
 
 
 	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena,
@@ -197,5 +209,13 @@ public class Usuario  implements Serializable {
 	}
 
 
+
+	@Override
+	public String toString() {
+		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion="
+				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + ", rol=" + rol + "]";
+	}
+	
+	
    
 }
