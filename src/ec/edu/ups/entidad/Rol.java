@@ -29,10 +29,6 @@ public class Rol implements Serializable {
 	
 	
 
-	public Rol(String descripcion) {
-		super();
-		this.descripcion = descripcion;
-	}
 
 
 
