@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15949618653600" configfile="/Practica-4/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="publica/Login.xhtml" x="122" y="178" id="pf15949618881291" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" outlinks="pf15949618881292 pf15949618881293" inlinks="pf15949618881293" path="/publica/Login.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="Privada/Index.xhtml" x="338" y="178" id="pf15949618881304" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15949618881292" path="/Privada/Index.xhtml"/>
@@ -8,4 +9,11 @@
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
+
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15946633484450" configfile="/Practica-4/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="publica/Login.xhtml" id="pf15946635892811" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" outlinks="pf15946635892812 pf15946635892813" inlinks="pf15946635892813" path="/publica/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Privada/Index.xhtml" id="pf15946635892824" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15946635892812" path="/Privada/Index.xhtml"/>
+  <links id="pf15946635892812" target="pf15946635892824" source="pf15946635892811" outcome="exito"/>
+  <links id="pf15946635892813" target="pf15946635892811" source="pf15946635892811" outcome="fallo"/>
+
 </pageflow:Pageflow>

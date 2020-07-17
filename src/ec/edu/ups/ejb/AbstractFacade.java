@@ -15,7 +15,9 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-	getEntityManager().persist(entity);
+    	System.out.println("creando entidad");
+    	getEntityManager().persist(entity);
+    	System.out.println("finalizado");
     }
 
     public void edit(T entity) {
@@ -30,13 +32,18 @@ public abstract class AbstractFacade<T> {
 	return getEntityManager().find(entityClass, id);
     }
 
-    public List<T> findAll() {
-	javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-	cq.select(cq.from(entityClass));
-	return getEntityManager().createQuery(cq).getResultList();
+   
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<T> findAll() {
+		System.out.println("buscando");
+    	javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+    	cq.select(cq.from(entityClass));
+    	System.out.println("resulado : "+getEntityManager().createQuery(cq).getResultList());
+    	return getEntityManager().createQuery(cq).getResultList();
     }
 
-    public List<T> findRange(int[] range) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<T> findRange(int[] range) {
 	javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
 	cq.select(cq.from(entityClass));
 	javax.persistence.Query q = getEntityManager().createQuery(cq);
@@ -45,7 +52,8 @@ public abstract class AbstractFacade<T> {
 	return q.getResultList();
     }
 
-    public int count() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public int count() {
 	javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
 	javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
 	cq.select(getEntityManager().getCriteriaBuilder().count(rt));

@@ -1,4 +1,5 @@
 /build/
+
 *.xml
 WebContent/WEB-INF/web.xml
 WebContent/WEB-INF/faces-config.xml
@@ -8,4 +9,10 @@ src/META-INF/persistence.xml
 .settings/org.eclipse.wst.common.project.facet.core.xml
 *.xml
 WebContent/WEB-INF/lib/omnifaces-3.6.1.jar
+
 *.xml
+
+src/META-INF/persistence.xml
+*.xml
+
+

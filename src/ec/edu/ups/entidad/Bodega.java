@@ -15,7 +15,7 @@ public class Bodega implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigoBodega;
 
 	private String nombre;
@@ -39,6 +39,9 @@ public class Bodega implements Serializable {
 		this.inventario = inventario;
 	}
 
+	@Transient
+	private boolean editable;
+	
 	public Bodega() {
 
 	}
@@ -81,6 +84,14 @@ public class Bodega implements Serializable {
 
 	public void setInventario(List<MovimientoBodega> inventario) {
 		this.inventario = inventario;
+	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	@Override
@@ -128,5 +139,12 @@ public class Bodega implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Bodega [codigoBodega=" + codigoBodega + ", nombre=" + nombre + ", ubicacion=" + ubicacion
+				+ ", administrador=" + administrador + ", inventario=" + inventario + ", editable=" + editable + "]";
+	}
+	
 
 }
