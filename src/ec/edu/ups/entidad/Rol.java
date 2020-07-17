@@ -43,14 +43,9 @@ public class Rol implements Serializable {
 	 * this.descripcion = descripcion; }
 	 */
 	
-	
 
 	public int getCodigo() {
 		return codigo;
-	}
-
-	public Rol(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public void setCodigo(int codigo) {
