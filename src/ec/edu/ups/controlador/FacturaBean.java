@@ -16,10 +16,12 @@ import javax.inject.Named;
 import ec.edu.ups.ejb.FacturaDetalleFacade;
 import ec.edu.ups.ejb.FacturaFacade;
 import ec.edu.ups.ejb.PersonaFacade;
+import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.entidad.Factura;
 import ec.edu.ups.entidad.FacturaDetalle;
 import ec.edu.ups.entidad.Persona;
 import ec.edu.ups.entidad.Producto;
+import ec.edu.ups.entidad.Rol;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -40,6 +42,10 @@ public class FacturaBean implements Serializable {
 
 	@EJB
 	private PersonaFacade ejbPersonaFacade;
+	
+	@EJB
+	private RolFacade ejbRolFacade;
+	
 	
 	private Factura facturaCabecera;
 	private FacturaDetalle facturaDetFcat;
@@ -65,6 +71,10 @@ public class FacturaBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		System.out.println();
+		list=ejbFacturaFacade.findAll();
+		System.out.println("Facturas:.."+list.toString().toString());
+		
+		
 
 	}
 	
