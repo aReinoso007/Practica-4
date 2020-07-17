@@ -10,3 +10,4 @@ src/META-INF/persistence.xml
 .metadata/WebContent/WEB-INF/faces-config.pageflow
 *.xml
 WebContent/WEB-INF/lib/omnifaces-3.6.1.jar
+*.xml
