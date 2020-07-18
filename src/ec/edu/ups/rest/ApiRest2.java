@@ -11,12 +11,15 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
+import ec.edu.ups.entidad.Producto;
 import ec.edu.ups.entidad.Rol;
 import ec.edu.ups.entidad.Usuario;
 
@@ -27,6 +30,8 @@ public class ApiRest2 {
 	private UsuarioFacade ejbUsuarioFacade;
 	@EJB
 	private RolFacade ejbRolFacade;
+	@EJB
+	private ProductoFacade ejbProductoFacade;
 	
 	private Usuario usuario;
 	private Rol rol;
@@ -40,6 +45,21 @@ public class ApiRest2 {
 		listaUsuarios = ejbUsuarioFacade.findAll();
 		System.out.println("retornando lista de usuarios");
 		return Response.ok(jsonb.toJson(listaUsuarios))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+	}
+	
+	@GET
+	@Path("/productos")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response listarProductos() {
+		List<Producto> listaProductos = new ArrayList<Producto>();
+		Jsonb jsonb = JsonbBuilder.create();
+		System.out.println("listando productos");
+		listaProductos = ejbProductoFacade.findAll();
+		System.out.println("productos: "+listaProductos);
+		return Response.ok(jsonb.toJson(listaProductos))
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
@@ -76,7 +96,6 @@ public class ApiRest2 {
 		System.out.println("validando ingreso de usuario");
 		usu = ejbUsuarioFacade.validarIngresoPorRol(correo, contrasena);
 		System.out.println("usuario recuperado: "+usu);
-		
 		return Response.ok("log in exitoso")
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
@@ -84,9 +103,15 @@ public class ApiRest2 {
 		
 	}
 	
-	
-	
-	
-	
+	@GET
+	@Path("/listadousuarios/correo/{correo}/contrasena/{contrasena}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Usuario login(@PathParam("correo") String correo, @PathParam("contrasena") String contrasena) {
+		Usuario usu = new Usuario();
+		usu = ejbUsuarioFacade.validarIngresoPorRol(correo, contrasena);
+		System.out.println("retornando usuario:"+usu);
+		return usu;
+	}
+		
 
 }
