@@ -1,38 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Crear Facturas</title>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-
-	<title>SB Admin 2 - Dashboard</title>
-
-	<!-- Custom fonts for this template-->
-
-	<link href="../resources/vendor/fontawesome-free/css/all.min.css"
-		rel="stylesheet" type="text/css" />
-
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Facturas</title>
+	<link rel="stylesheet" type="text/css"
+		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
 		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 		rel="stylesheet" />
-
-	<!-- Custom styles for this template-->
-	<link href="../resources/css/sb-admin-2.min.css" rel="stylesheet" />
+	<link rel="stylesheet"
+		href="/Practica-4/CONFIG2/css/sb-admin-2.min.css" />
+	<!-- Custom styles for this page -->
 	<link
-		href="../resources/vendor/datatables/dataTables.bootstrap4.min.css"
+		href="/Practica-4/CONFIG2vendor/datatables/dataTables.bootstrap4.min.css"
 		rel="stylesheet" />
-
+	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />	
 </h:head>
-<body id="page-top">
+<body>
+
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -55,12 +43,41 @@
 			</a>
 
 			<!-- Divider -->
-
 			<hr class="sidebar-divider my-0" />
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link"
-				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="index.html">
+					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider" />
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Gestion Clientes</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-cog"></i> <span>Clientes</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Clientes</h6>
+						<a class="collapse-item"
+							href="/Practica-4/Privada/RegistrarCliente.xhtml">Registrar
+							Cliente</a> <a class="collapse-item"
+							href="/Practica-4/Privada/ListarClientes.xhtml">listado</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+
+
 			<!-- Divider -->
 			<hr class="sidebar-divider" />
 
@@ -69,39 +86,29 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>Facturas</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="buttons.html">Crear Factura</a> <a
-							class="collapse-item" href="cards.html">Listar Facturas</a>
-					</div>
-				</div></li>
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<!-- Divider -->
-			<hr class="sidebar-divider" />
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Clientes</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>Gestion Clientes</span>
+					class="fas fa-fw fa-folder"></i> <span>Facturas</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="CrearFactura.xhtml">Generar
+							Factura</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
+							Facturas</a>
 
-						<a class="collapse-item" href="login.html">Listar Clientes</a> <a
-							class="collapse-item" href="login.html">Registar Cliente</a>
 					</div>
 				</div></li>
-			<!-- Nav Item - Charts -->
+
+
+
+			<!-- Divider -->
+			<hr class="sidebar-divider d-none d-md-block" />
+
+			<!-- Sidebar Toggler (Sidebar) -->
+			<div class="text-center d-none d-md-inline">
+				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+			</div>
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -117,10 +124,12 @@
 					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 				<!-- Sidebar Toggle (Topbar) -->
-				<button id="sidebarToggleTop"
-					class="btn btn-link d-md-none rounded-circle mr-3">
-					<i class="fa fa-bars"></i>
-				</button>
+				<form class="form-inline">
+					<button id="sidebarToggleTop"
+						class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+				</form>
 
 				<!-- Topbar Search -->
 				<form
@@ -230,7 +239,7 @@
 								<div class="font-weight-bold">
 									<div class="text-truncate">Hi there! I am wondering if
 										you can help me with a problem I've been having.</div>
-									<div class="small text-gray-500">Emily Fowler Â· 58m</div>
+									<div class="small text-gray-500">Emily Fowler · 58m</div>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
@@ -241,7 +250,7 @@
 								<div>
 									<div class="text-truncate">I have the photos that you
 										ordered last month, how would you like them sent to you?</div>
-									<div class="small text-gray-500">Jae Chun Â· 1d</div>
+									<div class="small text-gray-500">Jae Chun · 1d</div>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
@@ -253,7 +262,7 @@
 									<div class="text-truncate">Last month's report looks
 										great, I am very happy with the progress so far, keep up the
 										good work!</div>
-									<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
+									<div class="small text-gray-500">Morgan Alvarez · 2d</div>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
@@ -265,7 +274,7 @@
 									<div class="text-truncate">Am I a good boy? The reason I
 										ask is because someone told me that people say this to all
 										dogs, even if they aren't good...</div>
-									<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
+									<div class="small text-gray-500">Chicken the Dog · 2w</div>
 								</div>
 							</a> <a class="dropdown-item text-center small text-gray-500"
 								href="#">Read More Messages</a>
@@ -280,7 +289,8 @@
 						aria-expanded="false"> <span
 							class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie
 								Luna</span> <img class="img-profile rounded-circle"
-							src="https://source.unsplash.com/QAB-WJcbgJk/60x60" /></a> <!-- Dropdown - User Information -->
+							src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
+					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
@@ -308,251 +318,47 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
+					<!-- INICIO CONTENIDO -->
 					<!-- Page Heading -->
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generar Factura</a>
-					</div>
+					<h1 class="h3 mb-2 text-gray-800">Pedidos a facturar</h1>
 
-					<!-- /.Colocar contenido de la pagina -->
-
-
-
-
-
-					<div class="container">
-						<h2>Datos Factura</h2>
-
-						<h:form>
-							<div class="form-group">
-								<label for="pwd">Cliente:</label>
-								<h:inputText styleClass="form-control"
-									value="#{facturaBean.identificacion}" style="width:200px">
-									<f:ajax event="keyup" render="cliente"
-										listener="#{facturaBean.obtenerCliente}" />
-
-								</h:inputText>
-								<h:outputText id="cliente" class="mensaje-error"
-									value="#{facturaBean.resultado}" />
-
-
-							</div>
-
-							<div class="form-group">
-								<label for="pwd">Estado Fatura:</label>
-
-								<h:selectOneMenu styleClass="custom-select mt-3"
-									value="#{facturaBean.estadoFactura}">
-									<f:selectItem itemValue="abonada" itemLabel="Abonada" />
-									<f:selectItem itemValue="parcialmente pagada"
-										itemLabel="Parcialmente pagada" />
-									<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
-									<f:selectItem itemValue="todos" itemLabel="Todos" />
-								</h:selectOneMenu>
-
-							</div>
-
-						</h:form>
-
-
-						<h4>Ingresar Detalle Factura:</h4>
-
-						<h:form styleClass="form-inline">
-							<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
-							<h:inputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" />
-
-							<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
-							<h:inputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" />
-
-							<label for="pwd" class="mb-2 mr-sm-2">Precio:</label>
-							<h:outputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" />
-
-
-
-							<label for="pwd" class="mb-2 mr-sm-2"></label>
-							<h:commandButton action="#{facturaBean.addFactura}"
-								styleClass="btn btn-success" value="AÃ±adir producto" />
-
-						</h:form>
-					</div>
-
-					<h:panelGrid styleClass="container">
-						<h:form>
-							<br />
-
-							<h:dataTable value="#{ubicacionBean.list}" var="u"
-								styleClass="table table-striped" headerClass="cabeceraTabla"
-								rowClasses="filaPar,filaImpar">
-
-								<!-- inicio columnas -->
-								<h:column>
-									<f:facet name="header">Producto</f:facet>#{u.ciudad}
-				</h:column>
-
-								<h:column>
-									<f:facet name="header">Cantidad</f:facet>
-									<h:inputText value="#{u.ciudad}" size="10" rendered="" />
-									<h:outputText value="#{u.ciudad}" rendered="" />
-								</h:column>
-
-								<h:column>
-									<f:facet name="header">Precio</f:facet>
-									<h:inputText value="" size="10" rendered="" />
-									<h:outputText value="" rendered="" />
-								</h:column>
-
-								<h:column>
-
-									<h:commandLink value="Delete" rendered="" />
-								</h:column>
-
-								<h:column>
-
-									<h:commandLink value="Edit" rendered="" />
-									<h:commandLink value="Save" rendered="" />
-								</h:column>
-
-							</h:dataTable>
-
-						</h:form>
-					</h:panelGrid>
-					<div class="container-fluid">
-						<div class="container-fluid">
-							<!-- Control the column width, and how they should appear on different devices -->
-							<div class="row">
-								<div class="col-sm-6" style="background-color: white;"></div>
-								<div class="col-sm-6" style="background-color: white;"></div>
-							</div>
-							<br />
-
-							<div class="row">
-								<div class="col-sm-4" style="background-color: white;"></div>
-								<div class="col-sm-4" style="background-color: white;"></div>
-								<div class="col-sm-4" style="background-color: white;">
-									<label>Subtotal:</label>
-									<h:outputLabel>0.00</h:outputLabel>
-									<br /> <label>Total:</label>
-									<h:outputLabel>0.00</h:outputLabel>
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Listado de
+								pedidos</h6>
+						</div>
+						<div class="card-body">
+							<div class="col-sm-12 col-md-6">
+								<div id="dataTable_filter" class="dataTables_filter">
+									<label>Buscar:<input type="search"
+										class="form-control form-control-sm" placeholder=""
+										aria-controls="dataTable" /></label>
 								</div>
+							</div>
+							<div class="table-responsive">
+								<h:dataTable value=" in" var="p"
+									class="table table-bordered" id="dataTable" width="100%"
+									cellspacing="0">
+									<h:column>
+										<f:facet name="header">Cliente</f:facet>sn
+					</h:column>
+									<h:column>
+										<f:facet name="header">Fecha</f:facet>sn
+					</h:column>
+									<h:column>
+										<f:facet name="header">Accion</f:facet>sn
+					</h:column>
+
+								</h:dataTable>
 							</div>
 						</div>
 					</div>
 
 
 
+					<!-- FIN CONTENIDO -->
 
-					<div class="container-fluid">
-
-						<!-- Page Heading -->
-						<h1 class="h3 mb-2 text-gray-800">Pedidos</h1>
-
-						<!-- DataTales Example -->
-						<div class="card shadow mb-4">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">Lista de
-									pedidos</h6>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<div id="dataTable_wrapper"
-										class="dataTables_wrapper dt-bootstrap4">
-										<div class="row">
-											<div class="col-sm-12 col-md-6">
-												<div class="dataTables_length" id="dataTable_length">
-													<label>Show <select name="dataTable_length"
-														aria-controls="dataTable"
-														class="custom-select custom-select-sm form-control form-control-sm"><option
-																value="10">10</option>
-															<option value="25">25</option>
-															<option value="50">50</option>
-															<option value="100">100</option></select> entries
-													</label>
-												</div>
-											</div>
-											<div class="col-sm-12 col-md-6">
-												<div id="dataTable_filter" class="dataTables_filter">
-													<label>Buscar:<input type="search"
-														class="form-control form-control-sm" placeholder=""
-														aria-controls="dataTable" /></label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-12">
-												<h:form>
-													<h:dataTable value="#{categoryBean.list}" var="c"
-														styleClass="table table-bordered" >
-														<h:column>
-															<f:facet name="header">Cliente</f:facet>p</h:column>
-														<h:column>
-															<f:facet name="header">Fecha</f:facet>
-															<h:outputText value="p"/>
-														</h:column>
-														<h:column>
-															<f:facet name="header">Accion</f:facet>
-															<h:commandLink value="Facturar" />
-														</h:column>
-								
-													</h:dataTable>
-						
-												</h:form>
-
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-12 col-md-5">
-												<div class="dataTables_info" id="dataTable_info"
-													role="status" aria-live="polite">Showing 1 to 10 of
-													57 entries</div>
-											</div>
-											<div class="col-sm-12 col-md-7">
-												<div class="dataTables_paginate paging_simple_numbers"
-													id="dataTable_paginate">
-													<ul class="pagination">
-														<li class="paginate_button page-item previous disabled"
-															id="dataTable_previous"><a href="#"
-															aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-															class="page-link">Previous</a></li>
-														<li class="paginate_button page-item active"><a
-															href="#" aria-controls="dataTable" data-dt-idx="1"
-															tabindex="0" class="page-link">1</a></li>
-														<li class="paginate_button page-item "><a href="#"
-															aria-controls="dataTable" data-dt-idx="2" tabindex="0"
-															class="page-link">2</a></li>
-														<li class="paginate_button page-item "><a href="#"
-															aria-controls="dataTable" data-dt-idx="3" tabindex="0"
-															class="page-link">3</a></li>
-														<li class="paginate_button page-item "><a href="#"
-															aria-controls="dataTable" data-dt-idx="4" tabindex="0"
-															class="page-link">4</a></li>
-														<li class="paginate_button page-item "><a href="#"
-															aria-controls="dataTable" data-dt-idx="5" tabindex="0"
-															class="page-link">5</a></li>
-														<li class="paginate_button page-item "><a href="#"
-															aria-controls="dataTable" data-dt-idx="6" tabindex="0"
-															class="page-link">6</a></li>
-														<li class="paginate_button page-item next"
-															id="dataTable_next"><a href="#"
-															aria-controls="dataTable" data-dt-idx="7" tabindex="0"
-															class="page-link">Next</a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<!-- /.Final Contenido pagina... -->
 				</div>
 				<!-- /.container-fluid -->
 
@@ -575,6 +381,8 @@
 	</div>
 	<!-- End of Page Wrapper -->
 
+
+
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
@@ -589,7 +397,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">Ã—</span>
+						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -604,26 +412,26 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="../resources/vendor/jquery/jquery.min.js"></script>
-	<script src="../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/Practica-4/CONFIG2/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="/Practica-4/CONFIG2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="../resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="/Practica-4/CONFIG2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="../resources/js/sb-admin-2.min.js"></script>
+	<script src="/Practica-4/CONFIG2/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-	<script src="../resources/vendor/chart.js/Chart.min.js"></script>
-	<script src="../resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="../resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- 	<script
+		src="/Practica-4/CONFIG2/vendor/datatables/jquery.dataTables.min.js"></script> -->
+ 	<script
+		src="/Practica-4/CONFIG2/vendor/datatables/dataTables.bootstrap4.min.js"></script> 
+
 
 	<!-- Page level custom scripts -->
-	<script src="../resources/js/demo/chart-area-demo.js"></script>
-	<script src="../resources/js/demo/chart-pie-demo.js"></script>
-	<script src="./resources/js/demo/datatables-demo.js"></script>
+	<script src="/Practica-4/CONFIG2/js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>
