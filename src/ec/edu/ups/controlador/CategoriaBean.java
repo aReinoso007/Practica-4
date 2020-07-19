@@ -43,10 +43,8 @@ public class CategoriaBean implements Serializable{
 	public void init() {
 		System.out.println();
 		listaCategoria = ejbCategoria.findAll();
-		listaCategoria = ejbCategoria.listarCategorias();
 		System.out.println("Listado Categorias");
-		listaProducto = ejbProducto.findAll();
-		listaProducto = ejbProducto.listarProductos();
+		//listaProducto = ejbProducto.findAll();
 		System.out.println("Listado Productos");
 	}
 
@@ -123,7 +121,7 @@ public class CategoriaBean implements Serializable{
 	public String add() {
 		System.out.println("creando categora: "+this.nombre);	
 		ejbCategoria.create(new Categoria(this.nombre));
-		listaCategoria = ejbCategoria.findAll();
+		//listaCategoria = ejbCategoria.findAll();
 		System.out.println("categorias: "+listaCategoria);
 		return null;
 	}
