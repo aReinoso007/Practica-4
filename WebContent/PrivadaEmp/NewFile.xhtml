@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Facturacion</title>
+	<title>Lista Facturas</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -69,9 +69,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Clientes</h6>
 						<a class="collapse-item"
-							href="/Practica-4/Privada/RegistrarCliente.xhtml">Registrar
+							href="/Practica-4/PrivadaEmp/RegistroClienteEmp.xhtml">Registrar
 							Cliente</a> <a class="collapse-item"
-							href="/Practica-4/Privada/ListarClientes.xhtml">listado</a>
+							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">listado</a>
 					</div>
 				</div></li>
 
@@ -320,71 +320,126 @@
 
 					<!-- INICIO CONTENIDO -->
 
-
 					<div class="container">
+						<h2>Datos Factura</h2>
 
-						<div class="card o-hidden border-0 shadow-lg my-5">
-							<div class="card-body p-0">
-								<!-- Nested Row within Card Body -->
-								<div class="row">
-									<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-									<div class="col-lg-7">
-										<div class="p-5">
-											<div class="text-center">
-												<h1 class="h4 text-gray-900 mb-4">Registro de nuevo
-													Cliente</h1>
-											</div>
-											<form class="user">
-												<h:form>
-													<div class="form-group row">
-														<div class="col-sm-6 mb-3 mb-sm-0">
-															<label>Nombre</label>
-															<h:inputText class="form-control form-control-user"
-																id="exampleFirstName" value="#{personaBean.nombre}" />
-														</div>
-														<div class="col-sm-6">
-															<label>Apellido</label>
-															<h:inputText class="form-control form-control-user"
-																id="exampleLastName" value="#{personaBean.apellido}"
-																placeholder="" />
-														</div>
-														<div class="col-sm-6 mb-3 mb-sm-0">
-															<label>Numero de cedula</label>
-															<h:inputText type="number"
-																class="form-control form-control-user" id="cedula"
-																value="#{personaBean.cedula}" />
-														</div>
-													</div>
-													<div class="form-group">
-														<label>Correo</label>
-														<h:inputText type="email" id="correo"
-															class="form-control form-control-user"
-															value="#{personaBean.correo}" />
-													</div>
-													<div class="form-group row">
-														<div class="col-sm-6 mb-3 mb-sm-0">
-															<label>Direccion</label>
-															<h:inputText class="form-control form-control-user"
-																id="direccion" value="#{personaBean.direccion}" />
-														</div>
-													</div>
-													<h:commandButton value="Registrar"
-														action="#{personaBean.add}"
-														class="btn btn-primary btn-user btn-block" />
-													<hr />
+						<h:form>
+							<div class="form-group">
+								<label for="pwd">Cliente:</label>
+								<h:inputText styleClass="form-control"
+									value="#{facturaBean.identificacion}" style="width:200px">
+									<f:ajax event="keyup" render="cliente"
+										listener="#{facturaBean.obtenerCliente}" />
 
-												</h:form>
-											</form>
+								</h:inputText>
+								<h:outputText id="cliente" class="mensaje-error"
+									value="#{facturaBean.resultado}" />
 
 
-										</div>
-									</div>
+							</div>
+
+							<div class="form-group">
+								<label for="pwd">Estado Fatura:</label>
+
+								<h:selectOneMenu styleClass="custom-select mt-3"
+									value="#{facturaBean.estadoFactura}">
+									<f:selectItem itemValue="abonada" itemLabel="Abonada" />
+									<f:selectItem itemValue="parcialmente pagada"
+										itemLabel="Parcialmente pagada" />
+									<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
+									<f:selectItem itemValue="todos" itemLabel="Todos" />
+								</h:selectOneMenu>
+
+							</div>
+
+						</h:form>
+
+
+						<h4>Ingresar Detalle Factura:</h4>
+
+						<h:form styleClass="form-inline">
+							<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
+							<h:inputText styleClass="form-control mb-2 mr-sm-2"
+								style="width:150px" />
+
+							<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
+							<h:inputText styleClass="form-control mb-2 mr-sm-2"
+								style="width:150px" />
+
+							<label for="pwd" class="mb-2 mr-sm-2">Precio:</label>
+							<h:outputText styleClass="form-control mb-2 mr-sm-2"
+								style="width:150px" />
+
+
+
+							<label for="pwd" class="mb-2 mr-sm-2"></label>
+							<h:commandButton action="#{facturaBean.addFactura}"
+								styleClass="btn btn-success" value="Añadir producto" />
+
+						</h:form>
+					</div>
+
+					<h:panelGrid styleClass="container">
+						<h:form>
+							<br />
+
+							<h:dataTable value="#{ubicacionBean.list}" var="u"
+								styleClass="table table-striped" headerClass="cabeceraTabla"
+								rowClasses="filaPar,filaImpar">
+
+								<!-- inicio columnas -->
+								<h:column>
+									<f:facet name="header">Producto</f:facet>#{u.ciudad}
+				</h:column>
+
+								<h:column>
+									<f:facet name="header">Cantidad</f:facet>
+									<h:inputText value="#{u.ciudad}" size="10" rendered="" />
+									<h:outputText value="#{u.ciudad}" rendered="" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Precio</f:facet>
+									<h:inputText value="" size="10" rendered="" />
+									<h:outputText value="" rendered="" />
+								</h:column>
+
+								<h:column>
+
+									<h:commandLink value="Delete" rendered="" />
+								</h:column>
+
+								<h:column>
+
+									<h:commandLink value="Edit" rendered="" />
+									<h:commandLink value="Save" rendered="" />
+								</h:column>
+
+							</h:dataTable>
+
+						</h:form>
+					</h:panelGrid>
+					<div class="container-fluid">
+						<div class="container-fluid">
+							<!-- Control the column width, and how they should appear on different devices -->
+							<div class="row">
+								<div class="col-sm-6" style="background-color: white;"></div>
+								<div class="col-sm-6" style="background-color: white;"></div>
+							</div>
+							<br />
+
+							<div class="row">
+								<div class="col-sm-4" style="background-color: white;"></div>
+								<div class="col-sm-4" style="background-color: white;"></div>
+								<div class="col-sm-4" style="background-color: white;">
+									<label>Subtotal:</label>
+									<h:outputLabel>0.00</h:outputLabel>
+									<br /> <label>Total:</label>
+									<h:outputLabel>0.00</h:outputLabel>
 								</div>
 							</div>
 						</div>
-
 					</div>
-
 
 
 
@@ -456,8 +511,8 @@
 	<script src="/Practica-4/CONFIG2/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-	<!-- 	<script
-		src="/Practica-4/CONFIG2/vendor/datatables/jquery.dataTables.min.js"></script> -->
+	<script
+		src="/Practica-4/CONFIG2/vendor/datatables/jquery.dataTables.min.js"></script>
 	<script
 		src="/Practica-4/CONFIG2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
