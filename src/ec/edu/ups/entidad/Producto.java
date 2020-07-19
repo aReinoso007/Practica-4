@@ -30,6 +30,7 @@ public class Producto implements Serializable {
 	private Date fechaCompra;
 	private String marca;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
 	private List<FacturaDetalle> facturasDetalle;
 	
