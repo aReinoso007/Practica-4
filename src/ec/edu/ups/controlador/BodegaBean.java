@@ -96,7 +96,7 @@ public class BodegaBean implements Serializable{
 	}
 	
 	public String add() {
-		ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion,this.administrador,this.listaProducto));
+		//ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion,this.administrador,this.listaProducto));
 		listaBodega = ejbBodegaFacade.findAll();
 		return null;
 	}
