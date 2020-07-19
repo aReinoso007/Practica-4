@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import ec.edu.ups.ejb.FacturaFacade;
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.entidad.Factura;
 import ec.edu.ups.entidad.Persona;
+import ec.edu.ups.entidad.Rol;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -44,7 +46,7 @@ public class PersonaBean implements Serializable{
 	
 	public String add() {
 		System.out.println("registrando cliente");
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo));
+		ejbPersonaFacade.create(new Persona(this.cedula, this.apellido, this.correo, this.direccion, this.nombre));
 		this.cedula="";
 		this.apellido="";
 		this.correo="";
