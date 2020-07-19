@@ -54,13 +54,77 @@
 		<!-- Hasta aqui va la barra del al lado -->
 		<!-- Contenido central -->
 		<div class="container">
-		<h4>Ingresar Producto:</h4>
+		<h1>Lista de Productos</h1>
 
-		<h:form styleClass="form-inline">
+	<h:panelGrid styleClass="container">
+		<h:form>
+			<br />
+
+			<h:dataTable value="#{productoBean.listaProducto}" var="p"
+				styleClass="table table-striped" headerClass="cabeceraTabla"
+				rowClasses="filaPar,filaImpar">
+
+				<!-- inicio columnas -->
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					<h:inputText value="#{productoBean.nombre}" size="10" rendered="#{p.editable}"/>
+					<h:outputText value="#{p.nombre}" rendered="#{not p.editable}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Categoria</f:facet>
+					<h:inputText value="#{productoBean.categoria}" size="10" rendered="#{p.editable}"/>
+					<h:outputText value="#{p.categoria}" rendered="#{not p.editable}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Pre. Compra</f:facet>
+					<h:inputText value="#{productoBean.precioCompra}" size="10" rendered="#{p.editable}"/>
+					<h:outputText value="#{p.precioCompra}" rendered="#{not p.editable}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Pre. Venta</f:facet>
+					<h:inputText value="#{productoBean.precioVenta}" size="10" rendered="#{p.editable}"/>
+					<h:outputText value="#{p.precioVenta}" rendered="#{not p.editable}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:inputText value="#{productoBean.stock}" size="10" rendered="#{p.editable}"/>
+					<h:outputText value="#{p.stock}" rendered="#{not p.editable}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha Compra</f:facet>
+					<h:inputText value="#{productoBean.fechaCompra}" size="10" rendered="#{p.editable}"/>  
+   						<!--   <f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText> -->
+					<h:outputText value="#{p.fechaCompra}" rendered="#{not p.editable}">
+    					<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>				
+				</h:column>
+				<h:column>
+					<f:facet name="header">Marca</f:facet>
+					<h:inputText value="#{productoBean.marca}" size="10" rendered="#{p.editable}"/>
+					<h:outputText value="#{p.marca}" rendered="#{not p.editable}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<h:commandLink value="Delete" action="#{productoBean.delete(p)}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<h:commandLink value="Edit" action="#{productoBean.edit(p)}" rendered="#{not p.editable}"/>
+					<h:commandLink value="Save" action="#{productoBean.save(p)}" rendered="#{p.editable}"/>
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+	</h:panelGrid>
+	
+	<div class="container">
+	<h4>Ingresar nuevo producto:</h4>
+		<h:form styleClass="form">
 			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
 			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.nombre}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Categoria:</label>
-			<h:selectOneMenu class="form-control" value="#{productoBean.nombreCate}">
+			<h:selectOneMenu class="form-control" value="#{productoBean.categoria}">
 				<f:selectItems value="#{categoriaBean.listaCategoria}" itemLabel="#{categoriaBean.nombre}"/>
 			</h:selectOneMenu>
 			<label for="pwd" class="mb-2 mr-sm-2">Pre. Compra:</label>
@@ -70,71 +134,19 @@
 			<label for="pwd" class="mb-2 mr-sm-2">Stock:</label>
 			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.stock}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Fecha Compra:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.fechaCompra}"/>
+			<h:outputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.fechaCompra}">
+    				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<!--<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.fechaCompra}"/> 
+   				  <f:convertDateTime pattern="dd.MM.yyyy"/>  
+			</h:inputText> -->
 			<label for="pwd" class="mb-2 mr-sm-2">Marca:</label>
 			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.marca}"/>
-
 			<label for="pwd" class="mb-2 mr-sm-2"></label>
 			<h:commandButton action="#{productoBean.add}" styleClass="btn btn-success" value="Añadir Producto" />
 		</h:form>
+	</div>
 	
-	<h:panelGrid styleClass="container">
-		<h:form>
-			<br />
-
-			<h:dataTable value="#{productoBean.listaProducto}" var="c"
-				styleClass="table table-striped" headerClass="cabeceraTabla"
-				rowClasses="filaPar,filaImpar">
-
-				<!-- inicio columnas -->
-				<h:column>
-					<f:facet name="header">Nombre</f:facet>
-					<h:inputText value="#{productoBean.nombre}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.nombre}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Categoria</f:facet>
-					<h:inputText value="#{productoBean.categoria}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.categoria}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Pre. Compra</f:facet>
-					<h:inputText value="#{productoBean.precioCompra}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.precioCompra}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Pre. Venta</f:facet>
-					<h:inputText value="#{productoBean.precioVenta}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.precioVenta}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Stock</f:facet>
-					<h:inputText value="#{productoBean.stock}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.stock}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Fecha Compra</f:facet>
-					<h:inputText value="#{productoBean.fechaCompra}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.fechaCompra}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Marca</f:facet>
-					<h:inputText value="#{productoBean.marca}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{productoBean.marca}" rendered="#{not c.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Accion</f:facet>
-					<h:commandLink value="Delete" action="#{productoBean.delete(c)}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Accion</f:facet>
-					<h:commandLink value="Edit" action="#{productoBean.edit(c)}" rendered="#{not c.editable}"/>
-					<h:commandLink value="Save" action="#{productoBean.save(c)}" rendered="#{c.editable}"/>
-				</h:column>
-			</h:dataTable>
-
-		</h:form>
-	</h:panelGrid>
 		
 	</div>
 </div>

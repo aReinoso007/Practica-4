@@ -48,6 +48,30 @@ public class CategoriaBean implements Serializable{
 		System.out.println("Listado Productos");
 	}
 
+	public String add() {
+		System.out.println("creando categora: "+this.nombre);	
+		ejbCategoria.create(new Categoria(this.nombre));
+		listaCategoria = ejbCategoria.findAll();
+		System.out.println("categorias: "+listaCategoria);
+		return null;
+	}
+	
+	public String delete(Categoria c) {
+		ejbCategoria.remove(c);
+		listaCategoria = ejbCategoria.findAll();
+		return null;
+	}
+	
+	public String edit(Categoria c) {
+		c.setEditable(true);
+		return null;
+	}
+	
+	public String save(Categoria c) {
+		ejbCategoria.edit(c);
+		c.setEditable(false);
+		return null;
+	}
 
 	public CategoriaFacade getEjbCategoria() {
 		return ejbCategoria;
@@ -116,31 +140,6 @@ public class CategoriaBean implements Serializable{
 
 	public void setListaCategoria(List<Categoria> listaCategoria) {
 		this.listaCategoria = listaCategoria;
-	}
-
-	public String add() {
-		System.out.println("creando categora: "+this.nombre);	
-		ejbCategoria.create(new Categoria(this.nombre));
-		//listaCategoria = ejbCategoria.findAll();
-		System.out.println("categorias: "+listaCategoria);
-		return null;
-	}
-	
-	public String delete(Categoria c) {
-		ejbCategoria.remove(c);
-		listaCategoria = ejbCategoria.findAll();
-		return null;
-	}
-	
-	public String edit(Categoria c) {
-		c.setEditable(true);
-		return null;
-	}
-	
-	public String save(Categoria c) {
-		ejbCategoria.edit(c);
-		c.setEditable(false);
-		return null;
 	}
 	
 }
