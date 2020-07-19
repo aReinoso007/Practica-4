@@ -74,9 +74,9 @@ public class FacturaBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		System.out.println();
-		list=ejbFacturaFacade.findAll();
-		System.out.println("Facturas:.."+list.toString().toString());
+		
+		//list=ejbFacturaFacade.findAll();
+		//System.out.println("Facturas:.."+list.toString().toString());
 		
 		
 
