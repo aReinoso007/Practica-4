@@ -26,6 +26,8 @@ public class Persona implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="persona")
 	private List<Factura> facturas;
+	
+
 
 	public Persona() {
 
