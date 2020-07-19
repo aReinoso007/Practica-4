@@ -104,15 +104,7 @@ public class ApiRest2 {
 		
 	}
 	
-	@GET
-	@Path("/listadousuarios/correo/{correo}/contrasena/{contrasena}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Usuario login(@PathParam("correo") String correo, @PathParam("contrasena") String contrasena) {
-		Usuario usu = new Usuario();
-		usu = ejbUsuarioFacade.validarIngresoPorRol(correo, contrasena);
-		System.out.println("retornando usuario:"+usu);
-		return usu;
-	}
+	
 		
 
 }
