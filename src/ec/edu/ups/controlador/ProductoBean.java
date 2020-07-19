@@ -62,7 +62,7 @@ public class ProductoBean implements Serializable{
 	}
 	
 	public void obtenerCategoria(AjaxBehaviorEvent evento) {
-		this.categoria = new Categoria();	
+		this.categoria = new Categoria(this.nombreCate);	
 		this.categoria = ejbCategoria.find(this.nombreCate); 
 		if (categoria != null) {
 			this.resultado = categoria.getCodigoCategoria() + " " + categoria.getNombreCategoria(); 
@@ -74,30 +74,24 @@ public class ProductoBean implements Serializable{
 	public String add() {
 		fechaCompra = new Date();
 		ejbProducto.create(new Producto(this.nombre,this.categoria,this.precioCompra,this.precioVenta,this.stock,this.fechaCompra,this.marca));
-		this.nombre ="";
-		this.categoria = categoria;
-		this.precioCompra = 00.00;
-		this.precioVenta = 00.00;
-		this.stock = 0;
-		this.fechaCompra = fechaCompra;
-		this.marca ="";
+		listaProducto = ejbProducto.findAll();
 		return null;
 	}
 	
-	public String delete(Producto c) {
-		ejbProducto.remove(c);
-		listaCategoria = ejbCategoria.findAll();
+	public String delete(Producto p) {
+		ejbProducto.remove(p);
+		listaProducto = ejbProducto.findAll();
 		return null;
 	}
 	
-	public String edit(Producto c) {
-		c.setEditable(true);
+	public String edit(Producto p) {
+		p.setEditable(true);
 		return null;
 	}
 	
-	public String save(Producto c) {
-		ejbProducto.edit(c);
-		c.setEditable(false);
+	public String save(Producto p) {
+		ejbProducto.edit(p);
+		p.setEditable(false);
 		return null;
 	}
 	
