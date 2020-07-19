@@ -15,6 +15,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.FacturaDetalleFacade;
 import ec.edu.ups.ejb.FacturaFacade;
+import ec.edu.ups.ejb.PedidoFacade;
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.entidad.Factura;
@@ -45,6 +46,9 @@ public class FacturaBean implements Serializable {
 	
 	@EJB
 	private RolFacade ejbRolFacade;
+	
+	@EJB
+	private PedidoFacade ejbPedidoFacade;
 	
 	
 	private Factura facturaCabecera;
