@@ -26,6 +26,10 @@ public class Factura implements Serializable {
 	@JoinColumn
 	private Persona persona;
 	
+	@ManyToOne
+	@JoinColumn
+	private Bodega bodega;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="factura")
 	private List<FacturaDetalle> detallesFactura;
 	
@@ -107,6 +111,18 @@ public class Factura implements Serializable {
 
 	public void setEstadoFactura(String estadoFactura) {
 		this.estadoFactura = estadoFactura;
+	}
+
+	public Bodega getBodega() {
+		return bodega;
+	}
+
+	public void setBodega(Bodega bodega) {
+		this.bodega = bodega;
+	}
+
+	public String getEstadoFactura() {
+		return estadoFactura;
 	}
 
 	

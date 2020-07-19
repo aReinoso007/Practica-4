@@ -94,13 +94,15 @@ public class UsuarioBean implements Serializable{
 		Usuario usuario = ejbUsuarioFacade.validarIngreso(this.correo, this.contrasena);
 		this.correo = "";
 		this.contrasena ="";
+		
 		if(usuario != null) {
-			return "exito";
+			return "exito"+usuario;
 			
 		}else {
 			return "fallo";
 		}
 	}
+	
 	
 	public String remove(Usuario u) {
 		ejbUsuarioFacade.remove(u);
