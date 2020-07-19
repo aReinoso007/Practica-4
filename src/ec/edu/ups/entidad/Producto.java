@@ -32,6 +32,10 @@ public class Producto implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="producto")
 	private List<FacturaDetalle> facturasDetalle;
+	
+	@ManyToMany(mappedBy = "productos")
+	private List<Pedido> pedidos;
+
 
 	@Transient
 	private boolean editable;

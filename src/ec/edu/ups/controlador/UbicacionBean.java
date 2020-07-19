@@ -47,7 +47,7 @@ public class UbicacionBean implements Serializable {
     
     @PostConstruct
     public void init() {
-	//ejbUbicacionFacade.create(new Ubicacion("Azuay", "Cuenca", "Luis Cordero", "Tomas de Heres", "4-72"));
+	ejbUbicacionFacade.create(new Ubicacion("Azuay", "Cuenca", "Luis Cordero", "Tomas de Heres", "4-72"));
 	list = ejbUbicacionFacade.findAll();
 	
 	

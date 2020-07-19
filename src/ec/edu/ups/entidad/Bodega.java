@@ -27,6 +27,12 @@ public class Bodega implements Serializable {
 	@OneToOne
 	@JoinColumn
 	private Usuario administrador;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="bodega")
+	private List<Pedido> pedidos;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="bodega")
+	private List<Factura> facturas;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="bodega")
 	private List<MovimientoBodega> inventario;
@@ -94,14 +100,33 @@ public class Bodega implements Serializable {
 		this.editable = editable;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((administrador == null) ? 0 : administrador.hashCode());
 		result = prime * result + codigoBodega;
+		result = prime * result + (editable ? 1231 : 1237);
+		result = prime * result + ((facturas == null) ? 0 : facturas.hashCode());
 		result = prime * result + ((inventario == null) ? 0 : inventario.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((pedidos == null) ? 0 : pedidos.hashCode());
 		result = prime * result + ((ubicacion == null) ? 0 : ubicacion.hashCode());
 		return result;
 	}
@@ -122,6 +147,13 @@ public class Bodega implements Serializable {
 			return false;
 		if (codigoBodega != other.codigoBodega)
 			return false;
+		if (editable != other.editable)
+			return false;
+		if (facturas == null) {
+			if (other.facturas != null)
+				return false;
+		} else if (!facturas.equals(other.facturas))
+			return false;
 		if (inventario == null) {
 			if (other.inventario != null)
 				return false;
@@ -132,6 +164,11 @@ public class Bodega implements Serializable {
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
+		if (pedidos == null) {
+			if (other.pedidos != null)
+				return false;
+		} else if (!pedidos.equals(other.pedidos))
+			return false;
 		if (ubicacion == null) {
 			if (other.ubicacion != null)
 				return false;
@@ -139,12 +176,7 @@ public class Bodega implements Serializable {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Bodega [codigoBodega=" + codigoBodega + ", nombre=" + nombre + ", ubicacion=" + ubicacion
-				+ ", administrador=" + administrador + ", inventario=" + inventario + ", editable=" + editable + "]";
-	}
+	
 	
 
 }
