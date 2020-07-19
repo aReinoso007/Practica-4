@@ -6,3 +6,6 @@ src/META-INF/persistence.xml
 .settings/org.eclipse.wst.common.project.facet.core.xml
 *.xml
 
+WebContent/WEB-INF/web.xml
+src/META-INF/persistence.xml
+.classpath
