@@ -1,7 +1,6 @@
 package ec.edu.ups.ejb;
 
-import java.sql.SQLException;
-import java.util.Date;
+
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

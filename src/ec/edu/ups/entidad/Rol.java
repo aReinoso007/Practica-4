@@ -17,7 +17,7 @@ public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigo;
 	private String descripcion;
 	
@@ -26,6 +26,11 @@ public class Rol implements Serializable {
 	public Rol() {
 		
 	}
+	
+	
+
+
+
 
 	/*
 	 * public Rol( String descripcion) {
@@ -34,14 +39,9 @@ public class Rol implements Serializable {
 	 * this.descripcion = descripcion; }
 	 */
 	
-	
 
 	public int getCodigo() {
 		return codigo;
-	}
-
-	public Rol(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public void setCodigo(int codigo) {
