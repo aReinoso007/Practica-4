@@ -96,7 +96,8 @@ public class ApiRest2 {
 		System.out.println("validando ingreso de usuario");
 		usu = ejbUsuarioFacade.validarIngresoPorRol(correo, contrasena);
 		System.out.println("usuario recuperado: "+usu);
-		return Response.ok("log in exitoso")
+		
+		return Response.status(201).entity("usuario salvado: "+usu)
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
