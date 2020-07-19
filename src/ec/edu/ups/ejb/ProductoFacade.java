@@ -27,15 +27,15 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     @SuppressWarnings("unchecked")
 	public List<Producto> listarProductos(){
     	Query nq = em.createNativeQuery("SELECT * FROM producto", Producto.class);
-    	System.out.println("Listando productos desde facade usuario");
+    	System.out.println("Listando productos");
     	System.out.println("Lista desde Productofacade"+nq.getResultList());
     	return (List<Producto>) nq.getResultList();
     }
     
-    public Producto obtenerProductos(String porducto) {
+    public Producto obtenerProductos(String producto) {
     	Query nq = em.createNativeQuery("SELECT * FROM producto WHERE nombre= ?", Producto.class);
-    	nq.setParameter(1, porducto);
-    	System.out.println("Obteniendo producto desde categoriafacade");
+    	nq.setParameter(1, producto);
+    	System.out.println("Obteniendo producto desde Productofacade");
     	System.out.println("Producto obtenido: "+nq.getSingleResult());
     	return (Producto) nq.getSingleResult();
     }

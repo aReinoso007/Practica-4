@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Categorias</title>
+<title>Bodegas</title>
 <link rel="stylesheet" type="text/css" href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 <link rel="stylesheet" href="/Practica-4/CONFIG2/css/sb-admin-2.min.css" />
@@ -54,43 +54,69 @@
 		<!-- Hasta aqui va la barra del al lado -->
 		<!-- Contenido central -->
 		<div class="container">
-		<h4>Ingresar Categoria:</h4>
+		<h1>Lista de Bodegas</h1>
 
-		<h:form styleClass="form-inline">
-			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
-			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{categoriaBean.nombre}"/>
-
-			<label for="pwd" class="mb-2 mr-sm-2"></label>
-			<h:commandButton action="#{categoriaBean.add}" styleClass="btn btn-success" value="Añadir Categoria" />
-		</h:form>
-	
 	<h:panelGrid styleClass="container">
 		<h:form>
 			<br />
 
-			<h:dataTable value="#{categoriaBean.listaCategoria}" var="c"
+			<h:dataTable value="#{bodegaBean.listaBodega}" var="b"
 				styleClass="table table-striped" headerClass="cabeceraTabla"
 				rowClasses="filaPar,filaImpar">
 
 				<!-- inicio columnas -->
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					<h:inputText value="#{categoriaBean.nombre}" size="10" rendered="#{c.editable}"/>
-					<h:outputText value="#{c.nombreCategoria}" rendered="#{not c.editable}"/>
+					<h:inputText value="#{bodegaBean.nombreBodega}" size="10" rendered="#{b.editable}"/>
+					<h:outputText value="#{b.nombre}" rendered="#{not b.editable}"/>
+				</h:column>
+				<!--  <h:column>
+					<f:facet name="header">Ubicacion</f:facet>
+					<h:inputText value="#{bodegaBean.ubicacion}" size="10" rendered="#{b.editable}"/>
+					<h:outputText value="#{b.ubicacion}" rendered="#{not b.editable}"/>
+				</h:column>-->
+				<h:column>
+					<f:facet name="header">Administrador</f:facet>
+					<h:inputText value="#{bodegaBean.administrador}" size="10" rendered="#{b.editable}"/>
+					<h:outputText value="#{p.administrador}" rendered="#{not b.editable}"/>
+				</h:column>
+				<!--<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:inputText value="#{bodegaBean.resultadoPro}" size="10" rendered="#{b.editable}"/>
+					<h:outputText value="#{b.inventario}" rendered="#{not b.editable}"/>
+				</h:column>-->
+				<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<h:commandLink value="Delete" action="#{bodegaBean.delete(b)}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Accion</f:facet>
-					<h:commandLink value="Delete" action="#{categoriaBean.delete(c)}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Accion</f:facet>
-					<h:commandLink value="Edit" action="#{categoriaBean.edit(c)}" rendered="#{not c.editable}"/>
-					<h:commandLink value="Save" action="#{categoriaBean.save(c)}" rendered="#{c.editable}"/>
+					<h:commandLink value="Edit" action="#{bodegaBean.edit(b)}" rendered="#{not b.editable}"/>
+					<h:commandLink value="Save" action="#{bodegaBean.save(b)}" rendered="#{b.editable}"/>
 				</h:column>
 			</h:dataTable>
 
 		</h:form>
 	</h:panelGrid>
+	
+	<div class="container">
+	<h4>Ingresar nuevo producto:</h4>
+		<h:form styleClass="form">
+			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.nombreBodega}"/>
+			<!--<label for="pwd" class="mb-2 mr-sm-2">Ubicación:</label>
+			<h:selectOneMenu class="form-control" value="#{bodegaBean.ubicacion}">
+				<f:selectItems value="#{ubicacionBean.list}" itemLabel="#{ubicacionBean.callePrincipal}"/>
+			</h:selectOneMenu>-->
+			<label for="pwd" class="mb-2 mr-sm-2">Administrador:</label>
+			<h:selectOneMenu class="form-control" value="#{bodegaBean.administrador}">
+				<f:selectItems value="#{usuarioBean.listaUsuarios}" itemLabel="#{usuarioBean.nombres}"/>
+			</h:selectOneMenu>
+			<label for="pwd" class="mb-2 mr-sm-2"></label>
+			<h:commandButton action="#{bodegaBean.add}" styleClass="btn btn-success" value="Añadir Producto" />
+		</h:form>
+	</div>
+	
 		
 	</div>
 </div>

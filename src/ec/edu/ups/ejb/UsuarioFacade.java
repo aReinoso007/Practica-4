@@ -47,7 +47,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     		System.out.println("resultado: "+resultado);
     		respuesta = (Usuario) resultado.get(0);
     		System.out.println("respuesta: "+respuesta);
+    		
     		System.out.println("exito");
+    	}else {
+    		System.out.println("fallo");
     	}
     	return (Usuario) respuesta;
     }
