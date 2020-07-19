@@ -50,7 +50,8 @@ public class UsuarioBean implements Serializable{
 		listaUsuarios = ejbUsuarioFacade.listarClientes();
 		System.out.println("rol: "+ejbRolFacade.find(1));
 		
-	}	
+	}
+	
 	//Aqui le agregamos las funcionalidades
 	/*
 	public List<Rol> obtenerRol() {

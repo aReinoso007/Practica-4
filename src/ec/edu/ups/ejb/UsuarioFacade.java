@@ -52,6 +52,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     	return (Usuario) respuesta;
     }
     
+    @SuppressWarnings("unchecked")
+	public Usuario validarIngresoPorRol(String correo, String pass) {
+    	Query nq = em.createNativeQuery("SELECT * FROM Usuario WHERE correo= ? and contrasena=? and rol_codigo=1", Usuario.class );
+    	nq.setParameter(1, correo);
+    	nq.setParameter(2, pass);
+    	System.out.println("validando ingreso desde facade");
+    	List<Usuario> respuesta = nq.getResultList();
+    	Usuario usu = null;
+    	if(respuesta != null ) {
+    		usu = respuesta.get(0);
+    		System.out.println("exito-cliente");
+    	}else if( respuesta == null ) {
+    		System.out.println("no se encuentra usuario");
+    	}
+    	return usu;
+    }
+    
 
 
 }
