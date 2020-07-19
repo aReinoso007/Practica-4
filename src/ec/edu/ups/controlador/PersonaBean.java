@@ -60,6 +60,7 @@ public class PersonaBean implements Serializable{
 	}
 	
 	
+	
 	////////////////////////////////////////////////////
 	public PersonaFacade getEjbPersonaFacade() {
 		return ejbPersonaFacade;
