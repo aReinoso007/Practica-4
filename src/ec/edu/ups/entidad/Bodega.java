@@ -29,7 +29,6 @@ public class Bodega implements Serializable {
 	private Usuario administrador;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="bodega")
-
 	private List<Producto> inventario;
 
 	public Bodega(String nombre, Ubicacion ubicacion, Usuario administrador, List<Producto> inventario) {
