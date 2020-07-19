@@ -4,8 +4,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Registro Usuario</title>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Registro de Cliente</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -61,9 +61,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item"
-							href="/Practica-4/Privada/RegistroUsuario.xhtml">Registrar
+							href="/Practica-4/PrivadaAdm/RegistroUsuarioAdmin.xhtml">Registrar
 							Empleado</a> <a class="collapse-item"
-							href="/Practica-4/Privada/ListarEmpleados.xhtml">Ver
+							href="/Practica-4/PrivadaAdm/ListarEmpleadosAdmin.xhtml">Ver
 							Empleados Empleados</a>
 					</div>
 				</div></li>
@@ -79,9 +79,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Utilities:</h6>
 						<a class="collapse-item"
-							href="/Practica-4/Privada/RegistrarCliente.xhtml">Registrar
+							href="/Practica-4/PrivadaAdm/RegistrarClienteAdmin.xhtml">Registrar
 							Cliente</a> <a class="collapse-item"
-							href="/Practica-4/Privada/ListarClientes.xhtml">Ver Clientes</a>
+							href="/Practica-4/PrivadaAdm/ListarClientesAdmin.xhtml">Ver Clientes</a>
 						<!-- 
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>
@@ -350,65 +350,47 @@
 									<div class="col-lg-7">
 										<div class="p-5">
 											<div class="text-center">
-												<h1 class="h4 text-gray-900 mb-4">Registrar Empleado</h1>
+												<h1 class="h4 text-gray-900 mb-4">Registro de nuevo
+													Cliente</h1>
 											</div>
 											<form class="user">
 												<h:form>
 													<div class="form-group row">
 														<div class="col-sm-6 mb-3 mb-sm-0">
 															<label>Nombre</label>
-															<h:inputText value="#{usuarioBean.nombres}"
-																class="form-control form-control-user"
-																id="exampleFirstName" placeholder="Nombre" />
+															<h:inputText class="form-control form-control-user"
+																id="exampleFirstName" value="#{personaBean.nombre}" />
 														</div>
 														<div class="col-sm-6">
 															<label>Apellido</label>
 															<h:inputText class="form-control form-control-user"
-																id="exampleLastName" value="#{usuarioBean.apellidos}"
-																placeholder="Apellido" />
+																id="exampleLastName" value="#{personaBean.apellido}"
+																placeholder="" />
 														</div>
 														<div class="col-sm-6 mb-3 mb-sm-0">
-															<label>Direccion</label>
-															<h:inputText class="form-control form-control-user"
-																id="Direccion" value="#{usuarioBean.direccion}"
-																placeholder="Direccion" />
-														</div>
-														<div class="col-sm-6">
-															<label>Cedula</label>
-															<h:inputText class="form-control form-control-user"
-																id="cedula" value="#{usuarioBean.cedula}"
-																placeholder="Numero de cedula" />
-														</div>
-														<div class="col-sm-6">
-															<label>Rol</label><br />
-															<h:selectOneMenu value="#{usuarioBean.rol}">
-																<f:selectItem itemValue="cliente" itemLabel="Cliente" />
-																<f:selectItem itemValue="empleado" itemLabel="Empleado" />
-																<f:selectItem itemValue="administrador"
-																	itemLabel="Administrador" />
-															</h:selectOneMenu>
+															<label>Numero de cedula</label>
+															<h:inputText type="number"
+																class="form-control form-control-user" id="cedula"
+																value="#{personaBean.cedula}" />
 														</div>
 													</div>
 													<div class="form-group">
-														<label>Correo Electronico</label>
-														<h:inputText type="email"
+														<h:inputText type="email" id="correo"
 															class="form-control form-control-user"
-															id="exampleInputEmail" placeholder="Email Address"
-															value="#{usuarioBean.correo}" />
+															value="#{personaBean.correo}" />
 													</div>
 													<div class="form-group row">
 														<div class="col-sm-6 mb-3 mb-sm-0">
-															<label>Contrasena</label>
-															<h:inputSecret type="password"
-																class="form-control form-control-user"
-																id="exampleInputPassword"
-																value="#{usuarioBean.contrasena}" placeholder="Password" />
+															<label>Direccion</label>
+															<h:inputText class="form-control form-control-user"
+																id="direccion" value="#{personaBean.direccion}" />
 														</div>
 													</div>
 													<h:commandButton value="Registrar"
-														action="#{usuarioBean.add}"
+														action="#{personaBean.add}"
 														class="btn btn-primary btn-user btn-block" />
 													<hr />
+
 												</h:form>
 											</form>
 
@@ -497,7 +479,4 @@
 	<script src="../resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
-
 </html>
-
-
