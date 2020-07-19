@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Lista Facturas</title>
+	<title>Facturacion</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -17,7 +17,7 @@
 	<link
 		href="/Practica-4/CONFIG2vendor/datatables/dataTables.bootstrap4.min.css"
 		rel="stylesheet" />
-	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />	
+	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 </h:head>
 <body>
 
@@ -319,42 +319,73 @@
 				<div class="container-fluid">
 
 					<!-- INICIO CONTENIDO -->
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Lista Facturas:</h1>
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-						</div>
-						<div class="card-body">
-							<div class="col-sm-12 col-md-6">
-								<div id="dataTable_filter" class="dataTables_filter">
-									<label>Buscar:<input type="search"
-										class="form-control form-control-sm" placeholder=""
-										aria-controls="dataTable" /></label>
+
+					<div class="container">
+
+						<div class="card o-hidden border-0 shadow-lg my-5">
+							<div class="card-body p-0">
+								<!-- Nested Row within Card Body -->
+								<div class="row">
+									<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+									<div class="col-lg-7">
+										<div class="p-5">
+											<div class="text-center">
+												<h1 class="h4 text-gray-900 mb-4">Registro de nuevo
+													Cliente</h1>
+											</div>
+											<form class="user">
+												<h:form>
+													<div class="form-group row">
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Nombre</label>
+															<h:inputText class="form-control form-control-user"
+																id="exampleFirstName" value="#{personaBean.nombre}" />
+														</div>
+														<div class="col-sm-6">
+															<label>Apellido</label>
+															<h:inputText class="form-control form-control-user"
+																id="exampleLastName" value="#{personaBean.apellido}"
+																placeholder="" />
+														</div>
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Numero de cedula</label>
+															<h:inputText type="number"
+																class="form-control form-control-user" id="cedula"
+																value="#{personaBean.cedula}" />
+														</div>
+													</div>
+													<div class="form-group">
+														<label>Correo</label>
+														<h:inputText type="email" id="correo"
+															class="form-control form-control-user"
+															value="#{personaBean.correo}" />
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Direccion</label>
+															<h:inputText class="form-control form-control-user"
+																id="direccion" value="#{personaBean.direccion}" />
+														</div>
+													</div>
+													<h:commandButton value="Registrar"
+														action="#{personaBean.add}"
+														class="btn btn-primary btn-user btn-block" />
+													<hr />
+
+												</h:form>
+											</form>
+
+
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="table-responsive">
-								<h:dataTable value=" in" var="p"
-									class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<h:column>
-										<f:facet name="header">Codigo</f:facet>sn
-					</h:column>
-									<h:column>
-										<f:facet name="header">Cliente</f:facet>sn
-					</h:column>
-									<h:column>
-										<f:facet name="header">Fecha Emision</f:facet>sn
-					</h:column>
-					<h:column>
-										<f:facet name="header">Total</f:facet>sn
-					</h:column>
-
-								</h:dataTable>
-							</div>
 						</div>
+
 					</div>
+
+
 
 
 
@@ -425,10 +456,10 @@
 	<script src="/Practica-4/CONFIG2/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-<!-- 	<script
+	<!-- 	<script
 		src="/Practica-4/CONFIG2/vendor/datatables/jquery.dataTables.min.js"></script> -->
- 	<script
-		src="/Practica-4/CONFIG2/vendor/datatables/dataTables.bootstrap4.min.js"></script> 
+	<script
+		src="/Practica-4/CONFIG2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 	<!-- Page level custom scripts -->
