@@ -43,7 +43,7 @@ public class ApiRest2 {
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		Jsonb jsonb = JsonbBuilder.create();
 		listaUsuarios = ejbUsuarioFacade.findAll();
-		System.out.println("retornando lista de usuarios");
+		System.out.println("retornando lista de usuarios: "+listaUsuarios);
 		return Response.ok(jsonb.toJson(listaUsuarios))
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
