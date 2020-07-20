@@ -12,11 +12,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.Produces;
 
-import com.sun.faces.util.Json;
 
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
@@ -77,6 +76,7 @@ public class UsuarioResource {
 		System.out.println("creando nuevo usuario");
 		rol = ejbRolFacade.find(1);
 		System.out.println("rol de cliente: "+rol);
+		String estado = "activo";
 		usuario = new Usuario(cedula, nombre, apellido, direccion, correo, contrasena, rol);
 		System.out.println("persistiendo usuario");
 		ejbUsuarioFacade.create(usuario);
@@ -86,7 +86,7 @@ public class UsuarioResource {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 	}
-	
+	/*
 	@POST
 	@Path("/inicio")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -102,6 +102,6 @@ public class UsuarioResource {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 		
-	}
+	}*/
 
 }
