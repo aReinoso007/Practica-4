@@ -39,7 +39,7 @@ public class Usuario  implements Serializable {
 	
 
 	
-	
+	//Crear empleados y adm con todas las de ley
 	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena,
 			String estado, Rol rol) {
 		super();
@@ -52,7 +52,8 @@ public class Usuario  implements Serializable {
 		this.estado = estado;
 		this.rol = rol;
 	}
-
+	
+	//para crear clientes inactivos
 	public Usuario(String cedula, String nombre, String apellido, String direccion, String estado, Rol rol) {
 		super();
 		this.cedula = cedula;
@@ -241,11 +242,17 @@ public class Usuario  implements Serializable {
 
 
 
+
 	@Override
 	public String toString() {
 		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion="
-				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + ", rol=" + rol + "]";
+				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + ", estado=" + estado + ", rol="
+				+ rol + "]";
 	}
+
+
+
+	
 	
 	
    

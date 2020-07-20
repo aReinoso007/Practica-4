@@ -11,30 +11,23 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import ec.edu.ups.ejb.ProductoFacade;
-import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidad.Producto;
-import ec.edu.ups.entidad.Rol;
 import ec.edu.ups.entidad.Usuario;
 
 @Path("/service2")
 public class ApiRest2 {
 	
 	@EJB
-	private UsuarioFacade ejbUsuarioFacade;
-	@EJB
-	private RolFacade ejbRolFacade;
-	@EJB
 	private ProductoFacade ejbProductoFacade;
-	
-	private Usuario usuario;
-	private Rol rol;
+	@EJB
+	private UsuarioFacade ejbUsuarioFacade;
+
 	
 	
 	@GET
@@ -53,7 +46,6 @@ public class ApiRest2 {
 	}
 	
 
-	
 	@POST
 	@Path("/inicio")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -70,6 +62,7 @@ public class ApiRest2 {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 		
 	}
+
 	
 	
 		
