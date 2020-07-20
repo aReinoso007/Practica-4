@@ -40,6 +40,7 @@ public class PersonaBean implements Serializable{
 	public void init() {
 		System.out.println("listando clientes: ");
 		listaPersonas = ejbPersonaFacade.findAll();
+		System.out.println("listado de personas: "+listaPersonas);
 	}
 	
 	public String add() {
@@ -50,6 +51,8 @@ public class PersonaBean implements Serializable{
 		this.correo="";
 		this.direccion="";
 		this.nombre="";
+		listaPersonas = ejbPersonaFacade.findAll();
+		System.out.println("listando personas: "+listaPersonas);
 		return null;
 	}
 
