@@ -47,6 +47,17 @@ public class Usuario  implements Serializable {
 		this.correo = correo;
 		this.contrasena = contrasena;
 	}
+	
+	public Usuario(String cedula, String nombre, String apellido, String direccion, String estado, Rol rol) {
+		super();
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.estado = estado;
+		this.rol = rol;
+	}
+
 
 
 	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena,

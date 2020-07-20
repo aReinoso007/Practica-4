@@ -36,19 +36,6 @@ public class ApiRest2 {
 	private Usuario usuario;
 	private Rol rol;
 	
-	@GET
-	@Path("/listadousuarios")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listaUsuarios() {
-		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-		Jsonb jsonb = JsonbBuilder.create();
-		listaUsuarios = ejbUsuarioFacade.findAll();
-		System.out.println("retornando lista de usuarios: "+listaUsuarios);
-		return Response.ok(jsonb.toJson(listaUsuarios))
-				.header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
-	}
 	
 	@GET
 	@Path("/productos")
@@ -65,27 +52,7 @@ public class ApiRest2 {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 	}
 	
-	@POST
-	@Path("/usuarios")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
-	public Response registrar(@FormParam("nombre") String nombre, @FormParam("apellido") String apellido, @FormParam("cedula") String cedula, 
-			@FormParam("direccion") String direccion, @FormParam("correo") String correo, @FormParam("contrasena") String contrasena) {
-		
-		System.out.println("creando nuevo usuario");
-		rol = ejbRolFacade.find(1);
-		System.out.println("rol del cliente: "+rol);
-		
-		usuario = new Usuario(cedula, nombre, apellido, direccion, correo, contrasena, rol);
-		System.out.println("persistiendo usuario");
-		ejbUsuarioFacade.create(usuario);
-		
-		
-		return Response.ok("exito")
-				.header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
-	}
+
 	
 	@POST
 	@Path("/inicio")

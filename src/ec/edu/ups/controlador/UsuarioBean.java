@@ -74,9 +74,12 @@ public class UsuarioBean implements Serializable{
 	
 	public String add() {
 		
-		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, buscarRols()));
+		String estado="desactivado";
+		
+		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, estado, buscarRols()));
 	
 		System.out.println("Listando los empleados");
+		estado = "";
 		this.cedula ="";
 		this.nombres ="";
 		this.apellidos="";
