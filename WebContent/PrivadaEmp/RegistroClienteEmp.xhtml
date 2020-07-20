@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Listado de Empleados</title>
+	<title>Lista Facturas</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -54,9 +54,11 @@
 			<hr class="sidebar-divider" />
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
+			<div class="sidebar-heading">Gestion Clientes</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
+
+
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
@@ -65,34 +67,36 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						
+						<h6 class="collapse-header">Clientes</h6>
 						<a class="collapse-item"
 							href="/Practica-4/PrivadaEmp/RegistroClienteEmp.xhtml">Registrar
 							Cliente</a> <a class="collapse-item"
-							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">Listar Clientes</a>
+							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">listado</a>
 					</div>
 				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
 
 
 			<!-- Divider -->
 			<hr class="sidebar-divider" />
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Facturas</div>
+			<div class="sidebar-heading">Gestion Facturas</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>Gestion Facturas</span>
+					class="fas fa-fw fa-folder"></i> <span>Facturas</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						
-						<a class="collapse-item" href="CrearFactura.xhtml">Crear Factura</a> <a
-							class="collapse-item" href="ListarFacturas.xhtml">Listar Facturas</a> 
-						
+						<a class="collapse-item" href="CrearFactura.xhtml">Generar
+							Factura</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
+							Facturas</a>
+
 					</div>
 				</div></li>
 
@@ -314,64 +318,76 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Clientes</h1>
+					<!-- INICIO CONTENIDO -->
+					<div class="container">
 
+						<div class="card o-hidden border-0 shadow-lg my-5">
+							<div class="card-body p-0">
+								<!-- Nested Row within Card Body -->
+								<div class="row">
+									<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+									<div class="col-lg-7">
+										<div class="p-5">
+											<div class="text-center">
+												<h1 class="h4 text-gray-900 mb-4">Registro de nuevo
+													Cliente</h1>
+											</div>
+											<form class="user">
+												<h:form>
+													<div class="form-group row">
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Nombre</label>
+															<h:inputText class="form-control form-control-user"
+																id="exampleFirstName" value="#{personaBean.nombre}" />
+														</div>
+														<div class="col-sm-6">
+															<label>Apellido</label>
+															<h:inputText class="form-control form-control-user"
+																id="exampleLastName" value="#{personaBean.apellido}"
+																placeholder="" />
+														</div>
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Numero de cedula</label>
+															<h:inputText type="number"
+																class="form-control form-control-user" id="cedula"
+																value="#{personaBean.cedula}" />
+														</div>
+													</div>
+													<div class="form-group">
+													<label>Correo</label>
+														<h:inputText type="email" id="correo"
+															class="form-control form-control-user"
+															value="#{personaBean.correo}" />
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Direccion</label>
+															<h:inputText class="form-control form-control-user"
+																id="direccion" value="#{personaBean.direccion}" />
+														</div>
+													</div>
+													<h:commandButton value="Registrar"
+														action="#{personaBean.add}"
+														class="btn btn-primary btn-user btn-block" />
+													<hr />
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Listado de
-								clientes</h6>
-						</div>
+												</h:form>
+											</form>
 
+											<hr />
 
-						<div class="card-body">
-
-							<div class="table-responsive">
-
-
-
-								<h:dataTable value="#{personaBean.listaPersonas}" var="p"
-									class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<h:column>
-										<f:facet name="header">Cedula</f:facet>#{p.cedula}
-					</h:column>
-									<h:column>
-										<f:facet name="header">Nombre</f:facet>#{p.nombre}
-					</h:column>
-									<h:column>
-										<f:facet name="header">Apellido</f:facet>#{p.apellido}
-					</h:column>
-									<h:column>
-										<f:facet name="header">Direccion</f:facet>#{p.direccion}
-					</h:column>
-									<h:column>
-										<f:facet name="header">Correo</f:facet>#{p.correo}
-					</h:column>
-									<h:column>
-										<f:facet name="header">Accion</f:facet>
-										<h:form>
-											<h:commandButton class="btn btn-warning" value="Editar"
-												action="#{personaBean.editar(p)}" />
-											<h:commandButton style="margin-left: 10px"
-												class="btn btn-danger" value="Eliminar" action="#{personaBean.delete(p)}" />
-
-										</h:form>
-									</h:column>
-								</h:dataTable>
-
-
-
-
+										</div>
+									</div>
+								</div>
 							</div>
-
 						</div>
-
-
 
 					</div>
+
+
+
+
+					<!-- FIN CONTENIDO -->
 
 				</div>
 				<!-- /.container-fluid -->

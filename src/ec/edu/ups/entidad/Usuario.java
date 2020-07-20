@@ -25,6 +25,8 @@ public class Usuario  implements Serializable {
 	private String correo;
 	private String contrasena;
 	
+	private String estado;
+	
 	@OneToOne
 	@JoinColumn
 	private Rol rol;
@@ -141,6 +143,19 @@ public class Usuario  implements Serializable {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+
+	
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 

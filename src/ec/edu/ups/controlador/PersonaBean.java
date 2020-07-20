@@ -17,8 +17,7 @@ import ec.edu.ups.entidad.Persona;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @SessionScoped
-public class PersonaBean implements Serializable{
-
+public class PersonaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -30,40 +29,75 @@ public class PersonaBean implements Serializable{
 	private String direccion;
 	private String nombre;
 	private Persona persona;
-	private List<Factura>listaFacturas;
+	private List<Factura> listaFacturas;
 	private List<Persona> listaPersonas;
-	
+	private Persona per;
 
-	public PersonaBean() {}
-	
+	public PersonaBean() {
+	}
+
 	@PostConstruct
 	public void init() {
 		System.out.println("listando clientes: ");
-		listaPersonas = ejbPersonaFacade.findAll();
-		System.out.println("listado de personas: "+listaPersonas);
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 	}
-	
+
 	public String add() {
 		System.out.println("registrando cliente");
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo));
-		this.cedula="";
-		this.apellido="";
-		this.correo="";
-		this.direccion="";
-		this.nombre="";
-		listaPersonas = ejbPersonaFacade.findAll();
-		System.out.println("listando personas: "+listaPersonas);
+		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "activo"));
+		this.cedula = "";
+		this.apellido = "";
+		this.correo = "";
+		this.direccion = "";
+		this.nombre = "";
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return null;
+	}
+
+	public String update() {
+	
+
+		per.setCedula(this.cedula);
+		per.setApellido(this.apellido);
+		per.setDireccion(this.direccion);
+		per.setCorreo(this.correo);
+		per.setNombre(this.nombre);
+		
+		ejbPersonaFacade.edit(per);
+
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+		return "actualizado";
 	}
 
 	public List<Persona> listarPersonas() {
 		System.out.println(persona.getCedula());
-		listaPersonas = ejbPersonaFacade.findAll();
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return listaPersonas;
 	}
+
+	public String editar(Persona p) {
+
+		this.cedula = p.getCedula();
+		this.apellido = p.getApellido();
+		this.nombre = p.getNombre();
+		this.direccion = p.getDireccion();
+		this.correo = p.getCorreo();
+		
+		per = p;
+
+		System.out.println("Persona:..." + p.toString());
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+		return "editar";
+		
+	}
 	
-	
-	
+	public String delete(Persona p) {
+		p.setEstado("inactivo");
+		ejbPersonaFacade.edit(p);
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+		return "eliminado";
+	}
+
 	////////////////////////////////////////////////////
 	public PersonaFacade getEjbPersonaFacade() {
 		return ejbPersonaFacade;
@@ -144,8 +178,5 @@ public class PersonaBean implements Serializable{
 	public void setListaPersonas(List<Persona> listaPersonas) {
 		this.listaPersonas = listaPersonas;
 	}
-	
-	
-	
-	
+
 }
