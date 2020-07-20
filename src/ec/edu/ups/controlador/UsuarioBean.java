@@ -38,6 +38,7 @@ public class UsuarioBean implements Serializable{
 	private String direccion;
 	private String correo;
 	private String contrasena;
+	private String estado;
 	private String rol;
 	
 	
@@ -74,15 +75,28 @@ public class UsuarioBean implements Serializable{
 	
 	public String add() {
 		
-		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.contrasena, buscarRols()));
+		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, this.correo, this.correo, this.estado, buscarRols()));
 	
 		System.out.println("Listando los empleados");
+		this.estado = "";
 		this.cedula ="";
 		this.nombres ="";
 		this.apellidos="";
 		this.direccion="";
 		this.correo="";
 		this.contrasena="";
+		listaUsuarios = ejbUsuarioFacade.findAll();
+		return null;
+	}
+	
+	public String addClienteInactivo() {
+		String estado = "inactivo";
+		ejbUsuarioFacade.create(new Usuario(this.cedula, this.nombres, this.apellidos, this.direccion, estado, buscarRols()));
+		this.cedula="";
+		this.nombres="";
+		this.apellidos="";
+		this.direccion="";
+		estado ="";
 		listaUsuarios = ejbUsuarioFacade.findAll();
 		return null;
 	}
@@ -106,9 +120,13 @@ public class UsuarioBean implements Serializable{
 	
 	public String remove(Usuario u) {
 		ejbUsuarioFacade.remove(u);
-		//ejbUsuarioFacade.findAll();
+		ejbUsuarioFacade.findAll();
 		return null;
 	}
+	
+	
+	
+	
 
 	public UsuarioFacade getEjbUsuarioFacade() {
 		return ejbUsuarioFacade;
