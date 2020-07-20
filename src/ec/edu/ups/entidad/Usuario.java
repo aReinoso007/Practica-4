@@ -38,7 +38,10 @@ public class Usuario  implements Serializable {
 
 	
 
-	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena) {
+	
+	
+	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena,
+			String estado, Rol rol) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -46,8 +49,10 @@ public class Usuario  implements Serializable {
 		this.direccion = direccion;
 		this.correo = correo;
 		this.contrasena = contrasena;
+		this.estado = estado;
+		this.rol = rol;
 	}
-	
+
 	public Usuario(String cedula, String nombre, String apellido, String direccion, String estado, Rol rol) {
 		super();
 		this.cedula = cedula;
