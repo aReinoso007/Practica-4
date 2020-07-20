@@ -90,6 +90,13 @@ public class PersonaBean implements Serializable {
 		return "editar";
 		
 	}
+	
+	public String delete(Persona p) {
+		p.setEstado("inactivo");
+		ejbPersonaFacade.edit(p);
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+		return "eliminado";
+	}
 
 	////////////////////////////////////////////////////
 	public PersonaFacade getEjbPersonaFacade() {
