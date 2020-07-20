@@ -39,17 +39,18 @@ public class PersonaBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		System.out.println("listando clientes: ");
-		listaPersonas = ejbPersonaFacade.findAll();
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 	}
 
 	public String add() {
 		System.out.println("registrando cliente");
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo));
+		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "activo"));
 		this.cedula = "";
 		this.apellido = "";
 		this.correo = "";
 		this.direccion = "";
 		this.nombre = "";
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return null;
 	}
 
@@ -64,12 +65,13 @@ public class PersonaBean implements Serializable {
 		
 		ejbPersonaFacade.edit(per);
 
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return "actualizado";
 	}
 
 	public List<Persona> listarPersonas() {
 		System.out.println(persona.getCedula());
-		listaPersonas = ejbPersonaFacade.findAll();
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return listaPersonas;
 	}
 
@@ -84,8 +86,9 @@ public class PersonaBean implements Serializable {
 		per = p;
 
 		System.out.println("Persona:..." + p.toString());
-
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return "editar";
+		
 	}
 
 	////////////////////////////////////////////////////
