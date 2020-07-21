@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Lista Facturas</title>
+	<title>Crear Factura</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -318,49 +318,134 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
+					<div class="row">
+
+						<!-- Area Chart -->
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Factura
+										Cabecera:</h6>
+									<div class="dropdown no-arrow"></div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+
+									<h:form>
+										<div class="form-group">
+											<label for="pwd">Cedula Cliente:</label>
+											<h:inputText styleClass="form-control"
+												value="#{facturaBean.identificacion}" style="width:200px">
+												<f:ajax event="keyup" render="mensaje"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="nombres"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="cedula"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="direccion"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="correo"
+													listener="#{facturaBean.obtenerCliente}" />
+
+											</h:inputText>
+											<h:outputText id="cliente" class="mensaje-error"
+												value="#{facturaBean.resultado}" />
+
+
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="pwd">Estado Fatura:</label>
+
+											<h:selectOneMenu styleClass="custom-select mt-3"
+												value="#{facturaBean.estadoFactura}">
+												<f:selectItem itemValue="abonada" itemLabel="Abonada" />
+												<f:selectItem itemValue="parcialmente pagada"
+													itemLabel="Parcialmente pagada" />
+												<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
+												<f:selectItem itemValue="todos" itemLabel="Todos" />
+											</h:selectOneMenu>
+
+										</div>
+
+										<div class="form-group">
+
+											<label for="pwd">Bodega:</label>
+
+											<h:selectOneMenu styleClass="custom-select mt-3"
+												value="#{facturaBean.estadoFactura}">
+												<f:selectItem itemValue="abonada" itemLabel="Abonada" />
+												<f:selectItem itemValue="parcialmente pagada"
+													itemLabel="Parcialmente pagada" />
+												<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
+												<f:selectItem itemValue="todos" itemLabel="Todos" />
+											</h:selectOneMenu>
+
+										</div>
+
+									</h:form>
+
+
+
+								</div>
+							</div>
+						</div>
+
+						<!-- Pie Chart -->
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Datos
+										Cliente</h6>
+									<div class="dropdown no-arrow"></div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<h:outputText id="mensaje" class="mensaje-error"
+										value="#{facturaBean.resultado}" />
+									<hr />
+									<label for="pwd">Nombres y Apellidos: </label>
+
+									<h:outputText id="nombres" class="mensaje-error"
+										value="#{facturaBean.cliente.nombre} #{facturaBean.cliente.apellido}" />
+									<hr />
+									<label for="pwd">Cedula: </label>
+
+									<h:outputText id="cedula" class="mensaje-error"
+										value="#{facturaBean.cliente.cedula}" />
+									<hr />
+									<label for="pwd">Direccion: </label>
+
+									<h:outputText id="direccion" class="mensaje-error"
+										value="#{facturaBean.cliente.direccion}" />
+									<hr />
+									<label for="pwd">Correo: </label>
+
+									<h:outputText id="correo" class="mensaje-error"
+										value="#{facturaBean.cliente.correo}" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 					<!-- INICIO CONTENIDO -->
 
 					<div class="container">
-						<h2>Datos Factura</h2>
-
-						<h:form>
-							<div class="form-group">
-								<label for="pwd">Cliente:</label>
-								<h:inputText styleClass="form-control"
-									value="#{facturaBean.identificacion}" style="width:200px">
-									<f:ajax event="keyup" render="cliente"
-										listener="#{facturaBean.obtenerCliente}" />
-
-								</h:inputText>
-								<h:outputText id="cliente" class="mensaje-error"
-									value="#{facturaBean.resultado}" />
-
-
-							</div>
-
-							<div class="form-group">
-								<label for="pwd">Estado Fatura:</label>
-
-								<h:selectOneMenu styleClass="custom-select mt-3"
-									value="#{facturaBean.estadoFactura}">
-									<f:selectItem itemValue="abonada" itemLabel="Abonada" />
-									<f:selectItem itemValue="parcialmente pagada"
-										itemLabel="Parcialmente pagada" />
-									<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
-									<f:selectItem itemValue="todos" itemLabel="Todos" />
-								</h:selectOneMenu>
-
-							</div>
-
-						</h:form>
-
-
 						<h4>Ingresar Detalle Factura:</h4>
 
 						<h:form styleClass="form-inline">
 							<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
 							<h:inputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" />
+								style="width:150px" value="#{facturaBean.codigoProducto}">
+								<f:ajax event="keyup" render="producto"
+									listener="#{facturaBean.obtenerProducto}" />
+							</h:inputText>
 
 							<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
 							<h:inputText styleClass="form-control mb-2 mr-sm-2"
@@ -378,41 +463,43 @@
 
 						</h:form>
 					</div>
+					<h:form>
+						<h:outputText id="producto" value="#{facturaBean.nomproducto}" />
+					</h:form>
 
-					<h:panelGrid styleClass="container">
+					<h:panelGrid class="container">
 						<h:form>
 							<br />
 
-							<h:dataTable value="#{ubicacionBean.list}" var="u"
+							<h:dataTable value="#{facturaBean.listFD}" var="det"
 								styleClass="table table-striped" headerClass="cabeceraTabla"
 								rowClasses="filaPar,filaImpar">
 
 								<!-- inicio columnas -->
 								<h:column>
-									<f:facet name="header">Producto</f:facet>#{u.ciudad}
-				</h:column>
+									<f:facet name="header">Producto</f:facet>
+									<h:outputText value="#{det.producto.nombre}" rendered="" />
+								</h:column>
 
 								<h:column>
 									<f:facet name="header">Cantidad</f:facet>
-									<h:inputText value="#{u.ciudad}" size="10" rendered="" />
-									<h:outputText value="#{u.ciudad}" rendered="" />
+									<h:outputText value="#{det.cantidad}" rendered="" />
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">Precio</f:facet>
-									<h:inputText value="" size="10" rendered="" />
-									<h:outputText value="" rendered="" />
+									<h:outputText value="#{det.producto.precioVenta}" rendered="" />
 								</h:column>
 
 								<h:column>
 
-									<h:commandLink value="Delete" rendered="" />
-								</h:column>
+									<h:form>
+										<h:commandButton class="btn btn-warning" value="Editar" />
+										<h:commandButton style="margin-left: 10px"
+											class="btn btn-danger" value="Eliminar" />
 
-								<h:column>
+									</h:form>
 
-									<h:commandLink value="Edit" rendered="" />
-									<h:commandLink value="Save" rendered="" />
 								</h:column>
 
 							</h:dataTable>
@@ -436,6 +523,10 @@
 									<h:outputLabel>0.00</h:outputLabel>
 									<br /> <label>Total:</label>
 									<h:outputLabel>0.00</h:outputLabel>
+									<hr />
+									<h:form>
+										<h:commandButton class="btn btn-warning" value="Finalizar Factura" />
+									</h:form>
 								</div>
 							</div>
 						</div>
