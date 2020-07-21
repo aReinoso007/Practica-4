@@ -20,6 +20,8 @@ public class Factura implements Serializable {
 	
 	private Date fecha;
 	
+    @Transient
+    private boolean editable;
 	
 
 	@ManyToOne
@@ -33,9 +35,9 @@ public class Factura implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="factura")
 	private List<FacturaDetalle> detallesFactura;
 	
-	private Double total;
-	private Double iva;
-	private Double subtotal;
+	private double total;
+	private double iva;
+	private double subtotal;
 	private String estadoFactura;
 
 	public Factura() {
@@ -81,37 +83,31 @@ public class Factura implements Serializable {
 		this.detallesFactura = detallesFactura;
 	}
 
-	public Double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Double total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
-	public Double getIva() {
+	public double getIva() {
 		return iva;
 	}
 
-	public void setIva(Double iva) {
+	public void setIva(double iva) {
 		this.iva = iva;
 	}
 
-	public Double getSubtotal() {
+	public double getSubtotal() {
 		return subtotal;
 	}
 
-	public void setSubtotal(Double subtotal) {
+	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
 
-	public String isEstadoFactura() {
-		return estadoFactura;
-	}
-
-	public void setEstadoFactura(String estadoFactura) {
-		this.estadoFactura = estadoFactura;
-	}
+	
 
 	public Bodega getBodega() {
 		return bodega;
@@ -124,6 +120,20 @@ public class Factura implements Serializable {
 	public String getEstadoFactura() {
 		return estadoFactura;
 	}
+
+	public void setEstadoFactura(String estadoFactura) {
+		this.estadoFactura = estadoFactura;
+	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
 
 	
 	

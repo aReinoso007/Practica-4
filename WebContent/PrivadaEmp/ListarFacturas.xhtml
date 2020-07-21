@@ -71,7 +71,8 @@
 						<a class="collapse-item"
 							href="/Practica-4/PrivadaEmp/RegistroClienteEmp.xhtml">Registrar
 							Cliente</a> <a class="collapse-item"
-							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">Listar Clientes</a>
+							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">Listar
+							Clientes</a>
 					</div>
 				</div></li>
 
@@ -93,9 +94,10 @@
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="CrearFactura.xhtml">Generar
-							Factura</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
-							Facturas</a>
+						<a class="collapse-item" href="CrearFactura.xhtml">Facturar
+							Pedidos</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
+							Facturas</a> <a class="collapse-item" href="Facturacion.xhtml">Crear
+							Factura</a>
 
 					</div>
 				</div></li>
@@ -331,22 +333,31 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<h:dataTable value="#{personaBean.listaPersonas}" var="p"
+								<h:dataTable value="#{facturaBean.list}" var="p"
 									class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<h:column>
-										<f:facet name="header">Codigo</f:facet>pn
-					</h:column>
+										<f:facet name="header">Codigo</f:facet>
+										<h:outputText value="#{p.codigoFactura}" />
+									</h:column>
 									<h:column>
-										<f:facet name="header">Cliente</f:facet>np
-					</h:column>
+										<f:facet name="header">Cliente</f:facet>
+										<h:outputText
+											value="#{p.persona.nombre} #{p.persona.apellido}" />
+									</h:column>
 									<h:column>
-										<f:facet name="header">Fecha</f:facet>np
-					</h:column>
+										<f:facet name="header">Fecha</f:facet>
+										<h:outputText value="#{p.fecha}" />
+									</h:column>
 									<h:column>
-										<f:facet name="header">Total</f:facet>np
-					</h:column>
-									
+										<f:facet name="header">Bodega</f:facet>
+										<h:outputText value="#{p.bodega.nombre}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Total</f:facet>
+										<h:outputText value="#{p.total}" />
+									</h:column>
+
 									<h:column>
 										<f:facet name="header">Accion</f:facet>
 										<h:button styleClass="btn btn-warning" value="Editar" />

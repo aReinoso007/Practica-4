@@ -28,6 +28,9 @@ public class FacturaDetalle implements Serializable {
 	@JoinColumn
 	private Factura factura;
 	
+    @Transient
+    private boolean editable;
+	
 
 	public FacturaDetalle() {
 	
@@ -50,6 +53,18 @@ public class FacturaDetalle implements Serializable {
 		this.cantidad = cantidad;
 		this.producto = producto;
 		this.factura = factura;
+	}
+	
+	
+
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 
