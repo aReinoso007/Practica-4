@@ -70,21 +70,21 @@
 					<h:inputText value="#{bodegaBean.nombreBodega}" size="10" rendered="#{b.editable}"/>
 					<h:outputText value="#{b.nombre}" rendered="#{not b.editable}"/>
 				</h:column>
-				<!--  <h:column>
+				  <h:column>
 					<f:facet name="header">Ubicacion</f:facet>
 					<h:inputText value="#{bodegaBean.ubicacion}" size="10" rendered="#{b.editable}"/>
-					<h:outputText value="#{b.ubicacion}" rendered="#{not b.editable}"/>
-				</h:column>-->
+					<h:outputText value="#{b.ubicacion.ciudad}" rendered="#{not b.editable}"/>
+				</h:column>
 				<h:column>
 					<f:facet name="header">Administrador</f:facet>
 					<h:inputText value="#{bodegaBean.administrador}" size="10" rendered="#{b.editable}"/>
 					<h:outputText value="#{p.administrador}" rendered="#{not b.editable}"/>
 				</h:column>
-				<!--<h:column>
+				<h:column>
 					<f:facet name="header">Stock</f:facet>
 					<h:inputText value="#{bodegaBean.resultadoPro}" size="10" rendered="#{b.editable}"/>
 					<h:outputText value="#{b.inventario}" rendered="#{not b.editable}"/>
-				</h:column>-->
+				</h:column>
 				<h:column>
 					<f:facet name="header">Accion</f:facet>
 					<h:commandLink value="Delete" action="#{bodegaBean.delete(b)}"/>
@@ -104,13 +104,29 @@
 		<h:form styleClass="form">
 			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
 			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.nombreBodega}"/>
-			<!--<label for="pwd" class="mb-2 mr-sm-2">Ubicación:</label>
-			<h:selectOneMenu class="form-control" value="#{bodegaBean.ubicacion}">
-				<f:selectItems value="#{ubicacionBean.list}" itemLabel="#{ubicacionBean.callePrincipal}"/>
-			</h:selectOneMenu>-->
+			<label for="pwd" class="mb-2 mr-sm-2">Ubicación:</label>
+			
+			<!-- UBICACION -->
+			
+			<label for="pwd" class="mb-2 mr-sm-2">Provincia:</label>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.provincia}"/>
+			
+			<label for="pwd" class="mb-2 mr-sm-2">Ciudad:</label>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.ciudad}"/>
+			
+			<label for="pwd" class="mb-2 mr-sm-2">Calle Principal:</label>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.callePrincipal}"/>
+			
+			<label for="pwd" class="mb-2 mr-sm-2">Calle Secundaria:</label>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.calleSecundaria}"/>
+			
+			<label for="pwd" class="mb-2 mr-sm-2">Numero Calle:</label>
+			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{bodegaBean.numero}"/>
+			<!-- END UBICACION -->
+			
 			<label for="pwd" class="mb-2 mr-sm-2">Administrador:</label>
 			<h:selectOneMenu class="form-control" value="#{bodegaBean.administrador}">
-				<f:selectItems value="#{usuarioBean.listaUsuarios}" itemLabel="#{usuarioBean.nombres}"/>
+				<f:selectItems value="#{usuarioBean.listaUsuarios}" var="usu" itemValue="#{usu}" itemLabel="#{usu.nombre}"/>
 			</h:selectOneMenu>
 			<label for="pwd" class="mb-2 mr-sm-2"></label>
 			<h:commandButton action="#{bodegaBean.add}" styleClass="btn btn-success" value="Añadir Producto" />

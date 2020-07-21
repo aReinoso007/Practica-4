@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
@@ -22,6 +23,7 @@ import ec.edu.ups.entidad.Usuario;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
+
 @SessionScoped
 public class BodegaBean implements Serializable{
 	
@@ -36,16 +38,28 @@ public class BodegaBean implements Serializable{
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
 	
+
+	
 	private List<Bodega> listaBodega;
 	private List<Producto> listaProducto;
 	private List<Ubicacion> listaUbicacion;
 	private List<Usuario> listAdministrador;
+	
 	
 	private String nombreBodega;
 	
 	private Producto producto;
 	private Ubicacion ubicacion;
 	private Usuario administrador;
+	
+	/////
+	
+	private String provincia;
+	private String ciudad;
+	private String callePrincipal;
+	private String calleSecundaria;
+	private String numero;
+	////
 	
 	private int resultadoPro;
 	private Ubicacion resultadoUbi;
@@ -96,7 +110,13 @@ public class BodegaBean implements Serializable{
 	}
 	
 	public String add() {
-		//ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion,this.administrador,this.listaProducto));
+		
+
+		ejbUbicacionFacade.create(new Ubicacion(this.provincia, this.ciudad, this.callePrincipal, this.calleSecundaria, this.numero));
+		ubicacion = ejbUbicacionFacade.buscarUbicacion(this.provincia, this.ciudad, this.numero);
+		
+		
+		ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion,this.administrador));
 		listaBodega = ejbBodegaFacade.findAll();
 		return null;
 	}
@@ -209,6 +229,51 @@ public class BodegaBean implements Serializable{
 	public void setResultadoUsu(Usuario resultadoUsu) {
 		this.resultadoUsu = resultadoUsu;
 	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getCallePrincipal() {
+		return callePrincipal;
+	}
+
+	public void setCallePrincipal(String callePrincipal) {
+		this.callePrincipal = callePrincipal;
+	}
+
+	public String getCalleSecundaria() {
+		return calleSecundaria;
+	}
+
+	public void setCalleSecundaria(String calleSecundaria) {
+		this.calleSecundaria = calleSecundaria;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	
+	/////
+	
+	
 	
 	
 
