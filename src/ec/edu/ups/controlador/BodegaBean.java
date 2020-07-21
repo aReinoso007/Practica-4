@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.faces.annotation.ManagedProperty;
@@ -24,7 +25,7 @@ import ec.edu.ups.entidad.Usuario;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 
-@SessionScoped
+@ApplicationScoped
 public class BodegaBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
