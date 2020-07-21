@@ -39,5 +39,7 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     	System.out.println("Producto obtenido: "+nq.getSingleResult());
     	return (Producto) nq.getSingleResult();
     }
+    
+    
 
 }
