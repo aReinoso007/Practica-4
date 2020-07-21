@@ -190,9 +190,15 @@
 			<!-- END UBICACION -->
 			</div>
 			<label for="pwd" class="mb-2 mr-sm-2">Administrador:</label>
-			<h:selectOneMenu class="form-control" value="#{bodegaBean.administrador}">
-				<f:selectItems value="#{usuarioBean.listaUsuarios}" var="usu" itemValue="#{usu}" itemLabel="#{usu.nombre}"/>
-			</h:selectOneMenu>
+				<!-- 
+					<h:selectOneMenu class="form-control" value="#{bodegaBean.administrador}">
+					<f:selectItems value="#{usuarioBean.listaUsuarios}" var="usu" itemValue="#{usu}" itemLabel="#{usu.nombre}"/>
+					</h:selectOneMenu>
+				 -->
+				
+				<h:selectOneMenu value="#{bodegaBean.cedulaAdm}">
+					 	<f:selectItems value="#{bodegaBean.listAdministrador}" var="admList" itemValue="#{admList.cedula}" itemLabel="#{admList.nombre}"/>
+				</h:selectOneMenu>
 			<label for="pwd" class="mb-2 mr-sm-2"></label>
 			<br/>
 			<h:commandButton action="#{bodegaBean.add}" styleClass="btn btn-success" value="Añadir Producto" />
