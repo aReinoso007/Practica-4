@@ -28,6 +28,7 @@ public class UbicacionBean implements Serializable {
 
     @EJB
     private UbicacionFacade ejbUbicacionFacade;
+    
     private List<Ubicacion> list;
 	private String provincia;
 	private String ciudad;
@@ -47,10 +48,15 @@ public class UbicacionBean implements Serializable {
     
     @PostConstruct
     public void init() {
-	ejbUbicacionFacade.create(new Ubicacion("Azuay", "Cuenca", "Luis Cordero", "Tomas de Heres", "4-72"));
+	//ejbUbicacionFacade.create(new Ubicacion("Azuay", "Cuenca", "Luis Cordero", "Tomas de Heres", "4-72"));
 	list = ejbUbicacionFacade.findAll();
 	
 	
+    }
+    
+    public void create() {
+    	ejbUbicacionFacade.create(new Ubicacion(this.provincia, this.ciudad, this.callePrincipal, this.calleSecundaria, this.numero));
+    	
     }
         
     public Ubicacion[] getList() {
