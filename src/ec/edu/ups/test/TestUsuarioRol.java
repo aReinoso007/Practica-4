@@ -21,7 +21,7 @@ public class TestUsuarioRol {
 		
 		//rol = rolF.obtenerRol("1");
 		
-		usuF.create(new Usuario("Alex","Reinososs", "macas", "142555202", "arrr@test.com","123"));
+		//usuF.create(new Usuario("Alex","Reinososs", "macas", "142555202", "arrr@test.com","123"));
 		System.out.println("usuario creado");
 		//Usuario usu = new Usuario("1400898526", "test", "testAp", "macas", "test@test.com","123", rol);
 		//usuF.create( new Usuario("1400898526", "test", "testAp", "macas", "test@test.com","123", rol));

@@ -45,18 +45,13 @@ public class PersonaBean implements Serializable {
 	public String add() {
 		System.out.println("registrando cliente");
 		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "activo"));
-		this.cedula = "";
-		this.apellido = "";
-		this.correo = "";
-		this.direccion = "";
-		this.nombre = "";
+		Limpiar();
 		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return null;
 	}
 
 	public String update() {
 	
-
 		per.setCedula(this.cedula);
 		per.setApellido(this.apellido);
 		per.setDireccion(this.direccion);
@@ -64,7 +59,8 @@ public class PersonaBean implements Serializable {
 		per.setNombre(this.nombre);
 		
 		ejbPersonaFacade.edit(per);
-
+		
+		Limpiar();
 		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return "actualizado";
 	}
@@ -74,6 +70,17 @@ public class PersonaBean implements Serializable {
 		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return listaPersonas;
 	}
+	
+	
+	public void Limpiar() {
+		
+		this.cedula = "";
+		this.apellido = "";
+		this.correo = "";
+		this.direccion = "";
+		this.nombre = "";
+	}
+	
 
 	public String editar(Persona p) {
 
@@ -83,13 +90,13 @@ public class PersonaBean implements Serializable {
 		this.direccion = p.getDireccion();
 		this.correo = p.getCorreo();
 		
-		per = p;
-
-		System.out.println("Persona:..." + p.toString());
+		per=p;
+		
 		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return "editar";
 		
 	}
+	
 	
 	public String delete(Persona p) {
 		p.setEstado("inactivo");
@@ -97,6 +104,7 @@ public class PersonaBean implements Serializable {
 		listaPersonas = ejbPersonaFacade.listarClientesActivos();
 		return "eliminado";
 	}
+	
 
 	////////////////////////////////////////////////////
 	public PersonaFacade getEjbPersonaFacade() {
