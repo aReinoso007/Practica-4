@@ -77,6 +77,7 @@ public class UsuarioBean implements Serializable{
 		return r;
 	}
 	
+	
 	//agregar empleados o adm
 	public String add() {
 		

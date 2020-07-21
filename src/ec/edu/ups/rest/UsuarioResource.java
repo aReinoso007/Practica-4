@@ -16,9 +16,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.Produces;
 
-
+import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
+import ec.edu.ups.entidad.Persona;
 import ec.edu.ups.entidad.Rol;
 import ec.edu.ups.entidad.Usuario;
 
@@ -29,6 +30,8 @@ public class UsuarioResource {
 	private UsuarioFacade ejbUsuarioFacade;
 	@EJB
 	private RolFacade ejbRolFacade;
+	@EJB
+	private PersonaFacade ejbPersonaFacade;
 	
 	private Usuario usuario;
 	private Rol rol;
@@ -86,6 +89,40 @@ public class UsuarioResource {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 	}
+	
+	
+	@POST
+	@Path("/activar")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response activarCuentaCliente(@FormParam("contrasena") String contrasena, @FormParam("cedula") String cedula) {
+		
+		System.out.println("iniciando activacion de cuenta de usuario");
+		
+		Persona persona = new Persona();
+		Rol rol = new Rol();
+		rol = ejbRolFacade.find(1);
+		System.out.println("rol recuperado: "+rol);
+		persona = ejbPersonaFacade.find(cedula);
+		
+		persona.setEstado("activo");
+		
+		ejbPersonaFacade.edit(persona);
+		
+		System.out.println("persona recuperada: "+persona);
+		Usuario usuario = new Usuario(persona.getCedula(), persona.getNombre(), persona.getApellido(), persona.getDireccion(), persona.getCorreo(),
+								"activo", rol);
+		System.out.println("creando usuario");
+		ejbUsuarioFacade.create(usuario);
+		System.out.println("finaliza proceso");
+		
+		
+		return Response.ok("usuario activado")
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+		
+	}
+	
 	/*
 	@POST
 	@Path("/inicio")
