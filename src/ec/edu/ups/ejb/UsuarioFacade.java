@@ -33,6 +33,13 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     	System.out.println("lista desde usufacade"+nq.getResultList());
     	return (List<Usuario>) nq.getResultList();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<Usuario> listadoClientes(){
+    	Query nq = em.createNativeQuery("SELECT * FROM Usuario where rol_codigo=1", Usuario.class);
+    	
+    	return (List<Usuario>) nq.getResultList();
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -71,6 +78,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
     	}
     	return usu;
     }
+    
+    
     
 
 

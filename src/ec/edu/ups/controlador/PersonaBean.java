@@ -39,14 +39,25 @@ public class PersonaBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		System.out.println("listando clientes: ");
-		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+		listaPersonas = ejbPersonaFacade.findAll();
+		System.out.println("listado de clientes: "+listaPersonas);
 	}
 
 	public String add() {
 		System.out.println("registrando cliente");
+
+		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "desactivado"));
+		this.cedula = "";
+		this.apellido = "";
+		this.correo = "";
+		this.direccion = "";
+		this.nombre = "";
+		listaPersonas = ejbPersonaFacade.findAll();
+
 		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "activo"));
 		Limpiar();
 		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+
 		return null;
 	}
 
