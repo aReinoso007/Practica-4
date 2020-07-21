@@ -124,9 +124,11 @@
 			<label for="pwd" class="mb-2 mr-sm-2">Nombre:</label>
 			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.nombre}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Categoria:</label>
-			<h:selectOneMenu class="form-control" value="#{productoBean.categoria}">
-				<f:selectItems value="#{categoriaBean.listaCategoria}" itemLabel="#{categoriaBean.nombre}"/>
+			
+			<h:selectOneMenu class="form-control" value="#{productoBean.codigoP}">
+				<f:selectItems value="#{categoriaBean.listaCategoria}" var="cat" itemValue="#{cat.codigoCategoria}" itemLabel="#{cat.nombreCategoria}"/>
 			</h:selectOneMenu>
+			
 			<label for="pwd" class="mb-2 mr-sm-2">Pre. Compra:</label>
 			<h:inputText styleClass="form-control mb-2 mr-sm-2" style="width:150px" value="#{productoBean.precioCompra}"/>
 			<label for="pwd" class="mb-2 mr-sm-2">Pre. Venta:</label>
