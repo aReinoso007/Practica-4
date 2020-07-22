@@ -286,31 +286,19 @@ public class FacturaBean implements Serializable {
 		if (this.facturaCabecera == null) {
 			fecha = new Date();
 
-			DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
-			DateFormat formatoFecha = new SimpleDateFormat("yyyy:MM:dd");
 
-			System.out.println("Son las: " + formatoHora.format(fecha) + " de fecha: " + formatoFecha.format(fecha));
-
-			System.out.println("Codigo Bodega.." + this.codigoB);
 			this.bodega = ejbBodegaFacade.find(this.codigoB);
-			System.out.println("Estado Factur.." + this.estadoFactura);
 
 			facturaCabecera = new Factura();
 			facturaCabecera.setFecha(this.fecha);
-			String date = formatoFecha.format(fecha) + " " + formatoHora.format(fecha);
-			System.out.println("STRING FECHA: " + date);
 			facturaCabecera.setPersona(this.persona);
 			facturaCabecera.setEstadoFactura(this.estadoFactura);
 			facturaCabecera.setBodega(this.bodega);
 			ejbFacturaFacade.create(this.facturaCabecera);
 
-			System.out.println("ID..." + facturaCabecera.getCodigoFactura());
-
-			// facturaCabecera = ejbFacturaFacade.buscarFactura(date, this.identificacion);
 
 			ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad, this.producto, this.facturaCabecera));
 			listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
-			System.out.println("Detalle: " + listFD.get(0).getProducto().getNombre());
 			this.facturaCabecera.setDetallesFactura(this.listFD);
 			ejbFacturaFacade.edit(this.facturaCabecera);
 
