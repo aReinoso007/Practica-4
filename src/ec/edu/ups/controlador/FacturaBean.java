@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -98,7 +99,7 @@ public class FacturaBean implements Serializable {
 
 		// list=ejbFacturaFacade.findAll();
 		// System.out.println("Facturas:.."+list.toString().toString());
-		list = ejbFacturaFacade.findAll();
+		list = ejbFacturaFacade.listarFacturasActivas("delete");
 
 		bodegas = ejbBodegaFacade.findAll();
 
@@ -313,8 +314,10 @@ public class FacturaBean implements Serializable {
 
 		}
 
+		
+		list = ejbFacturaFacade.listarFacturasActivas("delete");
 		calcularPagos();
-		return null;
+		return "p";
 	}
 
 	public double calcularTotal() {
@@ -359,8 +362,10 @@ public class FacturaBean implements Serializable {
 		this.facturaCabecera.setTotal(this.total);
 
 		ejbFacturaFacade.edit(this.facturaCabecera);
-		list = ejbFacturaFacade.findAll();
-		return "facturado";
+		limpiarCampos();
+		list = ejbFacturaFacade.listarFacturasActivas("delete");
+		
+		return "facturaCreada";
 	}
 
 	public String delete(FacturaDetalle c) {
@@ -381,6 +386,50 @@ public class FacturaBean implements Serializable {
 		calcularPagos();
 		c.setEditable(false);
 		return null;
+	}
+	
+	public void limpiarCampos() {
+		this.identificacion= " ";
+		list=new ArrayList<Factura>();
+		listFD = new ArrayList<FacturaDetalle>();
+		persona= new Persona();
+		cliente =new Persona();
+		bodega= new Bodega();
+		producto = new Producto();
+		facturaCabecera = new Factura();
+		facturaDetFcat = new FacturaDetalle();
+		nomproducto = " ";
+		resultado = " ";
+		
+		
+	}
+	
+	public String modificar(Factura f) {
+		this.facturaCabecera = f;
+		this.identificacion = f.getPersona().getCedula();
+		this.cliente = f.getPersona();
+		this.bodega = f.getBodega();
+		this.listFD=f.getDetallesFactura();
+		this.total = f.getTotal();
+		this.subtotal = f.getSubtotal();
+		this.estadoFactura = f.getEstadoFactura() ;
+		list = ejbFacturaFacade.listarFacturasActivas("delete");
+		return "modificarF";
+	}
+	
+	public String borrar(Factura f) {
+		f.setEstadoFactura("delete");
+		ejbFacturaFacade.edit(f);
+		list = ejbFacturaFacade.listarFacturasActivas("delete");
+		return "borrarF";
+	}
+	
+	public String guardar() {
+		facturaCabecera.setEstadoFactura(this.estadoFactura);
+		ejbFacturaFacade.edit(this.facturaCabecera);
+		limpiarCampos();
+		list = ejbFacturaFacade.listarFacturasActivas("delet");
+		return "guardado";
 	}
 
 }
