@@ -20,5 +20,7 @@ public class MovimientoBodegaFacade  extends AbstractFacade<MovimientoBodega>{
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    
 
 }

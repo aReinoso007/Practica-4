@@ -109,8 +109,8 @@ public class UsuarioResource {
 		ejbPersonaFacade.edit(persona);
 		
 		System.out.println("persona recuperada: "+persona);
-		Usuario usuario = new Usuario(persona.getCedula(), persona.getNombre(), persona.getApellido(), persona.getDireccion(), persona.getCorreo(),
-								"activo", rol);
+		Usuario usuario = new Usuario(persona.getCedula(), persona.getNombre(), persona.getApellido(), persona.getDireccion(),
+										persona.getCorreo(), contrasena, "activo", rol);
 		System.out.println("creando usuario");
 		ejbUsuarioFacade.create(usuario);
 		System.out.println("finaliza proceso");
