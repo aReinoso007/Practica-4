@@ -353,6 +353,12 @@
 										<f:facet name="header">Bodega</f:facet>
 										<h:outputText value="#{p.bodega.nombre}" />
 									</h:column>
+									
+									<h:column>
+										<f:facet name="header">Estado Factura</f:facet>
+										<h:outputText value="#{p.estadoFactura}" />
+									</h:column>
+									
 									<h:column>
 										<f:facet name="header">Total</f:facet>
 										<h:outputText value="#{p.total}" />
@@ -360,9 +366,13 @@
 
 									<h:column>
 										<f:facet name="header">Accion</f:facet>
-										<h:button styleClass="btn btn-warning" value="Editar" />
-										<h:button style="margin-left: 10px"
-											Styleclass="btn btn-danger" value="Eliminar" />
+
+										<h:form>
+											<h:commandButton action="#{facturaBean.modificar(p)}" styleClass="btn btn-warning" value="Cambiar Estado" />
+											<h:commandButton style="margin-left: 10px" action="#{facturaBean.borrar(p)}"
+												Styleclass="btn btn-danger" value="Eliminar" />
+										</h:form>
+
 									</h:column>
 
 								</h:dataTable>

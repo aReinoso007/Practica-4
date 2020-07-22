@@ -362,6 +362,7 @@
 
 											<h:selectOneMenu styleClass="custom-select mt-3"
 												value="#{facturaBean.estadoFactura}">
+												<f:selectItem itemLabel="Seleccione estado" itemValue="" />
 												<f:selectItem itemValue="abonada" itemLabel="Abonada" />
 												<f:selectItem itemValue="parcialmente pagada"
 													itemLabel="Parcialmente pagada" />
@@ -376,6 +377,7 @@
 											<label for="pwd">Bodega:</label>
 											<h:selectOneMenu class="custom-select mt-3"
 												value="#{facturaBean.codigoB}">
+												<f:selectItem itemLabel="Seleccione bodega" itemValue="" />
 												<f:selectItems value="#{facturaBean.bodegas}" var="bodg"
 													itemValue="#{bodg.codigoBodega}" itemLabel="#{bodg.nombre}" />
 											</h:selectOneMenu>
