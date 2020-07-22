@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.faces.annotation.ManagedProperty;
@@ -24,7 +25,7 @@ import ec.edu.ups.entidad.Usuario;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 
-@SessionScoped
+@ApplicationScoped
 public class BodegaBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -35,6 +36,7 @@ public class BodegaBean implements Serializable{
 	private ProductoFacade ejbProductoFacade;
 	@EJB
 	private UbicacionFacade ejbUbicacionFacade;
+	
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
 	
@@ -51,6 +53,8 @@ public class BodegaBean implements Serializable{
 	private Producto producto;
 	private Ubicacion ubicacion;
 	private Usuario administrador;
+	
+	private String cedulaAdm;
 	
 	/////
 	
@@ -73,10 +77,12 @@ public class BodegaBean implements Serializable{
 	public void init() {
 		listaBodega = ejbBodegaFacade.findAll();
 		listaBodega = ejbBodegaFacade.listarBodegas();
-		System.out.println("Listado Bodegas");
+		//System.out.println("Listado Bodegas");
 		listaProducto = ejbProductoFacade.findAll();
 		listaProducto = ejbProductoFacade.listarProductos();
-		System.out.println("Listado Productos");	
+		listAdministrador = ejbBodegaFacade.obtenerAdministradores();
+		System.out.println("Lista de administradores: "+listAdministrador);
+		//System.out.println("Listado Productos");	
 	}
 	
 	public void obtenerProducto(AjaxBehaviorEvent evento) {
@@ -98,8 +104,9 @@ public class BodegaBean implements Serializable{
 			this.resultadoUbi = null; 
 		}	
 	}
-	
+	/*
 	public void obtenerUsuario(AjaxBehaviorEvent evento) {
+		
 		this.administrador = new Usuario();
 		this.administrador = ejbUsuarioFacade.find(this.administrador);
 		if (administrador != null) {
@@ -108,15 +115,22 @@ public class BodegaBean implements Serializable{
 			this.resultadoUsu = null; 
 		}	
 	}
-	
+	*/
 	public String add() {
 		
 
 		ejbUbicacionFacade.create(new Ubicacion(this.provincia, this.ciudad, this.callePrincipal, this.calleSecundaria, this.numero));
 		ubicacion = ejbUbicacionFacade.buscarUbicacion(this.provincia, this.ciudad, this.numero);
 		
+		System.out.println("ubicacion creada: "+ubicacion);
 		
-		ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion,this.administrador));
+		Usuario administradors = new Usuario();
+		administradors = ejbUsuarioFacade.find(cedulaAdm);
+		System.out.println("usuario recuperado: "+administradors);
+		
+		ejbBodegaFacade.create(new Bodega(this.nombreBodega,this.ubicacion, administradors));
+		System.out.println("bodega ingresada");
+		System.out.println("recuperando lista de bodegas");
 		listaBodega = ejbBodegaFacade.findAll();
 		return null;
 	}
@@ -269,6 +283,16 @@ public class BodegaBean implements Serializable{
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
+	public String getCedulaAdm() {
+		return cedulaAdm;
+	}
+
+	public void setCedulaAdm(String cedulaAdm) {
+		this.cedulaAdm = cedulaAdm;
+	}
+	
+	
 
 	
 	/////

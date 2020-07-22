@@ -49,7 +49,7 @@ public class UsuarioBean implements Serializable{
 	public void init() {
 		System.out.println("Listando todos los usuarios"+ ejbUsuarioFacade.findAll());
 		System.out.println("listando usuarios");
-		listaUsuarios = ejbUsuarioFacade.listarClientes();
+		listaUsuarios = ejbUsuarioFacade.findAll();
 		System.out.println("listando clientes");
 		listaClientes = ejbUsuarioFacade.listadoClientes();
 		System.out.println("lista de clientes: "+listaClientes);

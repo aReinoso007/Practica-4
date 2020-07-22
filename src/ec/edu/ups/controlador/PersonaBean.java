@@ -47,9 +47,9 @@ public class PersonaBean implements Serializable {
 		System.out.println("registrando cliente");
 
 
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "activo"));
+		/*ejbPersonaFacade.create(new Persona(this.cedula, this.nombre, this.apellido, this.direccion, this.correo, "activo"));
 		Limpiar();
-		listaPersonas = ejbPersonaFacade.listarClientesActivos();
+		listaPersonas = ejbPersonaFacade.listarClientesActivos();*/
 
 		return "clienteR";
 	}
