@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBMetaData;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
@@ -13,6 +14,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.BodegaFacade;
+import ec.edu.ups.ejb.MovimientoBodegaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.UbicacionFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
@@ -41,12 +43,16 @@ public class BodegaBean implements Serializable{
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
 	
+	@EJB
+	private MovimientoBodegaFacade ejbMovBodegaFacade;
+	
 
 	
 	private List<Bodega> listaBodega;
 	private List<Producto> listaProducto;
 	private List<Ubicacion> listaUbicacion;
 	private List<Usuario> listAdministrador;
+
 	
 	
 	private String nombreBodega;
@@ -165,6 +171,30 @@ public class BodegaBean implements Serializable{
 		b.setEditable(false);
 		return null;
 	}
+	
+	
+	//////
+	
+	public String deleteStock(MovimientoBodega b) {
+		ejbMovBodegaFacade.remove(b);
+		Bodega bod = ejbBodegaFacade.find(b.getBodega().getCodigoBodega());
+		listaProductosBodega = bod.getInventario(); 
+		return null;
+	}
+	
+	public String editStok(MovimientoBodega b) {
+		b.setEditable(true);
+		return null;
+	}
+	
+	public String saveStok(MovimientoBodega b) {
+		ejbMovBodegaFacade.edit(b);
+		b.setEditable(false);
+		return null;
+	}
+	/////
+	
+	
 	
 	
 	public String verProductos(Bodega b) {
@@ -348,6 +378,7 @@ public class BodegaBean implements Serializable{
 	public void setCodigoBodega(int codigoBodega) {
 		this.codigoBodega = codigoBodega;
 	}
+
 	
 	
 	

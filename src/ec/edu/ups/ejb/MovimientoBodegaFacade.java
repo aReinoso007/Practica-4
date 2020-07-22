@@ -33,5 +33,14 @@ public class MovimientoBodegaFacade  extends AbstractFacade<MovimientoBodega>{
     	return (List<MovimientoBodega>) nq.getResultList();
     }
     
+   
+	public MovimientoBodega buscarProducto(int codigoP, int codigoB){
+    	Query nq = em.createNativeQuery("SELECT * FROM movimientobodega WHERE PRODUCTO_CODIGOPRODUCTO = ? AND BODEGA_CODIGOBODEGA=?", MovimientoBodega.class);
+    	nq.setParameter(1, codigoP);
+    	nq.setParameter(2, codigoB);
+    	
+    	return (MovimientoBodega) nq.getSingleResult();
+    }
+    
 
 }

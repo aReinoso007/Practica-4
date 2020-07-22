@@ -373,10 +373,11 @@
 										</div>
 
 										<div class="form-group">
-
 											<label for="pwd">Bodega:</label>
 											<h:selectOneMenu class="custom-select mt-3"
 												value="#{facturaBean.codigoB}">
+												<f:ajax event="change" update="msgtext"
+													listener="#{facturaBean.subjectSelectionChanged}" />
 												<f:selectItem itemLabel="Seleccione bodega" itemValue="" />
 												<f:selectItems value="#{facturaBean.bodegas}" var="bodg"
 													itemValue="#{bodg.codigoBodega}" itemLabel="#{bodg.nombre}" />
@@ -392,20 +393,31 @@
 												style="width:150px" value="#{facturaBean.codigoProducto}">
 												<f:ajax event="keyup" render="producto"
 													listener="#{facturaBean.obtenerProducto}" />
+													<f:ajax event="keyup" render="btnRegistro"
+													listener="#{facturaBean.obtenerProducto}" />
+												
+											
+
 											</h:inputText>
 
 											<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
-											<h:inputText styleClass="form-control mb-2 mr-sm-2"
-												style="width:150px" value="#{facturaBean.cantidad}" />
+											<h:inputText id="cantidadProd" styleClass="form-control mb-2 mr-sm-2"
+												style="width:150px" value="#{facturaBean.cantidad}">
+
+											
+											</h:inputText>
+
 
 											<label for="pwd" class="mb-2 mr-sm-2">Detalle
 												Producto:</label>
 											<h:outputText id="producto"
 												styleClass="form-control mb-2 mr-sm-2"
-												value="#{facturaBean.nomproducto}" style="width:190px" />
+												value="#{facturaBean.nomproducto}" style="width:200px" />
 
 											<label for="pwd" class="mb-2 mr-sm-2"></label>
-											<h:commandButton action="#{facturaBean.addFactura}"
+											<h:commandButton id="btnRegistro"
+												disabled="#{facturaBean.disable}"
+												action="#{facturaBean.addFactura}"
 												styleClass="btn btn-success" value="Añadir producto">
 
 											</h:commandButton>
@@ -497,14 +509,15 @@
 								</h:column>
 
 								<h:column>
-									
+
 									<h:commandButton class="btn btn-danger" value="Delete"
 										action="#{facturaBean.delete(det)}" />
 								</h:column>
 								<h:column>
-									
+
 									<h:commandButton class="btn btn-warning" value="Edit"
-										action="#{facturaBean.edit(det)}" rendered="#{not det.editable}" />
+										action="#{facturaBean.edit(det)}"
+										rendered="#{not det.editable}" />
 									<h:commandButton value="Save" action="#{facturaBean.save(det)}"
 										rendered="#{det.editable}" />
 								</h:column>

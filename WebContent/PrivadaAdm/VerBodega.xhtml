@@ -394,8 +394,9 @@
 					<!-- INICIO CONTENIDO-->
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Clientes</h1>
-					<h:outputText class="h3 mb-2 text-gray-800" value="#{bodegaBean.nombreBodega}"  />
+
+					<h:outputText class="h3 mb-2 text-gray-800"
+						value="#{bodegaBean.nombreBodega}" />
 
 
 					<!-- DataTales Example -->
@@ -410,38 +411,52 @@
 
 							<div class="table-responsive">
 
+								<h:form>
 
+									<h:dataTable value="#{bodegaBean.listaProductosBodega}" var="p"
+										class="table table-bordered" id="dataTable" width="100%"
+										cellspacing="0">
+										<h:column>
+											<f:facet name="header">Codigo Producto</f:facet>
+											<h:outputText value="#{p.producto.codigoProducto}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Nombre Producto</f:facet>
+											<h:outputText value="#{p.producto.nombre}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Categoria</f:facet>
+											<h:outputText value="#{p.producto.categoria.nombreCategoria}" />
+										</h:column>
 
-								<h:dataTable value="#{bodegaBean.listaProducto}" var="p"
-									class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<h:column>
-										<f:facet name="header">Codigo Producto</f:facet>
-					</h:column>
-									<h:column>
-										<f:facet name="header">Nombre Producto</f:facet>
-					</h:column>
-									<h:column>
-										<f:facet name="header">Stock General</f:facet>
-					</h:column>
-									<h:column>
-										<f:facet name="header">Stock Bodega</f:facet>
-					</h:column>
-									<h:column>
-										<f:facet name="header">Precio Unitario</f:facet>
-					</h:column>
-									<h:column>
-										<f:facet name="header">Accion</f:facet>
-										<h:form>
-											<h:commandButton class="btn btn-warning" value="Editar"
-												action=" " />
-											<h:commandButton style="margin-left: 10px"
-												class="btn btn-danger" value="Eliminar"
-												action=" " />
+										<h:column>
+											<f:facet name="header">Stock Bodega</f:facet>
+											<h:inputText value="#{p.stock}" size="10"
+												rendered="#{p.editable}" />
+											<h:outputText value="#{p.stock}" />
 
-										</h:form>
-									</h:column>
-								</h:dataTable>
+										</h:column>
+										<h:column>
+											<f:facet name="header">Precio Unitario</f:facet>
+											<h:outputText value="#{p.producto.precioVenta}" />
+										</h:column>
+										<h:column>
+
+											<h:commandButton class="btn btn-danger" value="Delete"
+												action="#{bodegaBean.deleteStock(p)}" />
+										</h:column>
+										<h:column>
+
+											<h:commandButton class="btn btn-warning" value="Edit"
+												action="#{bodegaBean.editStok(p)}"
+												rendered="#{not p.editable}" />
+											<h:commandButton value="Save"
+												action="#{bodegaBean.saveStok(p)}" rendered="#{p.editable}" />
+										</h:column>
+									</h:dataTable>
+
+								</h:form>
+
 
 
 
