@@ -51,4 +51,11 @@ public class BodegaFacade  extends AbstractFacade<Bodega> {
     	return (List<Usuario>) nq.getResultList();
     }
     
+    public List<Bodega> obtenerBodegas(int id) {
+    	Query nq = em.createNativeQuery("SELECT * FROM bodega WHERE nombre= ?", Bodega.class);
+    	nq.setParameter(1, id);
+
+    	return (List<Bodega>) nq.getSingleResult();
+    }
+    
 }

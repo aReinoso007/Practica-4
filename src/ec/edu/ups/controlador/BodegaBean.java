@@ -73,6 +73,9 @@ public class BodegaBean implements Serializable{
 	private Ubicacion resultadoUbi;
 	private Usuario resultadoUsu;
 	
+	///
+	private List<MovimientoBodega> listaProductosBodega;
+	
 	public BodegaBean() {
 		super();
 	}
@@ -164,6 +167,24 @@ public class BodegaBean implements Serializable{
 	}
 	
 	
+	public String verProductos(Bodega b) {
+		listaProductosBodega = b.getInventario();
+		this.bodega = b;
+		this.nombreBodega = b.getNombre();
+		
+		return "verP";
+	}
+	
+	
+	
+	public List<MovimientoBodega> getListaProductosBodega() {
+		return listaProductosBodega;
+	}
+
+	public void setListaProductosBodega(List<MovimientoBodega> listaProductosBodega) {
+		this.listaProductosBodega = listaProductosBodega;
+	}
+
 	public BodegaFacade getEjbBodegaFacade() {
 		return ejbBodegaFacade;
 	}
