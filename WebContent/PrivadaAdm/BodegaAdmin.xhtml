@@ -134,17 +134,12 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Administrador</f:facet>
-					<h:inputText value="#{bodegaBean.administrador}" size="10" rendered="#{b.editable}"/>
-					<h:outputText value="#{p.administrador}" rendered="#{not b.editable}"/>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Stock</f:facet>
-					<h:inputText value="#{bodegaBean.resultadoPro}" size="10" rendered="#{b.editable}"/>
-					<h:outputText value="#{b.inventario}" rendered="#{not b.editable}"/>
+					<h:outputText value="#{b.administrador.nombre} #{b.administrador.apellido}" rendered="#{not b.editable}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Accion</f:facet>
 					<h:commandLink value="Delete" action="#{bodegaBean.delete(b)}"/>
+					<h:commandLink value="Ingresar Productos" action="#{bodegaBean.verProductos(b)}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Accion</f:facet>

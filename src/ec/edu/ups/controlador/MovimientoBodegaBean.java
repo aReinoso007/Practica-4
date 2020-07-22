@@ -78,7 +78,7 @@ public class MovimientoBodegaBean {
 			ejbMovBode.create(new MovimientoBodega(bod, pr, this.stock));
 			movimientosLista = ejbMovBode.listarBodegaProductos(bod.getCodigoBodega());
 			bod.setInventario(movimientosLista);
-			//ejbBodegaFacade.edit();
+	
 		}
 		
 		return null;

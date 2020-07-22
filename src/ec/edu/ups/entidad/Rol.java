@@ -32,12 +32,12 @@ public class Rol implements Serializable {
 
 
 
-	/*
-	 * public Rol( String descripcion) {
-	 * 
-	 * 
-	 * this.descripcion = descripcion; }
-	 */
+	
+	  public Rol( String descripcion) {
+	  
+	  
+	  this.descripcion = descripcion; }
+	 
 	
 
 	public int getCodigo() {

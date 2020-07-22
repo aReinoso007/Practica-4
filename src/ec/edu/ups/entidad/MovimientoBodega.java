@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class MovimientoBodega implements Serializable{
@@ -28,6 +29,9 @@ public class MovimientoBodega implements Serializable{
 	private Producto producto;
 	private int stock;
 	
+	@Transient
+	private boolean editable;
+	
 	public MovimientoBodega() {
 		// TODO Auto-generated constructor stub
 	}
@@ -37,6 +41,16 @@ public class MovimientoBodega implements Serializable{
 		this.bodega = bodega;
 		this.producto = producto;
 		this.stock = stock;
+	}
+	
+	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	public int getCodigoMovimiento() {
@@ -106,6 +120,12 @@ public class MovimientoBodega implements Serializable{
 		if (stock != other.stock)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "MovimientoBodega [codigoMovimiento=" + codigoMovimiento + ", bodega=" + bodega + ", producto="
+				+ producto + ", stock=" + stock + "]";
 	}
 	
 	

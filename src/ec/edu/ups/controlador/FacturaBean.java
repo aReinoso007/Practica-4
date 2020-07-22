@@ -14,12 +14,16 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
+
+import org.omnifaces.util.Messages;
 
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.FacturaDetalleFacade;
 import ec.edu.ups.ejb.FacturaFacade;
+import ec.edu.ups.ejb.MovimientoBodegaFacade;
 import ec.edu.ups.ejb.PedidoFacade;
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
@@ -27,6 +31,7 @@ import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.entidad.Bodega;
 import ec.edu.ups.entidad.Factura;
 import ec.edu.ups.entidad.FacturaDetalle;
+import ec.edu.ups.entidad.MovimientoBodega;
 import ec.edu.ups.entidad.Persona;
 import ec.edu.ups.entidad.Producto;
 import ec.edu.ups.entidad.Rol;
@@ -63,6 +68,9 @@ public class FacturaBean implements Serializable {
 	@EJB
 	private BodegaFacade ejbBodegaFacade;
 
+	@EJB
+	private MovimientoBodegaFacade ejbMovBodegaFacade;
+
 	private int codigoB;
 
 	private Factura facturaCabecera;
@@ -85,6 +93,10 @@ public class FacturaBean implements Serializable {
 	private double iva;
 	private double subtotal;
 	private String estadoFactura;
+	
+	private int band;
+
+	private MovimientoBodega movimientoB;
 
 	private int codigoFactDet;
 	private List<FacturaDetalle> listFD;
@@ -94,15 +106,41 @@ public class FacturaBean implements Serializable {
 
 	private Persona cliente;
 
+	///
+	private boolean disable;
+
+	// private FacesContext context;
+
 	@PostConstruct
 	public void init() {
 
 		// list=ejbFacturaFacade.findAll();
 		// System.out.println("Facturas:.."+list.toString().toString());
 		list = ejbFacturaFacade.listarFacturasActivas("delete");
-
+		this.disable = true;
 		bodegas = ejbBodegaFacade.findAll();
+		// context = FacesContext.getCurrentInstance();
 
+		// Se agrega el mensaje de la clase
+		// context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario
+		// Creado","Se ha creado exitosamene el usuario."));
+
+	}
+
+	public boolean isDisable() {
+		return disable;
+	}
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
+	}
+
+	public MovimientoBodega getMovimientoB() {
+		return movimientoB;
+	}
+
+	public void setMovimientoB(MovimientoBodega movimientoB) {
+		this.movimientoB = movimientoB;
 	}
 
 	public List<Factura> getList() {
@@ -232,6 +270,8 @@ public class FacturaBean implements Serializable {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+	
+	
 
 	public void obtenerCliente(AjaxBehaviorEvent evento) {
 		this.persona = new Persona();
@@ -264,16 +304,23 @@ public class FacturaBean implements Serializable {
 			this.producto = ejbProductoFacade.find(this.codigoProducto);
 
 			if (this.producto != null) {
+				this.disable=false;
 				this.nomproducto = producto.getNombre();
+				
+				
 			} else {
+				this.disable=true;
 				this.nomproducto = "Producto no registrado..";
+				
 
 			}
 		} else {
+			this.disable=true;
 			this.codigoProducto = 0;
 		}
 
 		System.out.println("Nombre Producto: " + nomproducto);
+	
 
 	}
 
@@ -283,40 +330,77 @@ public class FacturaBean implements Serializable {
 	}
 
 	public String addFactura() {
-
-		if (this.facturaCabecera == null) {
-			fecha = new Date();
-
-
-			this.bodega = ejbBodegaFacade.find(this.codigoB);
-
-			facturaCabecera = new Factura();
-			facturaCabecera.setFecha(this.fecha);
-			facturaCabecera.setPersona(this.persona);
-			facturaCabecera.setEstadoFactura(this.estadoFactura);
-			facturaCabecera.setBodega(this.bodega);
-			ejbFacturaFacade.create(this.facturaCabecera);
-
-
-			ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad, this.producto, this.facturaCabecera));
-			listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
-			this.facturaCabecera.setDetallesFactura(this.listFD);
-			ejbFacturaFacade.edit(this.facturaCabecera);
-
-		} else {
-
-			ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad, this.producto, this.facturaCabecera));
-
-			listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
-
-			this.facturaCabecera.setDetallesFactura(this.listFD);
-			ejbFacturaFacade.edit(this.facturaCabecera);
-
+		this.bodega = ejbBodegaFacade.find(this.codigoB);
+		System.out.println("BODEGA: "+this.bodega.toString());
+		this.movimientoB = new MovimientoBodega();
+		System.out.println("PRODUCTO: "+this.producto.toString());
+		
+		try {
+			this.movimientoB = ejbMovBodegaFacade.buscarProducto(this.producto.getCodigoProducto(),
+					this.bodega.getCodigoBodega());
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
+		if(movimientoB.getCodigoMovimiento()>0) {
+			
+			if(this.movimientoB.getStock()>=this.cantidad) {
+			if (this.facturaCabecera == null) {
+				fecha = new Date();
+
+				
+
+				facturaCabecera = new Factura();
+				facturaCabecera.setFecha(this.fecha);
+				facturaCabecera.setPersona(this.persona);
+				facturaCabecera.setEstadoFactura(this.estadoFactura);
+				facturaCabecera.setBodega(this.bodega);
+				ejbFacturaFacade.create(this.facturaCabecera);
+
+
+
+				ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad, this.producto, this.facturaCabecera));
+				listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
+				this.facturaCabecera.setDetallesFactura(this.listFD);
+				
+				
+				ejbFacturaFacade.edit(this.facturaCabecera);
+				movimientoB.setStock(movimientoB.getStock() - this.cantidad);
+				ejbMovBodegaFacade.edit(movimientoB);
+				this.cantidad=0;
+
+			} else {
+
+				ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad, this.producto, this.facturaCabecera));
+
+				listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
+
+				this.facturaCabecera.setDetallesFactura(this.listFD);
+				ejbFacturaFacade.edit(this.facturaCabecera);
+				this.cantidad=0;
+
+			}
+
+			list = ejbFacturaFacade.listarFacturasActivas("delete");
+			calcularPagos();
+			this.disable = true;
+			
+			
+			
+			}else {
+				this.cantidad=0;
+				this.disable=true;
+				this.nomproducto="No existen suficientes unidades";
+				return "insuficientes";
+			}
+		}else {
+			this.cantidad=0;
+			this.disable=true;
+			this.nomproducto="No existen el producto en la bodega";
+			return "faltantes";
+		}
 		
-		list = ejbFacturaFacade.listarFacturasActivas("delete");
-		calcularPagos();
+		
 		return "p";
 	}
 
@@ -364,13 +448,13 @@ public class FacturaBean implements Serializable {
 		ejbFacturaFacade.edit(this.facturaCabecera);
 		limpiarCampos();
 		list = ejbFacturaFacade.listarFacturasActivas("delete");
-		
+
 		return "facturaCreada";
 	}
 
 	public String delete(FacturaDetalle c) {
 		ejbFacturaDetalleFacade.remove(c);
-		listFD=ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
+		listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
 		return null;
 	}
 
@@ -382,48 +466,47 @@ public class FacturaBean implements Serializable {
 	public String save(FacturaDetalle c) {
 
 		ejbFacturaDetalleFacade.edit(c);
-		listFD=ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
+		listFD = ejbFacturaDetalleFacade.listarFacturaDetalle(this.facturaCabecera.getCodigoFactura());
 		calcularPagos();
 		c.setEditable(false);
 		return null;
 	}
-	
+
 	public void limpiarCampos() {
-		this.identificacion= " ";
-		list=new ArrayList<Factura>();
+		this.identificacion = " ";
+		list = new ArrayList<Factura>();
 		listFD = new ArrayList<FacturaDetalle>();
-		persona= new Persona();
-		cliente =new Persona();
-		bodega= new Bodega();
+		persona = new Persona();
+		cliente = new Persona();
+		bodega = new Bodega();
 		producto = new Producto();
 		facturaCabecera = new Factura();
 		facturaDetFcat = new FacturaDetalle();
 		nomproducto = " ";
 		resultado = " ";
-		
-		
+
 	}
-	
+
 	public String modificar(Factura f) {
 		this.facturaCabecera = f;
 		this.identificacion = f.getPersona().getCedula();
 		this.cliente = f.getPersona();
 		this.bodega = f.getBodega();
-		this.listFD=f.getDetallesFactura();
+		this.listFD = f.getDetallesFactura();
 		this.total = f.getTotal();
 		this.subtotal = f.getSubtotal();
-		this.estadoFactura = f.getEstadoFactura() ;
+		this.estadoFactura = f.getEstadoFactura();
 		list = ejbFacturaFacade.listarFacturasActivas("delete");
 		return "modificarF";
 	}
-	
+
 	public String borrar(Factura f) {
 		f.setEstadoFactura("delete");
 		ejbFacturaFacade.edit(f);
 		list = ejbFacturaFacade.listarFacturasActivas("delete");
 		return "borrarF";
 	}
-	
+
 	public String guardar() {
 		facturaCabecera.setEstadoFactura(this.estadoFactura);
 		ejbFacturaFacade.edit(this.facturaCabecera);
@@ -431,5 +514,30 @@ public class FacturaBean implements Serializable {
 		list = ejbFacturaFacade.listarFacturasActivas("delet");
 		return "guardado";
 	}
+
+	public void existeProducto(AjaxBehaviorEvent evento) {
+		movimientoB = new MovimientoBodega();
+		this.bodega = ejbBodegaFacade.find(this.codigoB);
+		System.out.println("EISTE PRO.." + bodega.toString());
+		System.out.println("EISTE PRO.." + producto.toString());
+		movimientoB = ejbMovBodegaFacade.buscarProducto(this.producto.getCodigoProducto(),
+				this.bodega.getCodigoBodega());
+
+		if (movimientoB != null) {
+
+			this.disable = false;
+			this.nomproducto = this.producto.getNombre();
+		} else {
+			this.disable = true;
+			this.nomproducto = "No existe producto en bodega";
+		}
+
+	}
+	
+	public void subjectSelectionChanged(final AjaxBehaviorEvent event)  {
+		System.out.println("CODIGO BODEGA;"+this.codigoB);
+	}
+
+	
 
 }
