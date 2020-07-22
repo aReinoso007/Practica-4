@@ -18,3 +18,4 @@ src/META-INF/persistence.xml
 src/META-INF/persistence.xml
 WebContent/WEB-INF/faces-config.xml
 WebContent/WEB-INF/web.xml
+/target/
