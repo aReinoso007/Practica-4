@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.BodegaFacade;
@@ -29,11 +30,15 @@ public class MovimientoBodegaBean {
 	
 	private List<Producto> listaProductos;
 	private List<Bodega> listaBodegas;
+	private List<MovimientoBodega> movimientosLista;
+	
+	private Bodega bodega;
 	
 	private int productoID;
 	private int bodegaID;
 	private int stock;
 	private int stockProducto;
+	private String nombreBodega;
 	
 	@PostConstruct
 	public void init() {
@@ -43,7 +48,41 @@ public class MovimientoBodegaBean {
 		listaBodegas = ejbBodegaFacade.findAll();
 		System.out.println("Lista de bodegas: "+listaBodegas);	
 	}
-
+	
+	
+	/*public void obtenerBodega(AjaxBehaviorEvent evento) {
+		System.out.println("Buscando bodega");
+		if(this.bodegaID > 0) {
+			this.bodega = ejbBodegaFacade.find(this.bodegaID);
+			
+			if(this.bodega != null ) {
+				this.nombreBodega = bodega.getNombre();
+			}else {
+				this.nombreBodega = "Bodega no registrada";
+			}
+		}else {
+			this.bodegaID = 0;
+		}
+		System.out.println("Nombre de la bodega:"+nombreBodega);
+	}*/
+	
+	public String addProdsToBodega() {
+		Bodega bod = new Bodega();
+		bod = ejbBodegaFacade.find(this.bodegaID);
+		System.out.println("bodega recuperada: "+bod);
+		Producto pr = new Producto();
+		pr = ejbProductoFacade.find(this.productoID);
+		System.out.println("producto recuperado: "+pr);
+		
+		if(bod != null && pr != null) {
+			ejbMovBode.create(new MovimientoBodega(bod, pr, this.stock));
+			movimientosLista = ejbMovBode.listarBodegaProductos(bod.getCodigoBodega());
+			bod.setInventario(movimientosLista);
+			//ejbBodegaFacade.edit();
+		}
+		
+		return null;
+	}
 	
 	public String add() {
 		Producto pro = new Producto();
@@ -122,6 +161,35 @@ public class MovimientoBodegaBean {
 	public void setBodegaID(int bodegaID) {
 		this.bodegaID = bodegaID;
 	}
-	
+
+
+	public Bodega getBodega() {
+		return bodega;
+	}
+
+
+	public void setBodega(Bodega bodega) {
+		this.bodega = bodega;
+	}
+
+
+	public String getNombreBodega() {
+		return nombreBodega;
+	}
+
+
+	public void setNombreBodega(String nombreBodega) {
+		this.nombreBodega = nombreBodega;
+	}
+
+
+	public List<MovimientoBodega> getMovimientosLista() {
+		return movimientosLista;
+	}
+
+
+	public void setMovimientosLista(List<MovimientoBodega> movimientosLista) {
+		this.movimientosLista = movimientosLista;
+	}
 	
 }
