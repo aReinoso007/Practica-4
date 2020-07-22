@@ -8,8 +8,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-
+import ec.edu.ups.entidad.Factura;
 import ec.edu.ups.entidad.FacturaDetalle;
 
 @Stateless
@@ -28,13 +29,11 @@ public class FacturaDetalleFacade extends AbstractFacade<FacturaDetalle>{
     }
     
 
-	public List<FacturaDetalle> buscarFacturaDetalle(int codigo){
-    	
-		List<FacturaDetalle> list = new ArrayList<FacturaDetalle>();
-		list = em.createQuery("SELECT * FROM facturadetalle WHERE facturadetalle.CODIGOFACTDET= :codigo", FacturaDetalle.class).setParameter("codigo", codigo).getResultList();
+	public List<FacturaDetalle> listarFacturaDetalle(int codigo) {
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM facturadetalle WHERE FACTURA_CODIGOFACTURA =? ", FacturaDetalle.class);
+		nativeQuery.setParameter(1, codigo);
 
-
-		return list;
+		return (List<FacturaDetalle>) nativeQuery.getResultList();
 	}
 
 }

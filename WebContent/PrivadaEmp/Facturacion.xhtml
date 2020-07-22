@@ -93,9 +93,10 @@
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="CrearFactura.xhtml">Generar
-							Factura</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
-							Facturas</a>
+						<a class="collapse-item" href="CrearFactura.xhtml">Facturar
+							Pedidos</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
+							Facturas</a> <a class="collapse-item" href="Facturacion.xhtml">Crear
+							Factura</a>
 
 					</div>
 				</div></li>
@@ -373,17 +374,43 @@
 										<div class="form-group">
 
 											<label for="pwd">Bodega:</label>
-
-											<h:selectOneMenu styleClass="custom-select mt-3"
-												value="#{facturaBean.estadoFactura}">
-												<f:selectItem itemValue="abonada" itemLabel="Abonada" />
-												<f:selectItem itemValue="parcialmente pagada"
-													itemLabel="Parcialmente pagada" />
-												<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
-												<f:selectItem itemValue="todos" itemLabel="Todos" />
+											<h:selectOneMenu class="custom-select mt-3"
+												value="#{facturaBean.codigoB}">
+												<f:selectItems value="#{facturaBean.bodegas}" var="bodg"
+													itemValue="#{bodg.codigoBodega}" itemLabel="#{bodg.nombre}" />
 											</h:selectOneMenu>
+										</div>
+
+										<div class="container">
+											<h4>Ingresar Detalle Factura:</h4>
+
+
+											<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
+											<h:inputText styleClass="form-control mb-2 mr-sm-2"
+												style="width:150px" value="#{facturaBean.codigoProducto}">
+												<f:ajax event="keyup" render="producto"
+													listener="#{facturaBean.obtenerProducto}" />
+											</h:inputText>
+
+											<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
+											<h:inputText styleClass="form-control mb-2 mr-sm-2"
+												style="width:150px" value="#{facturaBean.cantidad}" />
+
+											<label for="pwd" class="mb-2 mr-sm-2">Detalle
+												Producto:</label>
+											<h:outputText id="producto"
+												styleClass="form-control mb-2 mr-sm-2"
+												value="#{facturaBean.nomproducto}" style="width:190px" />
+
+											<label for="pwd" class="mb-2 mr-sm-2"></label>
+											<h:commandButton action="#{facturaBean.addFactura}"
+												styleClass="btn btn-success" value="Añadir producto">
+
+											</h:commandButton>
+
 
 										</div>
+
 
 									</h:form>
 
@@ -413,6 +440,7 @@
 									<h:outputText id="nombres" class="mensaje-error"
 										value="#{facturaBean.cliente.nombre} #{facturaBean.cliente.apellido}" />
 									<hr />
+
 									<label for="pwd">Cedula: </label>
 
 									<h:outputText id="cedula" class="mensaje-error"
@@ -436,36 +464,7 @@
 
 					<!-- INICIO CONTENIDO -->
 
-					<div class="container">
-						<h4>Ingresar Detalle Factura:</h4>
 
-						<h:form styleClass="form-inline">
-							<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
-							<h:inputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" value="#{facturaBean.codigoProducto}">
-								<f:ajax event="keyup" render="producto"
-									listener="#{facturaBean.obtenerProducto}" />
-							</h:inputText>
-
-							<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
-							<h:inputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" />
-
-							<label for="pwd" class="mb-2 mr-sm-2">Precio:</label>
-							<h:outputText styleClass="form-control mb-2 mr-sm-2"
-								style="width:150px" />
-
-
-
-							<label for="pwd" class="mb-2 mr-sm-2"></label>
-							<h:commandButton action="#{facturaBean.addFactura}"
-								styleClass="btn btn-success" value="Añadir producto" />
-
-						</h:form>
-					</div>
-					<h:form>
-						<h:outputText id="producto" value="#{facturaBean.nomproducto}" />
-					</h:form>
 
 					<h:panelGrid class="container">
 						<h:form>
@@ -478,28 +477,34 @@
 								<!-- inicio columnas -->
 								<h:column>
 									<f:facet name="header">Producto</f:facet>
-									<h:outputText value="#{det.producto.nombre}" rendered="" />
+									<h:inputText value="#{c.descripcion}" size="10"
+										rendered="#{c.editable}" />
+
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">Cantidad</f:facet>
-									<h:outputText value="#{det.cantidad}" rendered="" />
+									<h:inputText value="#{det.cantidad}" size="10"
+										rendered="#{det.editable}" />
+									<h:outputText value="#{det.cantidad}" />
 								</h:column>
 
 								<h:column>
 									<f:facet name="header">Precio</f:facet>
-									<h:outputText value="#{det.producto.precioVenta}" rendered="" />
+									<h:outputText value="#{det.producto.precioVenta}" />
 								</h:column>
 
 								<h:column>
-
-									<h:form>
-										<h:commandButton class="btn btn-warning" value="Editar" />
-										<h:commandButton style="margin-left: 10px"
-											class="btn btn-danger" value="Eliminar" />
-
-									</h:form>
-
+									
+									<h:commandButton class="btn btn-danger" value="Delete"
+										action="#{facturaBean.delete(det)}" />
+								</h:column>
+								<h:column>
+									
+									<h:commandButton class="btn btn-warning" value="Edit"
+										action="#{facturaBean.edit(det)}" rendered="#{not det.editable}" />
+									<h:commandButton value="Save" action="#{facturaBean.save(det)}"
+										rendered="#{det.editable}" />
 								</h:column>
 
 							</h:dataTable>
@@ -520,20 +525,19 @@
 								<div class="col-sm-4" style="background-color: white;"></div>
 								<div class="col-sm-4" style="background-color: white;">
 									<label>Subtotal:</label>
-									<h:outputLabel>0.00</h:outputLabel>
+									<h:outputLabel id="subtotal" value="#{facturaBean.subtotal}"> $</h:outputLabel>
 									<br /> <label>Total:</label>
-									<h:outputLabel>0.00</h:outputLabel>
+									<h:outputLabel id="total" value="#{facturaBean.total}"> $</h:outputLabel>
 									<hr />
 									<h:form>
-										<h:commandButton class="btn btn-warning" value="Finalizar Factura" />
+										<h:commandButton class="btn btn-warning"
+											value="Finalizar Factura"
+											action="#{facturaBean.finalizarFactura}" />
 									</h:form>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-
 
 					<!-- FIN CONTENIDO -->
 

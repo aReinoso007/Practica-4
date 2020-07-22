@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Lista Facturas</title>
+	<title>Editar Factura</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -71,8 +71,7 @@
 						<a class="collapse-item"
 							href="/Practica-4/PrivadaEmp/RegistroClienteEmp.xhtml">Registrar
 							Cliente</a> <a class="collapse-item"
-							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">Listar
-							Clientes</a>
+							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">listado</a>
 					</div>
 				</div></li>
 
@@ -320,52 +319,222 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- INICIO CONTENIDO -->
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Facturas</h1>
+					<div class="row">
+
+						<!-- Area Chart -->
+						<div class="col-xl-8 col-lg-7">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Factura
+										Cabecera:</h6>
+									<div class="dropdown no-arrow"></div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+
+									<h:form>
+										<div class="form-group">
+											<label for="pwd">Cedula Cliente:</label>
+											<h:inputText styleClass="form-control"
+												value="#{facturaBean.identificacion}" style="width:200px">
+												<f:ajax event="keyup" render="mensaje"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="nombres"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="cedula"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="direccion"
+													listener="#{facturaBean.obtenerCliente}" />
+												<f:ajax event="keyup" render="correo"
+													listener="#{facturaBean.obtenerCliente}" />
+
+											</h:inputText>
+											<h:outputText id="cliente" class="mensaje-error"
+												value="#{facturaBean.resultado}" />
 
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Listado de
-								Facturas</h6>
+										</div>
+										<hr />
+										<div class="form-group">
+											<label for="pwd">Estado Fatura:</label>
+
+											<h:selectOneMenu styleClass="custom-select mt-3"
+												value="#{facturaBean.estadoFactura}">
+												<f:selectItem itemValue="abonada" itemLabel="Abonada" />
+												<f:selectItem itemValue="parcialmente pagada"
+													itemLabel="Parcialmente pagada" />
+												<f:selectItem itemValue="no pagada" itemLabel="No pagada" />
+												<f:selectItem itemValue="todos" itemLabel="Todos" />
+											</h:selectOneMenu>
+
+										</div>
+
+										<div class="form-group">
+
+											<label for="pwd">Bodega:</label>
+											<h:selectOneMenu class="custom-select mt-3"
+												value="#{facturaBean.codigoB}">
+												<f:selectItems value="#{facturaBean.bodegas}" var="bodg"
+													itemValue="#{bodg.codigoBodega}" itemLabel="#{bodg.nombre}" />
+											</h:selectOneMenu>
+										</div>
+
+										<div class="container">
+											<h4>Ingresar Detalle Factura:</h4>
+
+
+											<label for="pwd" class="mb-2 mr-sm-2">Producto:</label>
+											<h:inputText styleClass="form-control mb-2 mr-sm-2"
+												style="width:150px" value="#{facturaBean.codigoProducto}">
+												<f:ajax event="keyup" render="producto"
+													listener="#{facturaBean.obtenerProducto}" />
+											</h:inputText>
+
+											<label for="pwd" class="mb-2 mr-sm-2">Cantidad:</label>
+											<h:inputText styleClass="form-control mb-2 mr-sm-2"
+												style="width:150px" value="#{facturaBean.cantidad}" />
+
+											<label for="pwd" class="mb-2 mr-sm-2">Detalle
+												Producto:</label>
+											<h:outputText id="producto"
+												styleClass="form-control mb-2 mr-sm-2"
+												value="#{facturaBean.nomproducto}" style="width:190px" />
+
+											<label for="pwd" class="mb-2 mr-sm-2"></label>
+											<h:commandButton action="#{facturaBean.addFactura}"
+												styleClass="btn btn-success" value="Añadir producto">
+
+											</h:commandButton>
+
+
+										</div>
+
+
+									</h:form>
+
+
+
+								</div>
+							</div>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<h:dataTable value="#{facturaBean.list}" var="p"
-									class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<h:column>
-										<f:facet name="header">Codigo</f:facet>
-										<h:outputText value="#{p.codigoFactura}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Cliente</f:facet>
-										<h:outputText
-											value="#{p.persona.nombre} #{p.persona.apellido}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Fecha</f:facet>
-										<h:outputText value="#{p.fecha}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Bodega</f:facet>
-										<h:outputText value="#{p.bodega.nombre}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Total</f:facet>
-										<h:outputText value="#{p.total}" />
-									</h:column>
 
-									<h:column>
-										<f:facet name="header">Accion</f:facet>
-										<h:button styleClass="btn btn-warning" value="Editar" />
-										<h:button style="margin-left: 10px"
-											Styleclass="btn btn-danger" value="Eliminar" />
-									</h:column>
+						<!-- Pie Chart -->
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Datos
+										Cliente</h6>
+									<div class="dropdown no-arrow"></div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<h:outputText id="mensaje" class="mensaje-error"
+										value="#{facturaBean.resultado}" />
+									<hr />
+									<label for="pwd">Nombres y Apellidos: </label>
 
-								</h:dataTable>
+									<h:outputText id="nombres" class="mensaje-error"
+										value="#{facturaBean.cliente.nombre} #{facturaBean.cliente.apellido}" />
+									<hr />
+
+									<label for="pwd">Cedula: </label>
+
+									<h:outputText id="cedula" class="mensaje-error"
+										value="#{facturaBean.cliente.cedula}" />
+									<hr />
+									<label for="pwd">Direccion: </label>
+
+									<h:outputText id="direccion" class="mensaje-error"
+										value="#{facturaBean.cliente.direccion}" />
+									<hr />
+									<label for="pwd">Correo: </label>
+
+									<h:outputText id="correo" class="mensaje-error"
+										value="#{facturaBean.cliente.correo}" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- INICIO CONTENIDO -->
+
+
+
+					<h:panelGrid class="container">
+						<h:form>
+							<br />
+
+							<h:dataTable value="#{facturaBean.listFD}" var="det"
+								styleClass="table table-striped" headerClass="cabeceraTabla"
+								rowClasses="filaPar,filaImpar">
+
+								<!-- inicio columnas -->
+								<h:column>
+									<f:facet name="header">Producto</f:facet>
+									<h:inputText value="#{c.descripcion}" size="10"
+										rendered="#{c.editable}" />
+
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Cantidad</f:facet>
+									<h:inputText value="#{det.cantidad}" size="10"
+										rendered="#{det.editable}" />
+									<h:outputText value="#{det.cantidad}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Precio</f:facet>
+									<h:outputText value="#{det.producto.precioVenta}" />
+								</h:column>
+
+								<h:column>
+									
+									<h:commandButton class="btn btn-danger" value="Delete"
+										action="#{facturaBean.delete(det)}" />
+								</h:column>
+								<h:column>
+									
+									<h:commandButton class="btn btn-warning" value="Edit"
+										action="#{facturaBean.edit(det)}" rendered="#{not det.editable}" />
+									<h:commandButton value="Save" action="#{facturaBean.save(det)}"
+										rendered="#{det.editable}" />
+								</h:column>
+
+							</h:dataTable>
+
+						</h:form>
+					</h:panelGrid>
+					<div class="container-fluid">
+						<div class="container-fluid">
+							<!-- Control the column width, and how they should appear on different devices -->
+							<div class="row">
+								<div class="col-sm-6" style="background-color: white;"></div>
+								<div class="col-sm-6" style="background-color: white;"></div>
+							</div>
+							<br />
+
+							<div class="row">
+								<div class="col-sm-4" style="background-color: white;"></div>
+								<div class="col-sm-4" style="background-color: white;"></div>
+								<div class="col-sm-4" style="background-color: white;">
+									<label>Subtotal:</label>
+									<h:outputLabel id="subtotal" value="#{facturaBean.subtotal}"> $</h:outputLabel>
+									<br /> <label>Total:</label>
+									<h:outputLabel id="total" value="#{facturaBean.total}"> $</h:outputLabel>
+									<hr />
+									<h:form>
+										<h:commandButton class="btn btn-warning"
+											value="Finalizar Factura"
+											action="#{facturaBean.finalizarFactura}" />
+									</h:form>
+								</div>
 							</div>
 						</div>
 					</div>
