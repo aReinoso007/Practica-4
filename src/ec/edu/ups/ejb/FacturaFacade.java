@@ -2,6 +2,8 @@ package ec.edu.ups.ejb;
 
 
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,5 +32,12 @@ public class FacturaFacade extends AbstractFacade<Factura> {
 		nativeQuery.setParameter(2, cedula);
 
 		return (Factura) nativeQuery.getSingleResult();
+	}
+	
+	public List<Factura> listarFacturasActivas(String estado) {
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM factura WHERE ESTADOFACTURA <> ? ", Factura.class);
+		nativeQuery.setParameter(1, estado);
+
+		return (List<Factura>) nativeQuery.getResultList();
 	}
 }

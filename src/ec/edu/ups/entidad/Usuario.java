@@ -25,6 +25,8 @@ public class Usuario  implements Serializable {
 	private String correo;
 	private String contrasena;
 	
+	private String estado;
+	
 	@OneToOne
 	@JoinColumn
 	private Rol rol;
@@ -36,7 +38,10 @@ public class Usuario  implements Serializable {
 
 	
 
-	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena) {
+	
+	//Crear empleados y adm con todas las de ley
+	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena,
+			String estado, Rol rol) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -44,7 +49,21 @@ public class Usuario  implements Serializable {
 		this.direccion = direccion;
 		this.correo = correo;
 		this.contrasena = contrasena;
+		this.estado = estado;
+		this.rol = rol;
 	}
+	
+	//para crear clientes inactivos
+	public Usuario(String cedula, String nombre, String apellido, String direccion, String estado, Rol rol) {
+		super();
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.estado = estado;
+		this.rol = rol;
+	}
+
 
 
 	public Usuario(String cedula, String nombre, String apellido, String direccion, String correo, String contrasena,
@@ -143,6 +162,19 @@ public class Usuario  implements Serializable {
 		this.rol = rol;
 	}
 
+	
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 
 
 	@Override
@@ -210,11 +242,17 @@ public class Usuario  implements Serializable {
 
 
 
+
 	@Override
 	public String toString() {
 		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion="
-				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + ", rol=" + rol + "]";
+				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + ", estado=" + estado + ", rol="
+				+ rol + "]";
 	}
+
+
+
+	
 	
 	
    

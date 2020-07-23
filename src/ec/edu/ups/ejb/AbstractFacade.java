@@ -31,7 +31,7 @@ public abstract class AbstractFacade<T> {
     public T find(Object id) {
 	return getEntityManager().find(entityClass, id);
     }
-
+    
    
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<T> findAll() {

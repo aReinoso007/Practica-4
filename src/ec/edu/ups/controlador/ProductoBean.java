@@ -36,6 +36,7 @@ public class ProductoBean implements Serializable{
 	private Date fechaCompra;
 	private String marca;
 	
+	private int codigoP;
 	
 	private Categoria categoria;
 	private String nombreCate;
@@ -57,7 +58,7 @@ public class ProductoBean implements Serializable{
 		listaProducto = ejbProducto.listarProductos();
 		System.out.println("Listado Productos");
 		listaCategoria = ejbCategoria.findAll();
-		listaCategoria = ejbCategoria.listarCategorias();
+		//listaCategoria = ejbCategoria.listarCategorias();
 		System.out.println("Listado Categorias");
 	}
 	
@@ -73,6 +74,8 @@ public class ProductoBean implements Serializable{
 	
 	public String add() {
 		fechaCompra = new Date();
+		System.out.println("CODIGO: "+this.codigoP);
+		categoria = ejbCategoria.find(this.codigoP);
 		ejbProducto.create(new Producto(this.nombre,this.categoria,this.precioCompra,this.precioVenta,this.stock,this.fechaCompra,this.marca));
 		listaProducto = ejbProducto.findAll();
 		return null;
@@ -236,6 +239,14 @@ public class ProductoBean implements Serializable{
 
 	public void setFacturasDetalle(List<FacturaDetalle> facturasDetalle) {
 		this.facturasDetalle = facturasDetalle;
+	}
+
+	public int getCodigoP() {
+		return codigoP;
+	}
+
+	public void setCodigoP(int codigoP) {
+		this.codigoP = codigoP;
 	}
 	
 	

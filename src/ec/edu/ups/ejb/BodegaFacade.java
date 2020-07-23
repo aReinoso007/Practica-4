@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import ec.edu.ups.entidad.Bodega;
 import ec.edu.ups.entidad.Producto;
+import ec.edu.ups.entidad.Usuario;
 
 
 @Stateless
@@ -42,5 +43,19 @@ public class BodegaFacade  extends AbstractFacade<Bodega> {
     	System.out.println("Bodega obtenido: "+nq.getSingleResult());
     	return (Bodega) nq.getSingleResult();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<Usuario> obtenerAdministradores(){
+    	Query nq = em.createNativeQuery("SELECT * FROM Usuario WHERE rol_codigo=3", Usuario.class);
+    	System.out.println("retornando consulta desde facade");
+    	return (List<Usuario>) nq.getResultList();
+    }
+    
+    public List<Bodega> obtenerBodegas(int id) {
+    	Query nq = em.createNativeQuery("SELECT * FROM bodega WHERE nombre= ?", Bodega.class);
+    	nq.setParameter(1, id);
 
+    	return (List<Bodega>) nq.getSingleResult();
+    }
+    
 }

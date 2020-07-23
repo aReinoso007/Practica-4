@@ -1,17 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_131">
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.glassfish.tools.lib.system">
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/javax.faces.jar">
 		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/glassfish-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/cdi-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/javax.ejb-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Documents/Projetcs Eclipse Enterprise/Correccion_Exam/WebContent/WEB-INF/lib/jakarta.persistence_2.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/bean-validator.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/javax.ws.rs-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/glassfish5/glassfish/modules/javax.json.bind-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/omnifaces-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/apache-tomcat-9.0.34/lib/annotations-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://javaee.github.io/javaee-spec/javadocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Alex Reinoso/Documents/7mo semestre/Plataformas Web/librerias/glassfish full/glassfish5/glassfish/modules/cdi-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Alex Reinoso/Documents/7mo semestre/Plataformas Web/librerias/glassfish full/glassfish5/glassfish/modules/javax.ejb-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Alex Reinoso/Documents/7mo semestre/Plataformas Web/librerias/glassfish full/glassfish5/glassfish/modules/glassfish-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Alex Reinoso/Documents/7mo semestre/Plataformas Web/librerias/glassfish full/glassfish5/glassfish/modules/javax.faces.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Alex Reinoso/Documents/7mo semestre/Plataformas Web/librerias/glassfish full/glassfish5/glassfish/modules/javax.persistence.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/8/api/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

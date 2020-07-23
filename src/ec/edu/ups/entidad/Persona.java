@@ -23,6 +23,8 @@ public class Persona implements Serializable {
 	private String direccion;
 
 	private String correo;
+	
+	private String estado;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="persona")
 	private List<Factura> facturas;
@@ -35,13 +37,14 @@ public class Persona implements Serializable {
 	
 	
 
-	public Persona(String cedula, String nombre, String apellido, String direccion, String correo) {
+	public Persona(String cedula, String nombre, String apellido, String direccion, String correo, String estado) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
 		this.correo = correo;
+		this.estado = estado;
 	}
 
 
@@ -103,6 +106,20 @@ public class Persona implements Serializable {
 
 	public void setFacturas(List<Factura> facturas) {
 		this.facturas = facturas;
+	}
+	
+	
+
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 

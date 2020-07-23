@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Facturas</title>
+	<title>Lista Facturas</title>
 	<link rel="stylesheet" type="text/css"
 		href="/Practica-4/CONFIG2/vendor/fontawesome-free/css/all.min.css" />
 	<link
@@ -17,7 +17,7 @@
 	<link
 		href="/Practica-4/CONFIG2vendor/datatables/dataTables.bootstrap4.min.css"
 		rel="stylesheet" />
-	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />	
+	<h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 </h:head>
 <body>
 
@@ -69,9 +69,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Clientes</h6>
 						<a class="collapse-item"
-							href="/Practica-4/Privada/RegistrarCliente.xhtml">Registrar
+							href="/Practica-4/PrivadaEmp/RegistroClienteEmp.xhtml">Registrar
 							Cliente</a> <a class="collapse-item"
-							href="/Practica-4/Privada/ListarClientes.xhtml">listado</a>
+							href="/Practica-4/PrivadaEmp/ListarClientesEmp.xhtml">listado</a>
 					</div>
 				</div></li>
 
@@ -93,9 +93,10 @@
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="CrearFactura.xhtml">Generar
-							Factura</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
-							Facturas</a>
+						<a class="collapse-item" href="CrearFactura.xhtml">Facturar
+							Pedidos</a> <a class="collapse-item" href="ListarFacturas.xhtml">Listar
+							Facturas</a> <a class="collapse-item" href="Facturacion.xhtml">Crear
+							Factura</a>
 
 					</div>
 				</div></li>
@@ -319,41 +320,71 @@
 				<div class="container-fluid">
 
 					<!-- INICIO CONTENIDO -->
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Pedidos a facturar</h1>
+					<div class="container">
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Listado de
-								pedidos</h6>
-						</div>
-						<div class="card-body">
-							<div class="col-sm-12 col-md-6">
-								<div id="dataTable_filter" class="dataTables_filter">
-									<label>Buscar:<input type="search"
-										class="form-control form-control-sm" placeholder=""
-										aria-controls="dataTable" /></label>
+						<div class="card o-hidden border-0 shadow-lg my-5">
+							<div class="card-body p-0">
+								<!-- Nested Row within Card Body -->
+								<div class="row">
+									<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+									<div class="col-lg-7">
+										<div class="p-5">
+											<div class="text-center">
+												<h1 class="h4 text-gray-900 mb-4">Registro de nuevo
+													Cliente</h1>
+											</div>
+											<h:form class="user">
+												
+													<div class="form-group row">
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Nombre</label>
+															<h:inputText class="form-control form-control-user"
+																id="exampleFirstName" value="#{personaBean.nombre}" />
+														</div>
+														<div class="col-sm-6">
+															<label>Apellido</label>
+															<h:inputText class="form-control form-control-user"
+																id="exampleLastName" value="#{personaBean.apellido}"
+																placeholder="" />
+														</div>
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Numero de cedula</label>
+															<h:inputText type="number"
+																class="form-control form-control-user" id="cedula"
+																value="#{personaBean.cedula}" />
+														</div>
+													</div>
+													<div class="form-group">
+													<label>Correo</label>
+														<h:inputText type="email" id="correo"
+															class="form-control form-control-user"
+															value="#{personaBean.correo}" />
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-6 mb-3 mb-sm-0">
+															<label>Direccion</label>
+															<h:inputText class="form-control form-control-user"
+																id="direccion" value="#{personaBean.direccion}" />
+														</div>
+													</div>
+													<h:commandButton value="Actualizar"
+														action="#{personaBean.update}"
+														class="btn btn-primary btn-user btn-block" />
+													<hr />
+
+												</h:form>
+											
+
+											<hr />
+
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="table-responsive">
-								<h:dataTable value=" in" var="p"
-									class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<h:column>
-										<f:facet name="header">Cliente</f:facet>sn
-					</h:column>
-									<h:column>
-										<f:facet name="header">Fecha</f:facet>sn
-					</h:column>
-									<h:column>
-										<f:facet name="header">Accion</f:facet>sn
-					</h:column>
-
-								</h:dataTable>
-							</div>
 						</div>
+
 					</div>
+
 
 
 
@@ -424,10 +455,10 @@
 	<script src="/Practica-4/CONFIG2/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-<!-- 	<script
-		src="/Practica-4/CONFIG2/vendor/datatables/jquery.dataTables.min.js"></script> -->
- 	<script
-		src="/Practica-4/CONFIG2/vendor/datatables/dataTables.bootstrap4.min.js"></script> 
+	<script
+		src="/Practica-4/CONFIG2/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/Practica-4/CONFIG2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 	<!-- Page level custom scripts -->
